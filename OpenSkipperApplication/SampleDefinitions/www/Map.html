@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name='viewport' content='width=device-width, height=device-height, initial-scale=1, maximum-scale=1' />
+
+    <title>Feelings position</title>
+    <link rel=stylesheet type="text/css" href="style.css">
+    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/MapControl/mapcontrol.ashx?v=6.3c"></script>
+    <script type="text/javascript" language="javascript">var ParamPageName="/Map.Conf"</script>
+    <script src="OpenSkipper.js"></script>
+    <script src="Scripts/Map.js"></script>
+
+    <!-- Includes for menu -->
+    <script src="Scripts/jquery.min.js"></script>
+    <link rel=stylesheet type="text/css" href="clickerMenu.css">
+    
+		<!-- jQuery -->
+		<script>
+		$(function() {
+			// Clickable Dropdown
+      // See original in http://toddmotto.com/flawless-clickable-drop-down-navigation/
+			$('.click-nav ul').click(function(e) {
+        var $elem = $(e.target);
+        if ($elem.hasClass('js')) {
+//          $('.nav .js ul').hide();
+          $elem.next("ul").hide();
+  				$elem.toggleClass('active');
+  				$elem.toggleClass('js');
+        } else {
+          $('.click-nav-sub').hide();
+          $('.clicker').removeClass('active');
+          $('.clicker').removeClass('js');
+          $elem.next("ul").slideToggle();
+  				$elem.toggleClass('active');
+  				$elem.toggleClass('js');
+        }
+				e.stopPropagation();
+			});
+      
+      $(document).click(function(e) {
+        $('.click-nav-sub').hide();
+			  $('.clicker').removeClass('active');
+			  $('.clicker').removeClass('js');
+      });
+
+		});
+		</script>
+    </head>
+  <body>
+    <div id='HeadDiv' >
+		<!-- Clickable Menu -->
+		<div class="click-nav">
+			<ul class="no-js">
+				<li>
+					<a class="clicker">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Nav</a>
+					<ul class="click-nav-sub">
+						<li><a href="Steer.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Speed/Depth</a></li>
+						<li><a href="Compass.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Compass</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="clicker">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Map</a>
+					<ul class="click-nav-sub">
+						<li><a href="Map.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Map</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="clicker">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Misc</a>
+					<ul class="click-nav-sub">
+						<li><a href="Battery.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Battery</a></li>
+						<li><a href="Tanks.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Tanks</a></li>
+						<li><a href="Motor.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Motor</a></li>
+					</ul>
+				</li>
+			</ul>
+      &nbsp;
+		</div>
+		<!-- /Clickable Menu -->
+    </div>
+       
+    <div id='MainDiv' style="width:100px; background-color: #E0E0E0; height: 100px; border: 1px solid black">
+      <div id='PositionMap' style="position:relative; width:100%; height:80px">
+      </div>
+      <div id='DataDiv'>
+        <h2 id="Position">NA° NA,NA ' N  NA° NA,NA ' E Heading=NA° Speed=NA  kn</h2>
+      </div>
+    </div>
+    
+    <script>
+    curLat=60.45; curLon=21.34;
+    ResizeView();
+    </script>
+  </body>
+
+</html>
+

@@ -1,0 +1,354 @@
+<Object type="System.Windows.Forms.Form" name="Dials" children="Controls">
+  <Object type="KaveExtControls.BorderPanel" children="Controls" name="PanelDials">
+    <Property name="Font">Microsoft Sans Serif,9pt,style=Bold</Property>
+    <Property name="ForeColor">Red</Property>
+    <Property name="Location">0,0</Property>
+    <Property name="Size">730,400</Property>
+    <!-- Possible values: None,FixedSingle,Fixed3D -->
+    <Property name="BorderStyle">Fixed3D</Property>
+    <!-- Possible values: Dashed,Dotted,Inset (default,Sunken), Outset (Raised), Solid -->
+    <Property name="BorderStyle3DExt">Outset</Property>
+    <Property name="BorderColor">Red</Property>
+    <Property name="BorderWidth">5</Property>
+    <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelDialsOther">
+      <Property name="Location">470,0</Property>
+      <Property name="Size">240,400</Property>
+      <Property name="Dock" assembly="System.Windows.Forms" type="DockStyle">Left</Property>
+      <Object type="AGaugeApp.AGauge" name="GaugeDialsDepth">
+        <Property name="Location">10, 10</Property>
+        <Property name="Size">218, 201</Property>
+        <Property name="BaseArcColor">Gray</Property>
+        <Property name="BaseArcRadius">80</Property>
+        <Property name="BaseArcStart">135</Property>
+        <Property name="BaseArcSweep">270</Property>
+        <Property name="BaseArcWidth">2</Property>
+        <!-- Positions array 5, default value for each Black  -->
+        <Property name="CapColors" assembly="System.Drawing" itemType="Color">Red</Property>
+        <!-- Positions array 5, default value for each false  -->
+        <Property name="CapsCentered" itemType="System.Boolean">false;true;false</Property>
+        <!-- Positions array 5, default value for each 10,10  -->
+        <Property name="CapsPosition" assembly="System.Drawing" itemType="Point">10,10;100,150</Property>
+        <Property name="CapsText" itemType="System.String">;Depth (m)</Property>
+        <Property name="Center">100, 100</Property>
+        <Property name="MaxValue">10</Property>
+        <Property name="MinValue">0</Property>
+        <Property name="NeedleColor1">Gray</Property>
+        <Property name="NeedleColor2">DimGray</Property>
+        <Property name="NeedleRadius">80</Property>
+        <Property name="NeedleType">0</Property>
+        <Property name="NeedleWidth">2</Property>
+        <Property name="RangesColor" assembly="System.Drawing" itemType="Color">LightGreen;Red</Property>
+        <Property name="RangesEnabled" itemType="System.Boolean">false;false</Property>
+        <Property name="RangesEndValue" itemType="System.Single">300;400</Property>
+        <Property name="RangesInnerRadius" itemType="System.Int32">70</Property>
+        <Property name="RangesOuterRadius" itemType="System.Int32">80</Property>
+        <Property name="RangesStartValue" itemType="System.Single">100;300</Property>
+        <Property name="ScaleLinesInterColor">Black</Property>
+        <Property name="ScaleLinesInterInnerRadius">73</Property>
+        <Property name="ScaleLinesInterOuterRadius">80</Property>
+        <Property name="ScaleLinesInterWidth">1</Property>
+        <Property name="ScaleLinesMajorColor">Black</Property>
+        <Property name="ScaleLinesMajorInnerRadius">70</Property>
+        <Property name="ScaleLinesMajorOuterRadius">80</Property>
+        <Property name="ScaleLinesMajorStepValue">1</Property>
+        <Property name="ScaleLinesMajorWidth">2</Property>
+        <Property name="ScaleLinesMinorColor">Gray</Property>
+        <Property name="ScaleLinesMinorInnerRadius">75</Property>
+        <Property name="ScaleLinesMinorNumOf">9</Property>
+        <Property name="ScaleLinesMinorOuterRadius">80</Property>
+        <Property name="ScaleLinesMinorWidth">1</Property>
+        <Property name="ScaleNumbersColor">Red</Property>
+        <Property name="ScaleNumbersFormat">G</Property>
+        <Property name="ScaleNumbersRadius">95</Property>
+        <Property name="ScaleNumbersRotation">0</Property>
+        <Property name="ScaleNumbersStartScaleLine">0</Property>
+        <Property name="ScaleNumbersStepScaleLines">1</Property>
+        <Property name="ParameterName">Depth</Property>
+        <Property name="PropertyToSet">Value</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+      <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelDialsOtherText">
+        <Property name="Location">10,0</Property>
+        <Property name="Size">240,180</Property>
+        <Property name="Dock" assembly="System.Windows.Forms" type="DockStyle">Bottom</Property>
+        <!-- Note! When using Top aligned panels, we need to define them currently from bottom to top. -->
+        <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelDialsOtherSpeedkts">
+          <Property name="Location">0,0</Property>
+          <Property name="Size">240,27</Property>
+          <Property name="Dock" assembly="System.Windows.Forms" type="DockStyle">Top</Property>
+          <Object type="System.Windows.Forms.Label" name="LabelDialsOtherSpeedkts">
+            <Property name="AutoSize">false</Property>
+            <Property name="Location">10,10</Property>
+            <Property name="Size">70,13</Property>
+            <Property name="TextAlign" assembly="System.Windows.Forms" type="HorizontalAlignment">Right</Property>
+            <Property name="TextAlign" assembly="System.Drawing" type="ContentAlignment">MiddleRight</Property>
+            <Property name="Text">Speed_kts</Property>
+          </Object>
+          <Object type="KaveExtControls.ValueBox" name="ValueDialsOtherSpeedkts">
+            <Property name="Location">80,6</Property>
+            <Property name="Size">80,20</Property>
+            <Property name="Format">#0.0 kn</Property>
+            <Property name="ParameterName">Boat_kts</Property>
+            <Property name="PropertyToSet">Value</Property>
+            <Property name="StreamsToMatch">Any</Property>
+          </Object>
+        </Object>
+        <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelDialsOtherTWS">
+          <Property name="Location">0,0</Property>
+          <Property name="Size">240,27</Property>
+          <Property name="Dock" assembly="System.Windows.Forms" type="DockStyle">Top</Property>
+          <Object type="System.Windows.Forms.Label" name="LabelDialsOtherTWS">
+            <Property name="Location">10,10</Property>
+            <Property name="Size">70,13</Property>
+            <Property name="TextAlign" assembly="System.Drawing" type="ContentAlignment">MiddleRight</Property>
+            <Property name="Text">TWS</Property>
+          </Object>
+          <Object type="KaveExtControls.ValueBox" name="ValueDialsOtherTWS">
+          <Property name="Font">Arial,10pt</Property>
+          <Property name="ForeColor">Red</Property>
+            <Property name="Location">80,6</Property>
+            <Property name="Size">80,20</Property>
+            <Property name="Format">#0.0</Property>
+            <Property name="ParameterName">TrueWindSpeed_ms</Property>
+            <Property name="PropertyToSet">Value</Property>
+            <Property name="StreamsToMatch">Any</Property>
+          </Object>
+        </Object>
+        <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelDialsOtherTWA">
+          <Property name="Location">0,0</Property>
+          <Property name="Size">240,27</Property>
+          <Property name="Dock" assembly="System.Windows.Forms" type="DockStyle">Top</Property>
+          <Object type="System.Windows.Forms.Label" name="LabelDialsOtherTWA">
+            <Property name="Location">10,10</Property>
+            <Property name="Size">70,13</Property>
+            <Property name="TextAlign" assembly="System.Drawing" type="ContentAlignment">MiddleRight</Property>
+            <Property name="Text">TWA</Property>
+          </Object>
+          <Object type="KaveExtControls.ValueBox" name="ValueDialsOtherTWA">
+            <Property name="Location">80,6</Property>
+            <Property name="Size">80,20</Property>
+            <Property name="Format">#0°</Property>
+            <Property name="ParameterName">TrueWindAngle</Property>
+            <Property name="PropertyToSet">Value</Property>
+            <Property name="StreamsToMatch">Any</Property>
+          </Object>
+        </Object>
+        <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelDialsOtherAWS">
+          <Property name="Location">0,0</Property>
+          <Property name="Size">240,27</Property>
+          <Property name="Dock" assembly="System.Windows.Forms" type="DockStyle">Top</Property>
+          <Object type="System.Windows.Forms.Label" name="LabelDialsOtherAWS">
+            <Property name="Location">10,10</Property>
+            <Property name="Size">70,13</Property>
+            <Property name="TextAlign" assembly="System.Drawing" type="ContentAlignment">MiddleRight</Property>
+            <Property name="Text">AWS</Property>
+          </Object>
+          <Object type="KaveExtControls.ValueBox" name="ValueDialsOtherAWS">
+            <Property name="Location">80,6</Property>
+            <Property name="Size">80,20</Property>
+            <Property name="Format">#0.0</Property>
+            <Property name="ParameterName">RelativeWindSpeed_ms</Property>
+            <Property name="PropertyToSet">Value</Property>
+            <Property name="StreamsToMatch">Any</Property>
+          </Object>
+        </Object>
+        <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelDialsOtherAWA">
+          <Property name="Location">0,0</Property>
+          <Property name="Size">240,27</Property>
+          <Property name="Dock" assembly="System.Windows.Forms" type="DockStyle">Top</Property>
+          <Object type="System.Windows.Forms.Label" name="LabelDialsOtherAWA">
+            <Property name="Location">10,10</Property>
+            <Property name="Size">70,13</Property>
+            <Property name="TextAlign" assembly="System.Drawing" type="ContentAlignment">MiddleRight</Property>
+            <Property name="Text">AWA</Property>
+          </Object>
+          <Object type="KaveExtControls.ValueBox" name="ValueDialsOtherAWA">
+            <Property name="Location">80,6</Property>
+            <Property name="Size">80,20</Property>
+            <Property name="Format">#0°</Property>
+            <Property name="ParameterName">RelativeWindAngle</Property>
+            <Property name="PropertyToSet">Value</Property>
+            <Property name="StreamsToMatch">Any</Property>
+          </Object>
+        </Object>
+      </Object>
+    </Object>
+    <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelDialsSteer">
+      <Property name="Location">1000,0</Property>
+      <Property name="Size">240,280</Property>
+      <Property name="Dock" assembly="System.Windows.Forms" type="DockStyle">Left</Property>
+      <Object type="AGaugeApp.AGauge" name="GaugeDialsSteer">
+        <Property name="Location">10, 10</Property>
+        <Property name="Size">218, 201</Property>
+        <Property name="BaseArcColor">Gray</Property>
+        <Property name="BaseArcRadius">80</Property>
+        <Property name="BaseArcStart">-90</Property>
+        <Property name="BaseArcSweep">360</Property>
+        <Property name="BaseArcWidth">2</Property>
+        <Property name="CapColors" assembly="System.Drawing" itemType="Color">Black</Property>
+        <Property name="CapsCentered" itemType="System.Boolean">false;true</Property>
+        <Property name="CapsPosition" assembly="System.Drawing" itemType="Point">10,10;110,140</Property>
+        <Property name="CapsText" itemType="System.String">;Heading</Property>
+        <Property name="Center">110, 100</Property>
+        <Property name="MaxValue">360</Property>
+        <Property name="MinValue">0</Property>
+        <Property name="NeedleColor1">Gray</Property>
+        <Property name="NeedleColor2">DimGray</Property>
+        <Property name="NeedleRadius">80</Property>
+        <Property name="NeedleType">0</Property>
+        <Property name="NeedleWidth">2</Property>
+        <Property name="RangesColor" assembly="System.Drawing" itemType="Color">LightGreen;Red</Property>
+        <Property name="RangesEnabled" itemType="System.Boolean">false;false</Property>
+        <Property name="RangesEndValue" itemType="System.Single">300;400</Property>
+        <Property name="RangesInnerRadius" itemType="System.Int32">70</Property>
+        <Property name="RangesOuterRadius" itemType="System.Int32">80</Property>
+        <Property name="RangesStartValue" itemType="System.Single">0;300</Property>
+        <Property name="ScaleLinesInterColor">Black</Property>
+        <Property name="ScaleLinesInterInnerRadius">73</Property>
+        <Property name="ScaleLinesInterOuterRadius">80</Property>
+        <Property name="ScaleLinesInterWidth">1</Property>
+        <Property name="ScaleLinesMajorColor">Black</Property>
+        <Property name="ScaleLinesMajorInnerRadius">70</Property>
+        <Property name="ScaleLinesMajorOuterRadius">80</Property>
+        <Property name="ScaleLinesMajorStepValue">45</Property>
+        <Property name="ScaleLinesMajorWidth">2</Property>
+        <Property name="ScaleLinesMinorColor">Gray</Property>
+        <Property name="ScaleLinesMinorInnerRadius">75</Property>
+        <Property name="ScaleLinesMinorNumOf">9</Property>
+        <Property name="ScaleLinesMinorOuterRadius">80</Property>
+        <Property name="ScaleLinesMinorWidth">1</Property>
+        <Property name="ScaleNumbersColor">Black</Property>
+        <Property name="ScaleNumbersFormat">G</Property>
+        <Property name="ScaleNumbersRadius">95</Property>
+        <Property name="ScaleNumbersRotation">0</Property>
+        <Property name="ScaleNumbersStartScaleLine">0</Property>
+        <Property name="ScaleNumbersStepScaleLines">1</Property>
+        <Property name="ParameterName">Heading</Property>
+        <Property name="PropertyToSet">Value</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+      <Object type="TB.Instruments.SlidingScale" name="SlidingDialsSteer">
+        <Property name="BackColor">White</Property>
+        <Property name="BorderStyle" assembly="System.Windows.Forms" type="BorderStyle">Fixed3D</Property>
+        <Property name="ForeColor">Black</Property>
+        <Property name="LargeTicksCount">9</Property>
+        <Property name="Location">10, 213</Property>
+        <Property name="ScaleRange">360</Property>
+        <Property name="Size">217, 45</Property>
+        <Property name="SmallTickCount">5</Property>
+        <Property name="Wrap">true</Property>
+        <Property name="ParameterName">Heading</Property>
+        <Property name="PropertyToSet">Value</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+        <Object type="System.Windows.Forms.TextBox" name="ValueDialsLatitude">
+          <Property name="Location">30,270</Property>
+          <Property name="Size">80,20</Property>
+          <Property name="ParameterName">Latitude</Property>
+          <Property name="PropertyToSet">Text</Property>
+          <Property name="StreamsToMatch">Any</Property>
+        </Object>
+        <Object type="System.Windows.Forms.TextBox" name="ValueDialsLongitude">
+          <Property name="Location">120,270</Property>
+          <Property name="Size">80,20</Property>
+          <Property name="ParameterName">Longitude</Property>
+          <Property name="PropertyToSet">Text</Property>
+          <Property name="StreamsToMatch">Any</Property>
+        </Object>
+    </Object>
+    <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelDialsSpeed">
+      <Property name="Location">0,0</Property>
+      <Property name="Size">240,230</Property>
+      <Property name="Dock" assembly="System.Windows.Forms" type="DockStyle">Left</Property>
+      <Object type="AGaugeApp.AGauge" name="GaugeDialsSpeed">
+        <Property name="Location">10, 10</Property>
+        <Property name="Size">218, 201</Property>
+        <Property name="BaseArcColor">Gray</Property>
+        <Property name="BaseArcRadius">80</Property>
+        <Property name="BaseArcStart">135</Property>
+        <Property name="BaseArcSweep">270</Property>
+        <Property name="BaseArcWidth">2</Property>
+        <Property name="CapColors" assembly="System.Drawing" itemType="Color">Black</Property>
+        <Property name="CapsCentered" itemType="System.Boolean">true</Property>
+        <Property name="CapsPosition" assembly="System.Drawing" itemType="Point">100,150;10,10</Property>
+        <Property name="CapsText" itemType="System.String">Speed (m/s)</Property>
+        <Property name="Center">100, 100</Property>
+        <Property name="Location">6, 6</Property>
+        <Property name="MaxValue">20</Property>
+        <Property name="MinValue">0</Property>
+        <Property name="NeedleColor1">Gray</Property>
+        <Property name="NeedleColor2">DimGray</Property>
+        <Property name="NeedleRadius">80</Property>
+        <Property name="NeedleType">0</Property>
+        <Property name="NeedleWidth">2</Property>
+        <Property name="RangesColor" assembly="System.Drawing" itemType="Color">LightGreen;Red</Property>
+        <Property name="RangesEnabled" itemType="System.Boolean">true;true</Property>
+        <Property name="RangesEndValue" itemType="System.Single">18;20</Property>
+        <Property name="RangesInnerRadius" itemType="System.Int32">70</Property>
+        <Property name="RangesOuterRadius" itemType="System.Int32">80</Property>
+        <Property name="RangesStartValue" itemType="System.Single">0;18</Property>
+        <Property name="ScaleLinesInterColor">Black</Property>
+        <Property name="ScaleLinesInterInnerRadius">73</Property>
+        <Property name="ScaleLinesInterOuterRadius">80</Property>
+        <Property name="ScaleLinesInterWidth">1</Property>
+        <Property name="ScaleLinesMajorColor">Black</Property>
+        <Property name="ScaleLinesMajorInnerRadius">70</Property>
+        <Property name="ScaleLinesMajorOuterRadius">80</Property>
+        <Property name="ScaleLinesMajorStepValue">2</Property>
+        <Property name="ScaleLinesMajorWidth">2</Property>
+        <Property name="ScaleLinesMinorColor">Gray</Property>
+        <Property name="ScaleLinesMinorInnerRadius">75</Property>
+        <Property name="ScaleLinesMinorNumOf">9</Property>
+        <Property name="ScaleLinesMinorOuterRadius">80</Property>
+        <Property name="ScaleLinesMinorWidth">1</Property>
+        <Property name="ScaleNumbersColor">Black</Property>
+        <Property name="ScaleNumbersFormat">G</Property>
+        <Property name="ScaleNumbersRadius">95</Property>
+        <Property name="ScaleNumbersRotation">0</Property>
+        <Property name="ScaleNumbersStartScaleLine">0</Property>
+        <Property name="ScaleNumbersStepScaleLines">1</Property>
+        <Property name="ParameterName">Speed</Property>
+        <Property name="PropertyToSet">Value</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+      <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelDialsTank1">
+        <Property name="Location">30,220</Property>
+        <Property name="Size">160,170</Property>
+        <Object type="KaveExtControls.ValueProgressBar" name="ValueProgressDialsTank1">
+          <!-- You can define different colors, which will change, when value is withing range. -->
+          <!-- Default color for all ranges is green -->
+          <Property name="RangesColor" assembly="System.Drawing" itemType="Color">Red;DeepSkyBlue;LawnGreen</Property>
+          <!-- You can define different colors for rangle markers. See also DrawRangeEndMarkers -->
+          <!-- Note that last (=MaxValue) marker will not be drawn -->
+          <!-- Default color for all range markers is red -->
+          <Property name="RangesMarkerColor" assembly="System.Drawing" itemType="Color">Blue;Yellow</Property>
+          <Property name="RangesEnd" itemType="System.Double">20;95;100</Property>
+          <Property name="RangesEnabled" itemType="System.Boolean">true;true;true</Property>
+          <Property name="RangeStart">0.0</Property>
+          <Property name="Location">10,35</Property>
+          <Property name="Size">140,90</Property>
+          <!-- Possible values: DownToUp,UpToDown,LeftToRight,RightToLeft -->
+          <Property name="Direction">DownToUp</Property>
+          <Property name="DrawRangeEndMarkers">true</Property>
+          <Property name="ParameterName">Tank1</Property>
+          <Property name="PropertyToSet">DValue</Property>
+          <Property name="StreamsToMatch">Any</Property>
+        </Object>
+        <Object type="System.Windows.Forms.Label" name="LabelDialsTank1">
+          <Property name="Location">5,5</Property>
+          <Property name="Size">160,25</Property>
+          <Property name="Font">Arial,18pt</Property>
+          <Property name="TextAlign" assembly="System.Windows.Forms" type="HorizontalAlignment">Center</Property>
+          <Property name="Text">Diesel, left</Property>
+        </Object>
+        <Object type="System.Windows.Forms.TextBox" name="ValueDialsTank1">
+          <Property name="Location">60,130</Property>
+          <Property name="Size">40,20</Property>
+          <Property name="ParameterName">Tank1</Property>
+          <Property name="PropertyToSet">Text</Property>
+          <Property name="StreamsToMatch">Any</Property>
+        </Object>
+      </Object>
+    </Object>
+  </Object>
+</Object>

@@ -1,0 +1,59 @@
+<Object type="System.Windows.Forms.Form" name="Steer" children="Controls">
+  <Object type="KaveExtControls.BorderPanel" children="Controls" name="PanelSteer">
+    <Property name="Location">0,0</Property>
+    <Property name="Size">240,320</Property>
+    <!-- Possible values: None,FixedSingle,Fixed3D -->
+    <Property name="BorderStyle">Fixed3D</Property>
+    <!-- Possible values: Dashed,Dotted,Inset (default,Sunken), Outset (Raised), Solid -->
+    <Property name="BorderStyle3DExt">Outset</Property>
+    <Property name="BorderColor">Red</Property>
+    <Property name="BorderWidth">5</Property>
+    <Object type="KaveExtControls.Compass" name="CompassSteer">
+      <Property name="Location">10, 10</Property>
+      <Property name="Size">218, 201</Property>
+      <Property name="ParameterName">Heading</Property>
+      <Property name="PropertyToSet">Value</Property>
+      <Property name="StreamsToMatch">Any</Property>
+    </Object>
+    <Object type="TB.Instruments.SlidingScale" name="SlidingSteer">
+      <Property name="BackColor">White</Property>
+      <Property name="BorderStyle" assembly="System.Windows.Forms" type="BorderStyle">Fixed3D</Property>
+      <Property name="ForeColor">Black</Property>
+      <Property name="LargeTicksCount">9</Property>
+      <Property name="Location">10, 213</Property>
+      <Property name="ScaleRange">360</Property>
+      <Property name="Size">217, 45</Property>
+      <Property name="SmallTickCount">5</Property>
+      <Property name="Wrap">true</Property>
+      <Property name="ParameterName">Heading</Property>
+      <Property name="PropertyToSet">Value</Property>
+      <Property name="StreamsToMatch">Any</Property>
+    </Object>
+    <Object type="System.Windows.Forms.Label" name="LabelSpeed1">
+      <Property name="Location">10,267</Property>
+      <Property name="Size">50,20</Property>
+      <Property name="Text">Speed</Property>
+    </Object>
+    <Object type="System.Windows.Forms.TextBox" name="ValueSpeed">
+      <Property name="Location">60,265</Property>
+      <Property name="Size">55,20</Property>
+      <Property name="ParameterName">Boat_kts</Property>
+      <Property name="PropertyToSet">Text</Property>
+      <Property name="StreamsToMatch">Any</Property>
+      <Property name="TextAlign" assembly="System.Windows.Forms" type="HorizontalAlignment">Right</Property>
+    </Object>
+    <Object type="System.Windows.Forms.Label" name="LabelDepth1">
+      <Property name="Location">10,292</Property>
+      <Property name="Size">50,20</Property>
+      <Property name="Text">Depth</Property>
+    </Object>
+    <Object type="System.Windows.Forms.TextBox" name="ValueDepth1">
+      <Property name="Location">60,290</Property>
+      <Property name="Size">55,20</Property>
+      <Property name="ParameterName">Depth</Property>
+      <Property name="PropertyToSet">Text</Property>
+      <Property name="StreamsToMatch">Any</Property>
+      <Property name="TextAlign" assembly="System.Windows.Forms" type="HorizontalAlignment">Right</Property>
+    </Object>
+  </Object>
+</Object>

@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<DisplaysCollection>
+  <!-- 
+    One can define default assemblies her so that on display definition file can be used short names.
+    Currently if assemply load fails, we anyway try to load it with partial name (=without version etc.).
+  -->
+  <Assemblies>
+    <DefAssemply>
+      <Name>System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</Name>
+    </DefAssemply>
+    <DefAssemply>
+      <Name>System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Name>
+    </DefAssemply>
+  </Assemblies>
+  <Displays>
+    <DisplayInfo>
+      <Type>Form</Type>
+      <Name>Dials</Name>
+      <Shortcut>Ctrl+0</Shortcut>
+      <!-- You can define form to stay over others -->
+      <TopMost>false</TopMost>
+      <!-- You can define default location for first time.
+           Moved location will be used on next time. -->
+      <DefLocation>800,10</DefLocation>
+      <!-- The form can be started minimized -->
+      <StartMinimized>false</StartMinimized>
+      <DefinitionFile>Display_Dials.xml</DefinitionFile>
+    </DisplayInfo>
+    <DisplayInfo>
+      <Type>TabPage</Type>
+      <Name>Tanks</Name>
+      <Shortcut>Ctrl+1</Shortcut>
+      <!-- You can define form to stay over others -->
+      <!-- If display type is TabPage, then main form will stay on top -->
+      <TopMost>false</TopMost>
+      <DefinitionFile>Display_Tanks.xml</DefinitionFile>
+    </DisplayInfo>
+    <DisplayInfo>
+      <Type>TabPage</Type>
+      <Name>Motor</Name>
+      <Shortcut>Ctrl+2</Shortcut>
+      <!-- The form can be started minimized -->
+      <!-- If display type is TabPage, then main form will be started minimized. -->
+      <StartMinimized>false</StartMinimized>
+      <DefinitionFile>Display_Motor.xml</DefinitionFile>
+    </DisplayInfo>
+    <DisplayInfo>
+      <Type>TabPage</Type>
+      <Name>Battery</Name>
+      <Shortcut>Ctrl+3</Shortcut>
+      <!-- You can define form to stay over others -->
+      <!-- If display type is TabPage, then main form will stay on top -->
+      <TopMost>false</TopMost>
+      <DefinitionFile>Display_Battery.xml</DefinitionFile>
+    </DisplayInfo>
+    <DisplayInfo>
+      <Type>TabPage</Type>
+      <Name>NavInfo</Name>
+      <Shortcut>Ctrl+4</Shortcut>
+      <!-- You can define form to stay over others -->
+      <!-- If display type is TabPage, then main form will stay on top -->
+      <TopMost>false</TopMost>
+      <DefinitionFile>Display_NavInfo.xml</DefinitionFile>
+    </DisplayInfo>
+    <DisplayInfo>
+      <Type>Form</Type>
+      <Name>Steer</Name>
+      <Shortcut>Ctrl+4</Shortcut>
+      <!-- You can define form to stay over others -->
+      <!-- If display type is TabPage, then main form will stay on top -->
+      <TopMost>false</TopMost>
+      <!-- You can define default location for first time.
+           Moved location will be used on next time. -->
+      <DefLocation>40,490</DefLocation>
+      <DefinitionFile>Display_Steer.xml</DefinitionFile>
+    </DisplayInfo>
+      <DisplayInfo>
+      <Type>Form</Type>
+      <Name>WindGraph</Name>
+      <Shortcut>Ctrl+5</Shortcut>
+      <!-- You can define form to stay over others -->
+      <TopMost>false</TopMost>
+      <!-- You can define default location for first time.
+           Moved location will be used on next time. -->
+      <DefLocation>800,410</DefLocation>
+      <!-- The form can be started minimized -->
+      <StartMinimized>false</StartMinimized>
+      <DefinitionFile>Display_WindGraph.xml</DefinitionFile>
+    </DisplayInfo>
+</Displays>
+</DisplaysCollection>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Feelings, motor</title>
+    <meta charset="utf-8" />
+    <meta name='viewport' content='width=device-width, height=device-height, initial-scale=1, maximum-scale=1' />
+    <link rel=stylesheet type="text/css" href="style.css">
+    <script type="text/javascript" language="javascript">var ParamPageName="/Motor.html"</script>
+    <script src="OpenSkipper.js"></script>
+    <script src="Scripts/Gauge.js"></script>
+
+    <!-- Includes for menu -->
+    <script src="Scripts/jquery.min.js"></script>
+    <link rel=stylesheet type="text/css" href="clickerMenu.css">
+
+		<!-- jQuery -->
+		<script>
+		$(function() {
+			// Clickable Dropdown
+      // See original in http://toddmotto.com/flawless-clickable-drop-down-navigation/
+			$('.click-nav ul').click(function(e) {
+        var $elem = $(e.target);
+        if ($elem.hasClass('js')) {
+//          $('.nav .js ul').hide();
+          $elem.next("ul").hide();
+  				$elem.toggleClass('active');
+  				$elem.toggleClass('js');
+        } else {
+          $('.click-nav-sub').hide();
+          $('.clicker').removeClass('active');
+          $('.clicker').removeClass('js');
+          $elem.next("ul").slideToggle();
+  				$elem.toggleClass('active');
+  				$elem.toggleClass('js');
+        }
+				e.stopPropagation();
+			});
+      
+      $(document).click(function(e) {
+        $('.click-nav-sub').hide();
+			  $('.clicker').removeClass('active');
+			  $('.clicker').removeClass('js');
+      });
+
+		});
+		</script>
+  </head>
+	<body>
+		<!-- Clickable Menu -->
+		<div class="click-nav">
+			<ul class="no-js">
+				<li>
+					<a class="clicker">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Nav</a>
+					<ul class="click-nav-sub">
+						<li><a href="Steer.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Speed/Depth</a></li>
+						<li><a href="Compass.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Compass</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="clicker">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Map</a>
+					<ul class="click-nav-sub">
+						<li><a href="Map.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Map</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="clicker">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Misc</a>
+					<ul class="click-nav-sub">
+						<li><a href="Battery.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Battery</a></li>
+						<li><a href="Tanks.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Tanks</a></li>
+						<li><a href="Motor.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Motor</a></li>
+					</ul>
+				</li>
+			</ul>
+      &nbsp;
+		</div>
+		<!-- /Clickable Menu -->
+
+    <canvas id="RPMCanvas" width="220" height="220"></canvas>
+    <div>
+      <table class="dataSmall" width="250">
+        <tr>
+          <td class="description">Main battery</td>
+        </tr>
+        <tr>
+          <td><span name="t2" id="{OpenSkipperParam:Battery1Voltage}">N/A</span></td>
+        </tr>
+      </table> 
+    </div>
+    
+    <!--- The following is used to show errors to the user; it is blank if no error occurs. --->
+    <span name="error" id="error"></span><br>
+    
+    <script>
+       var RPMGauge=new Gauge("RPMCanvas");
+     
+       function UpdateRPMData() {
+        // The {1} is replaced by a counter that distinguishes individual connections
+        // We send this counter value as a parameter in our 
+        makePOSTRequest("ParamData/RPM.conf", ''); // This uses the POST method
+        setTimeout("UpdateRPMData()",200)
+      }
+      function SetRPM(b) {
+         RPMGauge.Set(b);
+//         document.getElementById("Heading").innerHTML = parseFloat(b).toFixed(0);
+      }
+      UpdateRPMData();
+    </script>
+
+  </body>
+</html>

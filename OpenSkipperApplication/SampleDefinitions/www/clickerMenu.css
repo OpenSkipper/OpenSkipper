@@ -1,0 +1,99 @@
+/*
+	Todd Motto Labs
+	URL: www.toddmotto.com
+*/
+
+/*------------------------------------*\
+   Clickable Dropdown
+\*------------------------------------*/
+
+.click-nav { 
+  position:relative;
+  left:0px;
+  top:0px;
+	margin-left:0px;
+	margin-top:5px;
+  width:100%
+}
+
+.click-nav ul {
+  padding:0; 
+  margin:0; 
+  list-style:none; 
+  padding:0px;
+	font-weight:900;
+}
+/*
+.click-nav ul {
+  position:relative;
+	font-weight:900;
+}
+*/
+
+.click-nav ul li {
+	position:relative; 
+	list-style:none; 
+	cursor:pointer;
+  display:inline;
+}
+
+.click-nav ul li ul {
+	position:absolute;
+	left:0px;
+  top: 27px;
+}
+
+.click-nav ul .clicker {
+  position:relative; 
+	background:#2284B5;
+	color:#FFF;
+}
+
+.click-nav img {
+	position:relative;
+  top:5px;
+}
+
+.click-nav ul .clicker:hover{
+	background:#222;
+}
+
+.click-nav ul .active {
+	background:#222;
+}
+
+.click-nav ul li a {
+	transition:background-color 0.2s ease-in-out;
+	-webkit-transition:background-color 0.2s ease-in-out;
+	-moz-transition:background-color 0.2s ease-in-out;
+	padding:8px 10px 8px 0px;
+	background:#CCC;
+	color:#333;
+	display:inline;
+	text-decoration:none;
+  border-radius:10px; /*some css3*/
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  box-shadow:0 2px 2px rgba(0,0,0, .5);
+  -moz-box-shadow:0 2px 2px rgba(0,0,0, .5);
+  -webkit-box-shadow:0 2px 2px rgba(0,0,0, .5);
+  border: 	1px solid black;
+/*  float: left; */
+}
+.click-nav ul li a:hover {
+	background:#F2F2F2;
+}
+
+.click-nav .click-nav-sub a {
+    display: block;
+}
+
+/* Fallbacks */
+.click-nav .no-js ul {
+  display: none;
+  width: 140px; /* SubMenu width */
+  z-index: 500;
+}
+}.nav > .no-js > li:hover > ul {
+  display:block;
+}

@@ -1,0 +1,2508 @@
+<?xml version="1.0"?>
+<N0183DefnCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0">
+  <Date>8/12/2009 1:19:18 p.m.</Date>
+  <Comment>Test</Comment>
+  <CreatorCode>Jason</CreatorCode>
+  <N0183Defns>
+    <N0183Defn Description="Waypoint Arrival Alarm" Code="AAM">
+      <Fields>
+        <Field Name="Status, BOOLEAN, A = Arrival circle entered">
+          <Description>A</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Status, BOOLEAN, A = perpendicular passed at waypoint">
+          <Description>A</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Arrival circle radius">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Units of radius, nautical miles">
+          <Description>N</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Waypoint ID">
+          <Description>c--c</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="GPS Almanac Data" Code="ALM">
+      <Fields>
+        <Field Name="Total number of messages">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Message Number">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Satellite PRN number (01 to 32)">
+          <Description>xx</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="GPS Week Number">
+          <Description>x.x</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="SV health, bits 17-24 of each almanac page">
+          <Description>hh</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Eccentricity">
+          <Description>hhhh</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Almanac Reference Time">
+          <Description>hh</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Inclination Angle">
+          <Description>hhhh</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Rate of Right Ascension">
+          <Description>hhhh</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Root of semi-major axis">
+          <Description>hhhhhh</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="Argument of perigee">
+          <Description>hhhhhh</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="Longitude of ascension node">
+          <Description>hhhhhh</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <Field Name="Mean anomaly">
+          <Description>hhhhhh</Description>
+          <SegmentIndex>12</SegmentIndex>
+        </Field>
+        <Field Name="F0 Clock Parameter">
+          <Description>hhh</Description>
+          <SegmentIndex>13</SegmentIndex>
+        </Field>
+        <Field Name="F1 Clock Parameter">
+          <Description>hhh</Description>
+          <SegmentIndex>14</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Autopilot Sentence &quot;A&quot;" Code="APA">
+      <Fields>
+        <Field Name="Status">
+          <Description>A</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Status">
+          <Description>A</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Cross Track Error Magnitude">
+          <Description>x.xx</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Direction to steer, L or R">
+          <Description>L</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Cross Track Units (Nautic miles or kilometers)">
+          <Description>N</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Status">
+          <Description>A</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Status">
+          <Description>A</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Bearing origin to destination">
+          <Description>xxx</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="M = Magnetic, T = True">
+          <Description>M</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Destination Waypoint ID">
+          <Description>c---c</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Autopilot Sentence &quot;B&quot;" Code="APB">
+      <Fields>
+        <Field Name="Status">
+          <Description>A</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Status">
+          <Description>A</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Cross Track Error Magnitude">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Direction to steer, L or R">
+          <Description>a</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Cross Track Units, N = Nautical Miles">
+          <Description>N</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Status">
+          <Description>A</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Status">
+          <Description>A</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Bearing origin to destination">
+          <Description>x.x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="M = Magnetic, T = True">
+          <Description>a</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Destination Waypoint ID">
+          <Description>c--c</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="Bearing, present position to Destination">
+          <Description>x.x</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="M = Magnetic, T = True">
+          <Description>a</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <Field Name="Heading to steer to destination waypoint">
+          <Description>x.x</Description>
+          <SegmentIndex>12</SegmentIndex>
+        </Field>
+        <Field Name="M = Magnetic, T = True">
+          <Description>a</Description>
+          <SegmentIndex>13</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Bearing - Waypoint to Waypoint" Code="BOD">
+      <Fields>
+        <Field Name="Bearing Degrees, TRUE">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="T = True">
+          <Description>T</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Bearing Degrees, Magnetic">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="M = Magnetic">
+          <Description>M</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="TO Waypoint">
+          <Description>c--c</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="FROM Waypoint">
+          <Description>c--c</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Bearing &amp; Distance to Waypoint - Geat Circle" Code="BWC">
+      <Fields>
+        <TimeField Name="UTCTime">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </TimeField>
+        <LatitudeField Name="Waypoint Latitude">
+          <Description>llll.ll</Description>
+          <SegmentIndex>1</SegmentIndex>
+          <FormatAs>Latitude</FormatAs>
+        </LatitudeField>
+        <Field Name="N = North, S = South">
+          <Description>a</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <LongitudeField Name="Waypoint Longitude">
+          <Description>yyyyy.yy</Description>
+          <SegmentIndex>3</SegmentIndex>
+          <FormatAs>Longitude</FormatAs>
+        </LongitudeField>
+        <Field Name="E = East, W = West">
+          <Description>a</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <NumericField Name="Bearing, True">
+          <Description>x.x</Description>
+          <SegmentIndex>5</SegmentIndex>
+          <FormatAs>Heading</FormatAs>
+        </NumericField>
+        <Field Name="T = True">
+          <Description>T</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <NumericField Name="Bearing, Magnetic">
+          <Description>x.x</Description>
+          <SegmentIndex>7</SegmentIndex>
+          <FormatAs>Heading</FormatAs>
+        </NumericField>
+        <Field Name="M = Magnetic">
+          <Description>M</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <NumericField Name="Distance">
+          <Description>x.x</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </NumericField>
+        <Field Name="N = Nautical Miles">
+          <Description>N</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="Waypoint ID">
+          <Description>c--c</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <Field Name="FAA mode indicator (NMEA 2.3 and later, optional)">
+          <Description>m</Description>
+          <SegmentIndex>12</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Bearing and Distance to Waypoint - Rhumb Line" Code="BWR">
+      <Fields>
+        <Field Name="UTCTime">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Waypoint Latitude">
+          <Description>llll.ll</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="N = North, S = South">
+          <Description>a</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Waypoint Longitude">
+          <Description>yyyyy.yy</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="E = East, W = West">
+          <Description>a</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Bearing, True">
+          <Description>x.x</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="T = True">
+          <Description>T</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Bearing, Magnetic">
+          <Description>x.x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="M = Magnetic">
+          <Description>M</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Nautical Miles">
+          <Description>x.x</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="N = Nautical Miles">
+          <Description>N</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="Waypoint ID">
+          <Description>c--c</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Bearing - Waypoint to Waypoint" Code="BWW">
+      <Fields>
+        <Field Name="Bearing Degrees, TRUE">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="T = True">
+          <Description>T</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Bearing Degrees, Magnetic">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="M = Magnetic">
+          <Description>M</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="TO Waypoint">
+          <Description>c--c</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="FROM Waypoint">
+          <Description>c--c</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Depth Below Keel" Code="DBK">
+      <Fields>
+        <Field Name="Depth, feet">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="f = feet">
+          <Description>f</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Depth, meters">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="M = meters">
+          <Description>M</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Depth, Fathoms">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="F = Fathoms">
+          <Description>F</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Depth Below Surface" Code="DBS">
+      <Fields>
+        <Field Name="Depth, feet">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="f = feet">
+          <Description>f</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Depth, meters">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="M = meters">
+          <Description>M</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Depth, Fathoms">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="F = Fathoms">
+          <Description>F</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Depth below transducer" Code="DBT">
+      <Fields>
+        <Field Name="Depth, feet">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="f = feet">
+          <Description>f</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Depth, meters">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="M = meters">
+          <Description>M</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Depth, Fathoms">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="F = Fathoms">
+          <Description>F</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Decca Position" Code="DCN">
+      <Fields>
+        <Field Name="Decca chain identifier">
+          <Description>xx</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Red Zone Identifier">
+          <Description>cc</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Red Line Of Position">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Red Master Line Status">
+          <Description>A</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Green Zone Identifier">
+          <Description>cc</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Green Line Of Position">
+          <Description>x.x</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Green Master Line Status">
+          <Description>A</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Purple Zone Identifier">
+          <Description>cc</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Purple Line Of Position">
+          <Description>x.x</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Purple Master Line Status">
+          <Description>A</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="Red Line Navigation Use">
+          <Description>A</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="Green Line Navigation Use">
+          <Description>A</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <Field Name="Purple Line Navigation Use">
+          <Description>A</Description>
+          <SegmentIndex>12</SegmentIndex>
+        </Field>
+        <Field Name="Position Uncertainity">
+          <Description>x.x</Description>
+          <SegmentIndex>13</SegmentIndex>
+        </Field>
+        <Field Name="N = Nautical Miles">
+          <Description>N</Description>
+          <SegmentIndex>14</SegmentIndex>
+        </Field>
+        <Field Name="Fix Data Basis">
+          <Description>x</Description>
+          <SegmentIndex>15</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Depth of Water" Code="DPT">
+      <Fields>
+        <NumericField Name="Depth">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </NumericField>
+        <Field Name="Offset from transducer, ">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Datum Reference" Code="DTM">
+      <Fields>
+        <Field Name="Local datum code.  ">
+          <Description>ref</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Local datum subcode.  May be blank.">
+          <Description>x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Latitude offset (minutes)">
+          <Description>llll</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="N or S ">
+          <Description>c</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Longitude offset (minutes)">
+          <Description>llll</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="E or W">
+          <Description>c</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Altitude offset in meters">
+          <Description>aaa</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Datum name. What's usually seen here is &quot;W84&quot;, the standard">
+          <Description>ref</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Frequency Set Information" Code="FSI">
+      <Fields>
+        <Field Name="Transmitting Frequency">
+          <Description>xxxxxx</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Receiving Frequency">
+          <Description>xxxxxx</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Communications Mode (NMEA Syntax 2)">
+          <Description>c</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Power Level">
+          <Description>x</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="GPS Satellite Fault Detection" Code="GBS">
+      <Fields>
+        <Field Name="UTC time of the GGA or GNS fix associated with this sentence">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Expected error in latitude (meters)">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Expected error in longitude (meters)">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Expected error in altitude (meters)">
+          <Description>x.x</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="PRN of most likely failed satellite">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Probability of missed detection for most likely failed satellite">
+          <Description>x.x</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Estimate of bias in meters on most likely failed satellite">
+          <Description>x.x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Standard deviation of bias estimate">
+          <Description>x.x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Global Positioning System Fix Data" Code="GGA">
+      <Fields>
+        <Field Name="Universal Time Coordinated (UTC)">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <LatitudeField Name="Latitude">
+          <Description>llll.ll</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </LatitudeField>
+        <Field Name="N or S (North or South)">
+          <Description>a</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <LongitudeField Name="Longitude">
+          <Description>yyyyy.yy</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </LongitudeField>
+        <Field Name="E or W (East or West)">
+          <Description>a</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <EnumField Name="Reference">
+          <Description>x</Description>
+          <SegmentIndex>5</SegmentIndex>
+          <SEnumValues>
+            <SEnumPair Value="0" Name="invalid" />
+            <SEnumPair Value="1" Name="GPS fix (SPS)" />
+            <SEnumPair Value="2" Name="DGPS fix" />
+            <SEnumPair Value="3" Name="PPS fix" />
+            <SEnumPair Value="4" Name="Real Time Kinematic" />
+            <SEnumPair Value="5" Name="Float RTK" />
+            <SEnumPair Value="6" Name="estimated (dead reckoning)" />
+            <SEnumPair Value="7" Name="Manual input mode" />
+            <SEnumPair Value="8" Name="Simulation mode" />
+          </SEnumValues>
+        </EnumField>
+        <Field Name="GPS Quality Indicator,">
+          <Description>x</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <NumericField Name="Number of satellites in view, 00 - 12">
+          <Description>xx</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </NumericField>
+        <NumericField Name="Horizontal Dilution of precision (meters)">
+          <Description>x.x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </NumericField>
+        <NumericField Name="Antenna Altitude above/below mean-sea-level (geoid) (in meters)">
+          <Description>x.x</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </NumericField>
+        <Field Name="Units of antenna altitude, meters">
+          <Description>M</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="Geoidal separation, the difference between the WGS-84 earth">
+          <Description>x.x</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="Units of geoidal separation, meters">
+          <Description>M</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <NumericField Name="Age of differential GPS data, time in seconds since last SC104">
+          <Description>x.x</Description>
+          <SegmentIndex>12</SegmentIndex>
+        </NumericField>
+        <Field Name="Differential reference station ID, 0000-1023">
+          <Description>xxxx</Description>
+          <SegmentIndex>13</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Geographic Position, Loran-C" Code="GLC">
+      <Fields>
+        <Field Name="GRI Microseconds/10">
+          <Description>xxxx</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Master TOA Microseconds">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Master TOA Signal Status">
+          <Description>a</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 1 Microseconds">
+          <Description>x.x</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 1 Signal Status">
+          <Description>a</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 2 Microseconds">
+          <Description>x.x</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 2 Signal Status">
+          <Description>a.x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 3 Microseconds">
+          <Description>x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 3 Signal Status">
+          <Description>a</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 4 Microseconds">
+          <Description>x.x</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 4 Signal Status">
+          <Description>a</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 5 Microseconds">
+          <Description>x.x</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 5 Signal Status">
+          <Description>a</Description>
+          <SegmentIndex>12</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Geographic Position - Latitude/Longitude" Code="GLL">
+      <Fields>
+        <LatitudeField Name="Latitude">
+          <Description>llll.lll</Description>
+          <SegmentIndex>0</SegmentIndex>
+          <FormatAs>Latitude</FormatAs>
+        </LatitudeField>
+        <Field Name="N or S (North or South)">
+          <Description>a</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <LongitudeField Name="Longitude">
+          <Description>yyyyy.yy</Description>
+          <SegmentIndex>2</SegmentIndex>
+          <FormatAs>Longitude</FormatAs>
+        </LongitudeField>
+        <Field Name="E or W (East or West)">
+          <Description>a</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Universal Time Coordinated (UTC)">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Status A - Data Valid, V - Data Invalid">
+          <Description>a</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="FAA mode indicator (NMEA 2.3 and later)">
+          <Description>m</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="GPS Range Residuals" Code="GRS">
+      <Fields>
+        <Field Name="TC time of associated GGA fix">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="0 = Residuals used in GGA, 1 = residuals calculated after GGA">
+          <Description>m</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Satellite 1 residual in meters">
+          <Description>xx</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Satellite 2 residual in meters">
+          <Description>xx</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Satellite 3 residual in meters">
+          <Description>xx</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Satellite 4 residual in meters (blank if unused)">
+          <Description>xx</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Satellite 5 residual in meters (blank if unused)">
+          <Description>xx</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Satellite 6 residual in meters (blank if unused)">
+          <Description>xx</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Satellite 7 residual in meters (blank if unused)">
+          <Description>xx</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Satellite 8 residual in meters (blank if unused)">
+          <Description>xx</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="Satellite 9 residual in meters (blank if unused)">
+          <Description>xx</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="Satellite 10 residual in meters (blank if unused)">
+          <Description>xx</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <Field Name="Satellite 11 residual in meters (blank if unused)">
+          <Description>xx</Description>
+          <SegmentIndex>12</SegmentIndex>
+        </Field>
+        <Field Name="Satellite 12 residual in meters (blank if unused)">
+          <Description>xx</Description>
+          <SegmentIndex>13</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="GPS DOP and active satellites" Code="GSA">
+      <Fields>
+        <Field Name="Selection mode: M=Manual, forced to operate in 2D or 3D, A=Automatic, 3D/2D">
+          <Description>a</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Mode (1 = no fix, 2 = 2D fix, 3 = 3D fix)">
+          <Description>a</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="ID of 1st satellite used for fix">
+          <Description>x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="ID of 2nd satellite used for fix">
+          <Description>x</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="ID of 3rd satellite used for fix">
+          <Description>x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="ID of 4th satellite used for fix">
+          <Description>x</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="ID of 5th satellite used for fix">
+          <Description>x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="ID of 6th satellite used for fix">
+          <Description>x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="ID of 7th satellite used for fix">
+          <Description>x</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="ID of 8th satellite used for fix">
+          <Description>x</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="ID of 9th satellite used for fix">
+          <Description>x</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="ID of 10th satellite used for fix">
+          <Description>x</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <Field Name="ID of 11th satellite used for fix">
+          <Description>x</Description>
+          <SegmentIndex>12</SegmentIndex>
+        </Field>
+        <Field Name="ID of 12th satellite used for fix">
+          <Description>x</Description>
+          <SegmentIndex>13</SegmentIndex>
+        </Field>
+        <Field Name="PDOP">
+          <Description>x</Description>
+          <SegmentIndex>14</SegmentIndex>
+        </Field>
+        <Field Name="HDOP">
+          <Description>x.x</Description>
+          <SegmentIndex>15</SegmentIndex>
+        </Field>
+        <Field Name="VDOP">
+          <Description>x.x</Description>
+          <SegmentIndex>16</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="GPS Pseudorange Noise Statistics" Code="GST">
+      <Fields>
+        <Field Name="TC time of associated GGA fix">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Total RMS standard deviation of ranges inputs to the navigation solution">
+          <Description>x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Standard deviation (meters) of semi-major axis of error ellipse">
+          <Description>x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Standard deviation (meters) of semi-minor axis of error ellipse">
+          <Description>x</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Orientation of semi-major axis of error ellipse (true north degrees)">
+          <Description>x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Standard deviation (meters) of latitude error">
+          <Description>x</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Standard deviation (meters) of longitude error">
+          <Description>x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Standard deviation (meters) of altitude error">
+          <Description>x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Satellites in view" Code="GSV">
+      <Fields>
+        <Field Name="total number of GSV messages to be transmitted in this group">
+          <Description>x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="1-origin number of this GSV message  within current group">
+          <Description>x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="total number of satellites in view (leading zeros sent)">
+          <Description>x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="satellite PRN number (leading zeros sent)">
+          <Description>x</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="elevation in degrees (00-90) (leading zeros sent)">
+          <Description>x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="azimuth in degrees to true north (000-359) (leading zeros sent)">
+          <Description>x</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="SNR in dB (00-99) (leading zeros sent)">
+          <Description>x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="PRN">
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Elevation">
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Azimuth">
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="SNR">
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="PRN">
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <Field Name="Elevation">
+          <SegmentIndex>12</SegmentIndex>
+        </Field>
+        <Field Name="Azimuth">
+          <SegmentIndex>13</SegmentIndex>
+        </Field>
+        <Field Name="SNR">
+          <SegmentIndex>14</SegmentIndex>
+        </Field>
+        <Field Name="PRN">
+          <SegmentIndex>15</SegmentIndex>
+        </Field>
+        <Field Name="Elevation">
+          <SegmentIndex>16</SegmentIndex>
+        </Field>
+        <Field Name="Azimuth">
+          <SegmentIndex>17</SegmentIndex>
+        </Field>
+        <Field Name="SNR">
+          <SegmentIndex>18</SegmentIndex>
+        </Field>
+        <Field Name="PRN">
+          <SegmentIndex>19</SegmentIndex>
+        </Field>
+        <Field Name="Elevation">
+          <SegmentIndex>20</SegmentIndex>
+        </Field>
+        <Field Name="Azimuth">
+          <SegmentIndex>21</SegmentIndex>
+        </Field>
+        <Field Name="SNR">
+          <SegmentIndex>22</SegmentIndex>
+        </Field>
+        <Field Name="PRN">
+          <SegmentIndex>23</SegmentIndex>
+        </Field>
+        <Field Name="Elevation">
+          <SegmentIndex>24</SegmentIndex>
+        </Field>
+        <Field Name="Azimuth">
+          <SegmentIndex>25</SegmentIndex>
+        </Field>
+        <Field Name="SNR">
+          <SegmentIndex>26</SegmentIndex>
+        </Field>
+        <Field Name="PRN">
+          <SegmentIndex>27</SegmentIndex>
+        </Field>
+        <Field Name="Elevation">
+          <SegmentIndex>28</SegmentIndex>
+        </Field>
+        <Field Name="Azimuth">
+          <SegmentIndex>29</SegmentIndex>
+        </Field>
+        <Field Name="SNR">
+          <SegmentIndex>30</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Geographic Location in Time Differences" Code="GTD">
+      <Fields>
+        <Field Name="time difference">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="time difference">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="time difference">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="time difference">
+          <Description>x.x</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="time difference">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="TRANSIT Position - Latitude/Longitude" Code="GXA">
+      <Fields>
+        <Field Name="UTC of position fix">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Latitude">
+          <Description>llll.ll</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="East or West">
+          <Description>a</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Longitude">
+          <Description>yyyyy.yy</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="North or South">
+          <Description>a</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Waypoint ID">
+          <Description>c--c</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Satelite number">
+          <Description>X</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Heading - Deviation &amp; Variation" Code="HDG">
+      <Fields>
+        <NumericField Name="Magnetic Heading">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+          <FormatAs>Heading</FormatAs>
+        </NumericField>
+        <Field Name="Magnetic Deviation, degrees">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Magnetic Deviation direction, E = Easterly, W = Westerly">
+          <Description>a</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Magnetic Variation degrees">
+          <Description>x.x</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Magnetic Variation direction, E = Easterly, W = Westerly">
+          <Description>a</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Heading - Magnetic" Code="HDM">
+      <Fields>
+        <NumericField Name="Heading Degrees, magnetic">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </NumericField>
+        <Field Name="M = magnetic">
+          <Description>M</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Heading - True" Code="HDT">
+      <Fields>
+        <NumericField Name="Heading Degrees, true">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </NumericField>
+        <Field Name="T = True">
+          <Description>T</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Trawl Headrope to Footrope and Bottom" Code="HFB">
+      <Fields>
+        <Field Name="Distance from headrope to footrope">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Meters (0-100)">
+          <Description>M</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Distance from headrope to bottom">
+          <Description>y.y</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Meters (0-100)">
+          <Description>M</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Heading Steering Command" Code="HSC">
+      <Fields>
+        <Field Name="Heading Degrees, True">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="T = True">
+          <Description>T</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Heading Degrees, Magnetic">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="M = Magnetic">
+          <Description>M</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Trawl Door Spread 2 Distance" Code="ITS">
+      <Fields>
+        <Field Name="Second spread distance">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Meters">
+          <Description>M</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Loran-C Signal Data" Code="LCD">
+      <Fields>
+        <Field Name="GRI Microseconds/10">
+          <Description>xxxx</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Master Relative SNR">
+          <Description>xxx</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Master Relative ECD">
+          <Description>xxx</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 1 Microseconds">
+          <Description>xxx</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 1 Signal Status">
+          <Description>xxx</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 2 Microseconds">
+          <Description>xxx</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 2 Signal Status">
+          <Description>xxx</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 3 Microseconds">
+          <Description>xxx</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 3 Signal Status">
+          <Description>xxx</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 4 Microseconds">
+          <Description>xxx</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 4 Signal Status">
+          <Description>xxx</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 5 Microseconds">
+          <Description>xxx</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference 5 Signal Status">
+          <Description>xxx</Description>
+          <SegmentIndex>12</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Control for a Beacon Receiver" Code="MSK">
+      <Fields>
+        <Field Name="Frequency to use">
+          <Description>nnn</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Frequency mode, A=auto, M=manual">
+          <Description>m</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Beacon bit rate">
+          <Description>nnn</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Bitrate, A=auto, M=manual">
+          <Description>m</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Frequency for MSS message status (null for no status)">
+          <Description>nnn</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Beacon Receiver Status" Code="MSS">
+      <Fields>
+        <Field Name="Signal strength (dB 1uV)">
+          <Description>nn</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Signal to noise ratio (dB)">
+          <Description>nn</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Beacon frequency (kHz)">
+          <Description>fff</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Beacon data rate (BPS)">
+          <Description>bbb</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Unknown integer value">
+          <Description>xxx</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Mean Temperature of Water" Code="MTW">
+      <Fields>
+        <Field Name="Degrees">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Unit of Measurement, Celcius">
+          <Description>C</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Wind Speed and Angle" Code="MWV">
+      <Fields>
+        <NumericField Name="Wind Angle, 0 to 360 degrees">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </NumericField>
+        <EnumField Name="Reference, R = Relative, T = True">
+          <Description>a</Description>
+          <SegmentIndex>1</SegmentIndex>
+          <SEnumValues>
+            <SEnumPair Value="R" Name="Relative" />
+            <SEnumPair Value="T" Name="True" />
+          </SEnumValues>
+        </EnumField>
+        <NumericField Name="Wind Speed">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </NumericField>
+        <Field Name="Wind Speed Units, K/M/N">
+          <Description>a</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="True Wind Speed and Angle" Code="MWD">
+      <Fields>
+        <NumericField Name="Wind Angle">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </NumericField>
+        <EnumField Name="Reference">
+          <Description>a</Description>
+          <SegmentIndex>1</SegmentIndex>
+          <SEnumValues>
+            <SEnumPair Value="T" Name="True" />
+          </SEnumValues>
+        </EnumField>
+        <NumericField Name="Wind Angle magnetic">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </NumericField>
+        <EnumField Name="Reference, M">
+          <Description>a</Description>
+          <SegmentIndex>3</SegmentIndex>
+          <SEnumValues>
+            <SEnumPair Value="M" Name="Magnetic" />
+          </SEnumValues>
+        </EnumField>
+        <NumericField Name="Wind Speed knots">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </NumericField>
+        <Field Name="Wind Speed Units, N">
+          <Description>a</Description>
+          <SegmentIndex>5</SegmentIndex>
+          <SEnumValues>
+            <SEnumPair Value="N" Name="knots" />
+          </SEnumValues>
+        </Field>
+        <NumericField Name="Wind Speed">
+          <Description>x.x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </NumericField>
+        <Field Name="Wind Speed Units, M">
+          <Description>a</Description>
+          <SegmentIndex>7</SegmentIndex>
+          <SEnumValues>
+            <SEnumPair Value="M" Name="m/s" />
+          </SEnumValues>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Omega Lane Numbers" Code="OLN">
+      <Fields>
+        <Field Name="Omega Pair 1, part 1">
+          <Description>aa</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Omega Pair 1, part 2">
+          <Description>xxx</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Omega Pair 1, part 3">
+          <Description>xxx</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Omega Pair 1, part 1">
+          <Description>aa</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Omega Pair 1, part 2">
+          <Description>xxx</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Omega Pair 1, part 3">
+          <Description>xxx</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Omega Pair 1, part 1">
+          <Description>aa</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Omega Pair 1, part 2">
+          <Description>xxx</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Omega Pair 1, part 3">
+          <Description>xxx</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Own Ship Data" Code="OSD">
+      <Fields>
+        <Field Name="Heading, degrees true">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Status, A = Data Valid">
+          <Description>A</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Vessel Course, degrees True">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Course Reference">
+          <Description>a</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Vessel Speed">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Speed Reference">
+          <Description>a</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Vessel Set, degrees True">
+          <Description>x.x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Vessel drift (speed)">
+          <Description>x.x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Speed Units">
+          <Description>a</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Waypoints in active route" Code="R00">
+      <Fields>
+        <Field Name="waypoint ID">
+          <Description>c---c</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Waypoint ID">
+          <Description>c---c</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Continuation...">
+          <Description>....</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Recommended Minimum Navigation Information" Code="RMA">
+      <Fields>
+        <Field Name="Blink Warning">
+          <Description>A</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Latitude">
+          <Description>llll.ll</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="N or S">
+          <Description>a</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Longitude">
+          <Description>yyyyy.yy</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="E or W">
+          <Description>a</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference A, uS">
+          <Description>x.x</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Time Difference B, uS">
+          <Description>x.x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Speed Over Ground, Knots">
+          <Description>x.x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Track Made Good, degrees true">
+          <Description>x.x</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Magnetic Variation, degrees">
+          <Description>x.x</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="E or W">
+          <Description>a</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Recommended Minimum Navigation Information" Code="RMB">
+      <Fields>
+        <Field Name="Status, A= Active, V = Void">
+          <Description>A</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Cross Track error - nautical miles">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Direction to Steer, Left or Right">
+          <Description>a</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="TO Waypoint ID">
+          <Description>c--c</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="FROM Waypoint ID">
+          <Description>c--c</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Destination Waypoint Latitude">
+          <Description>llll.ll</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="N or S">
+          <Description>a</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Destination Waypoint Longitude">
+          <Description>yyyyy.yy</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="E or W">
+          <Description>a</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Range to destination in nautical miles">
+          <Description>x.x</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="Bearing to destination in degrees True">
+          <Description>x.x</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="Destination closing velocity in knots">
+          <Description>x.x</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <Field Name="Arrival Status, A = Arrival Circle Entered">
+          <Description>A</Description>
+          <SegmentIndex>12</SegmentIndex>
+        </Field>
+        <Field Name="FAA mode indicator (NMEA 2.3 and later)">
+          <Description>m</Description>
+          <SegmentIndex>13</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Recommended Minimum Navigation Information" Code="RMC">
+      <Fields>
+        <Field Name="UTC Time">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Status, V=Navigation receiver warning A=Valid">
+          <Description>A</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <LatitudeField Name="Latitude">
+          <Description>llll.ll</Description>
+          <SegmentIndex>2</SegmentIndex>
+          <FormatAs>Latitude</FormatAs>
+        </LatitudeField>
+        <Field Name="N or S">
+          <Description>a</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <LongitudeField Name="Longitude">
+          <Description>yyyyy.yy</Description>
+          <SegmentIndex>4</SegmentIndex>
+          <FormatAs>Longitude</FormatAs>
+        </LongitudeField>
+        <Field Name="E or W">
+          <Description>a</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Speed over ground, knots">
+          <Description>x.x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Track made good, degrees true">
+          <Description>x.x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Date, ddmmyy">
+          <Description>xxxx</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Magnetic Variation, degrees">
+          <Description>x.x</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="E or W">
+          <Description>a</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="FAA mode indicator (NMEA 2.3 and later)">
+          <Description>m</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Rate Of Turn" Code="ROT">
+      <Fields>
+        <Field Name="Rate Of Turn, degrees per minute, &quot;-&quot; means bow turns to port">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Status, A means data is valid">
+          <Description>A</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Revolutions" Code="RPM">
+      <Fields>
+        <EnumField Name="Sourse, S = Shaft, E = Engine">
+          <Description>a</Description>
+          <SegmentIndex>0</SegmentIndex>
+          <SEnumValues>
+            <SEnumPair Value="S" Name="Shaft" />
+            <SEnumPair Value="E" Name="Engine" />
+          </SEnumValues>
+        </EnumField>
+        <Field Name="Engine or shaft number">
+          <Description>x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <NumericField Name="Speed, Revolutions per minute">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </NumericField>
+        <Field Name="Propeller pitch, % of maximum, &quot;-&quot; means astern">
+          <Description>x.x</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Status, A means data is valid">
+          <Description>A</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Rudder Sensor Angle" Code="RSA">
+      <Fields>
+        <Field Name="Starboard (or single) rudder sensor, &quot;-&quot; means Turn To Port">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Status, A means data is valid">
+          <Description>A</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Port rudder sensor">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Status, A means data is valid">
+          <Description>A</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="RADAR System Data" Code="RSD">
+      <Fields>
+        <Field Name="Unknown">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Unknown">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Unknown">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Unknown">
+          <Description>x.x</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Unknown">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Unknown">
+          <Description>x.x</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Unknown">
+          <Description>x.x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Unknown">
+          <Description>x.x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Cursor Range From Own Ship">
+          <Description>x.x</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Cursor Bearing Degrees Clockwise From Zero">
+          <Description>x.x</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="Range Scale">
+          <Description>x.x</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="Range Units">
+          <Description>a</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <Field Name="Unknown">
+          <Description>a</Description>
+          <SegmentIndex>12</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Routes" Code="RTE">
+      <Fields>
+        <Field Name="Total number of messages being transmitted">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Message Number">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Message mode">
+          <Description>a</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Waypoint ID">
+          <Description>c--c</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Waypoint ID">
+          <Description>c--c</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Continuation...">
+          <Description>...</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Scanning Frequency Information" Code="SFI">
+      <Fields>
+        <Field Name="Total Number Of Messages">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Message Number">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Frequency 1">
+          <Description>xxxxxx</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Mode 1">
+          <Description>xxxxxx</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Continuation... Repitition">
+          <Description>...</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Multiple Data ID" Code="STN">
+      <Fields>
+        <Field Name="Talker ID Number">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Trawl Door Spread Distance" Code="TDS">
+      <Fields>
+        <Field Name="Distance between trawl doors">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Meters (0-300)">
+          <Description>M</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Trawl Filling Indicator" Code="TFI">
+      <Fields>
+        <Field Name="Catch sensor #1 (0 = off, 1 = on, 2 = no answer)">
+          <Description>x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Catch sensor #2 (0 = off, 1 = on, 2 = no answer)">
+          <Description>y</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Catch sensor #3 (0 = off, 1 = on, 2 = no answer)">
+          <Description>z</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Trawl Position Cartesian Coordinates" Code="TPC">
+      <Fields>
+        <Field Name="Horizontal distance from the vessel center line">
+          <Description>x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Meters ">
+          <Description>M</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Horizontal distance from the transducer to the trawl along the">
+          <Description>y</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Meters">
+          <Description>P</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Depth of the trawl below the surface">
+          <Description>z.z</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Meters">
+          <Description>M</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Trawl Position Relative Vessel" Code="TPR">
+      <Fields>
+        <Field Name="Horizontal range relative to target">
+          <Description>x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Meters (0-4000)">
+          <Description>M</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Bearing to target relative to vessel heading.  Resolution is one degree.">
+          <Description>y</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Separator">
+          <Description>P</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Depth of trawl below the surface">
+          <Description>z.z</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Meters (0-2000)">
+          <Description>M</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Trawl Position True" Code="TPT">
+      <Fields>
+        <Field Name="Horizontal range relative to target">
+          <Description>x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Meters (0-4000)">
+          <Description>M</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="True bearing to taget (ie. relative north).  Resolution is one degree.">
+          <Description>y</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Separator">
+          <Description>P</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Depth of trawl below the surface">
+          <Description>z.z</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Meters (0-2000)">
+          <Description>M</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="TRANSIT Fix Data" Code="TRF">
+      <Fields>
+        <Field Name="UTC Time">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Date, ddmmyy">
+          <Description>xxxxxx</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Latitude">
+          <Description>llll.ll</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="N or S">
+          <Description>a</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Longitude">
+          <Description>yyyyy.yy</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="E or W">
+          <Description>a</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Elevation Angle">
+          <Description>x.x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Number of iterations">
+          <Description>x.x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Number of Doppler intervals">
+          <Description>x.x</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="Update distance, nautical miles">
+          <Description>x.x</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="Satellite ID">
+          <Description>xxx</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="Data Validity">
+          <Description>A</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Tracked Target Message" Code="TTM">
+      <Fields>
+        <Field Name="Target Number (0-99)">
+          <Description>xx</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Target Distance">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Bearing from own ship">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Bearing Units">
+          <Description>a</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Target Speed">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Target Course">
+          <Description>x.x</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Course Units">
+          <Description>a</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="Distance of closest-point-of-approach">
+          <Description>x.x</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="Time until closest-point-of-approach &quot;-&quot; means increasing">
+          <Description>x.x</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+        <Field Name="&quot;-&quot; means increasing">
+          <Description>a</Description>
+          <SegmentIndex>9</SegmentIndex>
+        </Field>
+        <Field Name="Target name">
+          <Description>c--c</Description>
+          <SegmentIndex>10</SegmentIndex>
+        </Field>
+        <Field Name="Target Status">
+          <Description>a</Description>
+          <SegmentIndex>11</SegmentIndex>
+        </Field>
+        <Field Name="Reference Target">
+          <Description>a</Description>
+          <SegmentIndex>12</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Dual Ground/Water Speed" Code="VBW">
+      <Fields>
+        <Field Name="Longitudinal water speed, &quot;-&quot; means astern">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Transverse water speed, &quot;-&quot; means port">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Status, A = Data Valid">
+          <Description>A</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Longitudinal ground speed, &quot;-&quot; means astern">
+          <Description>x.x</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Transverse ground speed, &quot;-&quot; means port">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Status, A = Data Valid">
+          <Description>A</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Set and Drift" Code="VDR">
+      <Fields>
+        <Field Name="Degress True">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="T = True">
+          <Description>T</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Degrees Magnetic">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="M = Magnetic">
+          <Description>M</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Knots (speed of current)">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="N = Knots">
+          <Description>N</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Water speed and heading" Code="VHW">
+      <Fields>
+        <Field Name="Degress True">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="T = True">
+          <Description>T</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Degrees Magnetic">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="M = Magnetic">
+          <Description>M</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <NumericField Name="Speed_kts">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </NumericField>
+        <Field Name="N = Knots">
+          <Description>N</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <NumericField Name="Speed_km">
+          <Description>x.x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </NumericField>
+        <Field Name="K = Kilometers">
+          <Description>K</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Distance Traveled through Water" Code="VLW">
+      <Fields>
+        <Field Name="Total cumulative distance">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="N = Nautical Miles">
+          <Description>N</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Distance since Reset">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="N = Nautical Miles">
+          <Description>N</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Speed - Measured Parallel to Wind" Code="VPW">
+      <Fields>
+        <Field Name="Speed, &quot;-&quot; means downwind">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="N = Knots">
+          <Description>N</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Speed, &quot;-&quot; means downwind">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="M = Meters per second">
+          <Description>M</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Track made good and Ground speed" Code="VTG">
+      <Fields>
+        <NumericField Name="Track Degrees">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </NumericField>
+        <Field Name="T = True">
+          <Description>T</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <NumericField Name="Track Degrees">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </NumericField>
+        <Field Name="M = Magnetic">
+          <Description>M</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <NumericField Name="Speed Knots">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </NumericField>
+        <Field Name="N = Knots">
+          <Description>N</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <NumericField Name="Speed Kilometers Per Hour">
+          <Description>x.x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </NumericField>
+        <Field Name="K = Kilometers Per Hour">
+          <Description>K</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+        <Field Name="FAA mode indicator (NMEA 2.3 and later)">
+          <Description>m</Description>
+          <SegmentIndex>8</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Relative Wind Speed and Angle" Code="VWR">
+      <Fields>
+        <LeftRightField Name="AWA">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </LeftRightField>
+        <Field Name="Direction, L or R">
+          <Description>a</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <NumericField Name="AWS">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </NumericField>
+        <Field Name="N = Knots">
+          <Description>N</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Speed">
+          <Description>x.x</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="M = Meters Per Second">
+          <Description>M</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+        <Field Name="Speed">
+          <Description>x.x</Description>
+          <SegmentIndex>6</SegmentIndex>
+        </Field>
+        <Field Name="K = Kilometers Per Hour">
+          <Description>K</Description>
+          <SegmentIndex>7</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Waypoint Closure Velocity" Code="WCV">
+      <Fields>
+        <Field Name="Velocity">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="N = knots">
+          <Description>N</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Waypoint ID">
+          <Description>c--c</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Distance - Waypoint to Waypoint" Code="WNC">
+      <Fields>
+        <Field Name="Distance, Nautical Miles">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="N = Nautical Miles">
+          <Description>N</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Distance, Kilometers">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="K = Kilometers">
+          <Description>K</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="TO Waypoint">
+          <Description>c--c</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="FROM Waypoint">
+          <Description>c--c</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Waypoint Location" Code="WPL">
+      <Fields>
+        <Field Name="Latitude">
+          <Description>llll.ll</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="N or S (North or South)">
+          <Description>a</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Longitude">
+          <Description>yyyyy.yy</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="E or W (East or West)">
+          <Description>a</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Waypoint name">
+          <Description>c--c</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Cross Track Error - Dead Reckoning" Code="XDR">
+      <Fields>
+        <Field Name="Transducer Type">
+          <Description>a</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Measurement Data">
+          <Description>x.x</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Units of measurement">
+          <Description>a</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Name of transducer">
+          <Description>c--c</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Continuation... Repitition of previous 4">
+          <Description>...</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Cross-Track Error, Measured" Code="XTE">
+      <Fields>
+        <Field Name="Status">
+          <Description>A</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Status">
+          <Description>A</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <LeftRightField Name="Cross Track Error Magnitude">
+          <Description>x.x</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </LeftRightField>
+        <Field Name="Direction to steer, L or R">
+          <Description>a</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Cross Track Units, N = Nautical Miles">
+          <Description>N</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="FAA mode indicator (NMEA 2.3 and later, optional)">
+          <Description>m</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Cross Track Error - Dead Reckoning" Code="XTR">
+      <Fields>
+        <Field Name="Magnitude of cross track error">
+          <Description>x.x</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Direction to steer, L or R">
+          <Description>a</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Units, N = Nautical Miles">
+          <Description>N</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Time &amp; Date - UTC, day, month, year and local time zone" Code="ZDA">
+      <Fields>
+        <Field Name="UTC time (hours, minutes, seconds, may have fractional subsecond)">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Day, 01 to 31">
+          <Description>xx</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Month, 01 to 12">
+          <Description>xx</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="Year (4 digits)">
+          <Description>xxxx</Description>
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+        <Field Name="Local zone description, 00 to +- 13 hours">
+          <Description>xx</Description>
+          <SegmentIndex>4</SegmentIndex>
+        </Field>
+        <Field Name="Local zone minutes description, apply same sign as local hours">
+          <Description>xx</Description>
+          <SegmentIndex>5</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="UTC &amp; Time from origin Waypoint" Code="ZFO">
+      <Fields>
+        <Field Name="Universal Time Coordinated (UTC)">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Elapsed Time">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Origin Waypoint ID">
+          <Description>c--c</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="UTC &amp; Time to Destination Waypoint" Code="ZTG">
+      <Fields>
+        <Field Name="Universal Time Coordinated (UTC)">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="Time Remaining">
+          <Description>hhmmss.ss</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="Destination Waypoint ID">
+          <Description>c--c</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Garmin" Code="PGRME">
+      <Fields>
+        <Field Name="A">
+          <SegmentIndex>0</SegmentIndex>
+        </Field>
+        <Field Name="B">
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <Field Name="C">
+          <SegmentIndex>2</SegmentIndex>
+        </Field>
+        <Field Name="D">
+          <SegmentIndex>3</SegmentIndex>
+        </Field>
+      </Fields>
+    </N0183Defn>
+    <N0183Defn Description="Garmin" Code="PGRMM">
+      <Fields />
+    </N0183Defn>
+    <N0183Defn Description="Garmin" Code="PGRMZ">
+      <Fields />
+    </N0183Defn>
+    <N0183Defn Description="Magellan" Code="PMGNST">
+      <Fields />
+    </N0183Defn>
+    <N0183Defn Description="Rockwell" Code="PRWIZCH">
+      <Fields />
+    </N0183Defn>
+    <N0183Defn Description="True Wind" Code="VWT">
+      <Fields>
+        <LeftRightField Name="TWA">
+          <Description>True Wind Angle</Description>
+          <SegmentIndex>0</SegmentIndex>
+        </LeftRightField>
+        <Field Name="Direction, L or R">
+          <Description>a</Description>
+          <SegmentIndex>1</SegmentIndex>
+        </Field>
+        <NumericField Name="TWS">
+          <Description>True Wind Speed</Description>
+          <SegmentIndex>2</SegmentIndex>
+        </NumericField>
+      </Fields>
+    </N0183Defn>
+  </N0183Defns>
+</N0183DefnCollection>

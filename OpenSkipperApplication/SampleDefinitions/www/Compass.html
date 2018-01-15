@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name='viewport' content='width=device-width, height=device-height, initial-scale=1, maximum-scale=1' />
+
+    <title>Feelings position</title>
+    <link rel=stylesheet type="text/css" href="style.css">
+    <script src="OpenSkipper.js"></script>
+    <script src="Scripts/Compass.js"></script>
+
+    <!-- Includes for menu -->
+    <script src="Scripts/jquery.min.js"></script>
+    <link rel=stylesheet type="text/css" href="clickerMenu.css">
+
+		<!-- jQuery -->
+		<script>
+		$(function() {
+			// Clickable Dropdown
+      // See original in http://toddmotto.com/flawless-clickable-drop-down-navigation/
+			$('.click-nav ul').click(function(e) {
+        var $elem = $(e.target);
+        if ($elem.hasClass('js')) {
+//          $('.nav .js ul').hide();
+          $elem.next("ul").hide();
+  				$elem.toggleClass('active');
+  				$elem.toggleClass('js');
+        } else {
+          $('.click-nav-sub').hide();
+          $('.clicker').removeClass('active');
+          $('.clicker').removeClass('js');
+          $elem.next("ul").slideToggle();
+  				$elem.toggleClass('active');
+  				$elem.toggleClass('js');
+        }
+				e.stopPropagation();
+			});
+      
+      $(document).click(function(e) {
+        $('.click-nav-sub').hide();
+			  $('.clicker').removeClass('active');
+			  $('.clicker').removeClass('js');
+      });
+
+		});
+		</script>
+  </head>
+	<body>
+		<!-- Clickable Menu -->
+		<div class="click-nav">
+			<ul class="no-js">
+				<li>
+					<a class="clicker">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Nav</a>
+					<ul class="click-nav-sub">
+						<li><a href="Steer.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Speed/Depth</a></li>
+						<li><a href="Compass.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Compass</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="clicker">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Map</a>
+					<ul class="click-nav-sub">
+						<li><a href="Map.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Map</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="clicker">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Misc</a>
+					<ul class="click-nav-sub">
+						<li><a href="Battery.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Battery</a></li>
+						<li><a href="Tanks.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Tanks</a></li>
+						<li><a href="Motor.html">&nbsp;<img src="Icons/HomeIcon.png" alt="Icon">&nbsp;Motor</a></li>
+					</ul>
+				</li>
+			</ul>
+      &nbsp;
+		</div>
+		<!-- /Clickable Menu -->
+
+    <canvas id="CompassCanvas" width="220" height="220"></canvas>
+    <h2><span name="t1" id="Heading"></span></h2>
+    <h2><span name="t1" id="Position"></span></h2>
+
+    <div>
+      <table class="dataSmall" width="200">
+        <tr>
+          <td class="description">Speed</td>
+        </tr>
+        <tr>
+          <td><span name="t1" id="Speed">N/A</span></td>
+        </tr>
+        <tr>
+          <td class="description">Depth</td>
+        </tr>
+        <tr>
+          <td><span name="t1" id="Depth">N/A</span></td>
+        </tr>
+      </table> 
+    </div>
+
+    <script>
+       function UpdateCompassData() {
+        // The {1} is replaced by a counter that distinguishes individual connections
+        // We send this counter value as a parameter in our 
+        makePOSTRequest("ParamData/Heading.conf", ''); // This uses the POST method
+        setTimeout("UpdateCompassData()",200)
+      }
+
+       function UpdateSpeedDepthData() {
+        // The {1} is replaced by a counter that distinguishes individual connections
+        // We send this counter value as a parameter in our 
+        makePOSTRequest("ParamData/SpeedDepth.conf", ''); // This uses the POST method
+        setTimeout("UpdateSpeedDepthData()",500)
+      }
+
+      function SetHeading(b) {
+         DrawCompass(b,"CompassCanvas");
+//         document.getElementById("Heading").innerHTML = parseFloat(b).toFixed(0);
+      }
+
+      function SetPosition(lat,lon) {
+         document.getElementById("Position").innerHTML = parseFloat(lat).toFixed(3).toString()+" "+parseFloat(lon).toFixed(3).toString();
+      }
+      function SetSpeedDepth(Speed,Depth) {
+         document.getElementById("Speed").innerHTML = Speed;
+         document.getElementById("Depth").innerHTML = Depth;
+      }
+      InitRosePoints();
+      DrawCompass(0,"CompassCanvas");
+      UpdateCompassData();
+      UpdateSpeedDepthData();
+    </script>
+  </body>
+</html>

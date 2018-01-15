@@ -1,0 +1,72 @@
+<Object type="System.Windows.Forms.Form" name="Batteries" children="Controls">
+  <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelAllBatteries">
+    <Property name="Location">0,0</Property>
+    <Property name="Size">330,330</Property>
+    <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelBattery1">
+      <Property name="Location">0,0</Property>
+      <Property name="Size">160,170</Property>
+      <Object type="KaveExtControls.ValueProgressBar" name="ValueProgressBarBattery1">
+        <!-- You can define different colors, which will change, when value is withing range. -->
+        <!-- Default color for all ranges is green -->
+        <Property name="RangesColor" assembly="System.Drawing" itemType="Color">Red;DeepSkyBlue;LawnGreen</Property>
+        <!-- You can define different colors for rangle markers. See also DrawRangeEndMarkers -->
+        <!-- Note that last (=MaxValue) marker will not be drawn -->
+        <!-- Default color for all range markers is red -->
+        <Property name="RangesMarkerColor" assembly="System.Drawing" itemType="Color">Red;Red</Property>
+        <Property name="RangesEnd" itemType="System.Double">12;14.4;15</Property>
+        <Property name="RangesEnabled" itemType="System.Boolean">true;true;true</Property>
+        <Property name="RangeStart">0.0</Property>
+        <Property name="Location">10,35</Property>
+        <Property name="Size">140,90</Property>
+        <!-- Possible values: DownToUp,UpToDown,LeftToRight,RightToLeft -->
+        <Property name="Direction">DownToUp</Property>
+        <Property name="ParameterName">Battery1Voltage</Property>
+        <Property name="PropertyToSet">DValue</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+      <Object type="System.Windows.Forms.Label" name="LabelBattery1">
+        <Property name="Location">10,10</Property>
+        <Property name="Size">160,20</Property>
+        <Property name="TextAlign" assembly="System.Windows.Forms" type="HorizontalAlignment">Center</Property>
+        <Property name="Text">Main battery</Property>
+      </Object>
+      <Object type="System.Windows.Forms.TextBox" name="ValueBattery1">
+        <Property name="Location">60,130</Property>
+        <Property name="Size">40,20</Property>
+        <Property name="ParameterName">Battery1Voltage</Property>
+        <Property name="PropertyToSet">Text</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+    </Object>
+  
+    <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelBattery2">
+      <Property name="Location">160,0</Property>
+      <Property name="Size">160,170</Property>
+      <Object type="KaveExtControls.ValueProgressBar" name="ValueProgressBarBattery2">
+        <Property name="RangesColor" assembly="System.Drawing" itemType="Color">Red;DeepSkyBlue;LawnGreen</Property>
+        <Property name="RangesEnd" itemType="System.Double">12;14.4;15</Property>
+        <Property name="RangesEnabled" itemType="System.Boolean">true;true;true</Property>
+        <Property name="RangeStart">0.0</Property>
+        <Property name="Location">10,35</Property>
+        <Property name="Size">140,90</Property>
+        <Property name="Direction">DownToUp</Property>
+        <Property name="ParameterName">Battery2Voltage</Property>
+        <Property name="PropertyToSet">DValue</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+      <Object type="System.Windows.Forms.Label" name="LabelBattery2">
+        <Property name="Location">10,10</Property>
+        <Property name="Size">160,20</Property>
+        <Property name="TextAlign" assembly="System.Windows.Forms" type="HorizontalAlignment">Center</Property>
+        <Property name="Text">Start battery</Property>
+      </Object>
+      <Object type="System.Windows.Forms.TextBox" name="ValueBattery2">
+        <Property name="Location">60,130</Property>
+        <Property name="Size">40,20</Property>
+        <Property name="ParameterName">Battery2Voltage</Property>
+        <Property name="PropertyToSet">Text</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+    </Object>
+  </Object>
+</Object>

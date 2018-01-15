@@ -1,0 +1,2238 @@
+<?xml version="1.0"?>
+<AISDefnCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AisDefns>
+    <AISDefn Description="Position Report Class A" MessageID="1">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 1-3</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>See below...</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <EnumField Name="Navigation Status">
+          <Description>See table below</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>4</BitLength>
+          <EnumValues>
+            <EnumPair Value="0" Name="Under way using engine" />
+            <EnumPair Value="1" Name="At anchor" />
+            <EnumPair Value="2" Name="Not under command" />
+            <EnumPair Value="3" Name="Restricted manoeuverability" />
+            <EnumPair Value="4" Name="Constrained by her draught" />
+            <EnumPair Value="5" Name="Moored" />
+            <EnumPair Value="6" Name="Aground" />
+            <EnumPair Value="7" Name="Engaged in Fishing" />
+            <EnumPair Value="8" Name="Under way sailing" />
+            <EnumPair Value="9" Name="Reserved for future amendment of Navigational Status for HSC" />
+            <EnumPair Value="10" Name="Reserved for future amendment of Navigational Status for WIG" />
+            <EnumPair Value="11" Name="Reserved for future use" />
+            <EnumPair Value="12" Name="Reserved for future use" />
+            <EnumPair Value="13" Name="Reserved for future use" />
+            <EnumPair Value="14" Name="Reserved for future use" />
+            <EnumPair Value="15" Name="Not defined (default)" />
+          </EnumValues>
+        </EnumField>
+        <SignedField Name="Rate of Turn (ROT)">
+          <Description>Signed integer: see below</Description>
+          <BitOffset>42</BitOffset>
+          <BitLength>8</BitLength>
+        </SignedField>
+        <UnsignedField Name="Speed Over Ground (SOG)">
+          <Description>Unsigned integer: see below</Description>
+          <BitOffset>50</BitOffset>
+          <BitLength>10</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Position Accuracy">
+          <Description>See below</Description>
+          <BitOffset>60</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <SignedDoubleField Name="Longitude">
+          <Description>Minutes/10000 (see below)</Description>
+          <BitOffset>61</BitOffset>
+          <BitLength>28</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Latitude">
+          <Description>Minutes/10000 (see below)</Description>
+          <BitOffset>89</BitOffset>
+          <BitLength>27</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <UnsignedField Name="Course Over Ground (COG)">
+          <Description>Relative to true north,</Description>
+          <BitOffset>116</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="True Heading (HDG)">
+          <Description>0 to 359 degrees,</Description>
+          <BitOffset>128</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Time Stamp">
+          <Description>Second of UTC timestamp</Description>
+          <BitOffset>137</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Maneuver Indicator">
+          <Description>See below</Description>
+          <BitOffset>143</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>145</BitOffset>
+          <BitLength>3</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="RAIM flag">
+          <Description>See below</Description>
+          <BitOffset>148</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Radio status">
+          <Description>See below</Description>
+          <BitOffset>149</BitOffset>
+          <BitLength>19</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Position Report Class A (Assigned schedule)" MessageID="2">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 1-3</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>See below...</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <EnumField Name="Navigation Status">
+          <Description>See table below</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>4</BitLength>
+          <EnumValues>
+            <EnumPair Value="0" Name="Under way using engine" />
+            <EnumPair Value="1" Name="At anchor" />
+            <EnumPair Value="2" Name="Not under command" />
+            <EnumPair Value="3" Name="Restricted manoeuverability" />
+            <EnumPair Value="4" Name="Constrained by her draught" />
+            <EnumPair Value="5" Name="Moored" />
+            <EnumPair Value="6" Name="Aground" />
+            <EnumPair Value="7" Name="Engaged in Fishing" />
+            <EnumPair Value="8" Name="Under way sailing" />
+            <EnumPair Value="9" Name="Reserved for future amendment of Navigational Status for HSC" />
+            <EnumPair Value="10" Name="Reserved for future amendment of Navigational Status for WIG" />
+            <EnumPair Value="11" Name="Reserved for future use" />
+            <EnumPair Value="12" Name="Reserved for future use" />
+            <EnumPair Value="13" Name="Reserved for future use" />
+            <EnumPair Value="14" Name="Reserved for future use" />
+            <EnumPair Value="15" Name="Not defined (default)" />
+          </EnumValues>
+        </EnumField>
+        <SignedField Name="Rate of Turn (ROT)">
+          <Description>Signed integer: see below</Description>
+          <BitOffset>42</BitOffset>
+          <BitLength>8</BitLength>
+        </SignedField>
+        <UnsignedField Name="Speed Over Ground (SOG)">
+          <Description>Unsigned integer: see below</Description>
+          <BitOffset>50</BitOffset>
+          <BitLength>10</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Position Accuracy">
+          <Description>See below</Description>
+          <BitOffset>60</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <SignedDoubleField Name="Longitude">
+          <Description>Minutes/10000 (see below)</Description>
+          <BitOffset>61</BitOffset>
+          <BitLength>28</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Latitude">
+          <Description>Minutes/10000 (see below)</Description>
+          <BitOffset>89</BitOffset>
+          <BitLength>27</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Course Over Ground (COG)">
+          <Description>Relative to true north,</Description>
+          <BitOffset>116</BitOffset>
+          <BitLength>12</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <UnsignedField Name="True Heading (HDG)">
+          <Description>0 to 359 degrees,</Description>
+          <BitOffset>128</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Time Stamp">
+          <Description>Second of UTC timestamp</Description>
+          <BitOffset>137</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Maneuver Indicator">
+          <Description>See below</Description>
+          <BitOffset>143</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>145</BitOffset>
+          <BitLength>3</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="RAIM flag">
+          <Description>See below</Description>
+          <BitOffset>148</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Radio status">
+          <Description>See below</Description>
+          <BitOffset>149</BitOffset>
+          <BitLength>19</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Position Report Class A (Response to interrogation)" MessageID="3">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 1-3</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>See below...</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <EnumField Name="Navigation Status">
+          <Description>See table below</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>4</BitLength>
+          <EnumValues>
+            <EnumPair Value="0" Name="Under way using engine" />
+            <EnumPair Value="1" Name="At anchor" />
+            <EnumPair Value="2" Name="Not under command" />
+            <EnumPair Value="3" Name="Restricted manoeuverability" />
+            <EnumPair Value="4" Name="Constrained by her draught" />
+            <EnumPair Value="5" Name="Moored" />
+            <EnumPair Value="6" Name="Aground" />
+            <EnumPair Value="7" Name="Engaged in Fishing" />
+            <EnumPair Value="8" Name="Under way sailing" />
+            <EnumPair Value="9" Name="Reserved for future amendment of Navigational Status for HSC" />
+            <EnumPair Value="10" Name="Reserved for future amendment of Navigational Status for WIG" />
+            <EnumPair Value="11" Name="Reserved for future use" />
+            <EnumPair Value="12" Name="Reserved for future use" />
+            <EnumPair Value="13" Name="Reserved for future use" />
+            <EnumPair Value="14" Name="Reserved for future use" />
+            <EnumPair Value="15" Name="Not defined (default)" />
+          </EnumValues>
+        </EnumField>
+        <SignedField Name="Rate of Turn (ROT)">
+          <Description>Signed integer: see below</Description>
+          <BitOffset>42</BitOffset>
+          <BitLength>8</BitLength>
+        </SignedField>
+        <UnsignedField Name="Speed Over Ground (SOG)">
+          <Description>Unsigned integer: see below</Description>
+          <BitOffset>50</BitOffset>
+          <BitLength>10</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Position Accuracy">
+          <Description>See below</Description>
+          <BitOffset>60</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <SignedDoubleField Name="Longitude">
+          <Description>Minutes/10000 (see below)</Description>
+          <BitOffset>61</BitOffset>
+          <BitLength>28</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Latitude">
+          <Description>Minutes/10000 (see below)</Description>
+          <BitOffset>89</BitOffset>
+          <BitLength>27</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Course Over Ground (COG)">
+          <Description>Relative to true north,</Description>
+          <BitOffset>116</BitOffset>
+          <BitLength>12</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <UnsignedField Name="True Heading (HDG)">
+          <Description>0 to 359 degrees,</Description>
+          <BitOffset>128</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Time Stamp">
+          <Description>Second of UTC timestamp</Description>
+          <BitOffset>137</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Maneuver Indicator">
+          <Description>See below</Description>
+          <BitOffset>143</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>145</BitOffset>
+          <BitLength>3</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="RAIM flag">
+          <Description>See below</Description>
+          <BitOffset>148</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Radio status">
+          <Description>See below</Description>
+          <BitOffset>149</BitOffset>
+          <BitLength>19</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Base Station Report" MessageID="4">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 4</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>Unknown</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Year">
+          <Description>UTC, 1-999, 0 = N/A (default)</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>14</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Month">
+          <Description>1-12; 0 = N/A (default)</Description>
+          <BitOffset>52</BitOffset>
+          <BitLength>4</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Day">
+          <Description>1-31; 0 = N/A (default)</Description>
+          <BitOffset>56</BitOffset>
+          <BitLength>5</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Hour">
+          <Description>0-23; 24 = N/A (default)</Description>
+          <BitOffset>61</BitOffset>
+          <BitLength>5</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Minute">
+          <Description>0-59; 60 = N/A (default)</Description>
+          <BitOffset>66</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Second">
+          <Description>0-59; 60 = N/A (default)</Description>
+          <BitOffset>72</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Fix quality">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>78</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <SignedDoubleField Name="Longitude">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>79</BitOffset>
+          <BitLength>28</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Latitude">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>107</BitOffset>
+          <BitLength>27</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <EnumField Name="Type of EPFD">
+          <Description>See below</Description>
+          <BitOffset>134</BitOffset>
+          <BitLength>4</BitLength>
+          <EnumValues>
+            <EnumPair Value="0" Name="Undefined (default)" />
+            <EnumPair Value="1" Name="GPS" />
+            <EnumPair Value="2" Name="GLONASS" />
+            <EnumPair Value="3" Name="Combined GPS/GLONASS" />
+            <EnumPair Value="4" Name="Loran-C" />
+            <EnumPair Value="5" Name="Chayka" />
+            <EnumPair Value="6" Name="Integrated navigation system" />
+            <EnumPair Value="7" Name="Surveyed" />
+            <EnumPair Value="8" Name="Galileo" />
+          </EnumValues>
+        </EnumField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>138</BitOffset>
+          <BitLength>10</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="RAIM flag">
+          <Description>As for common navigation block</Description>
+          <BitOffset>148</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="SOTDMA state">
+          <Description>As in same bits for Type 1</Description>
+          <BitOffset>149</BitOffset>
+          <BitLength>19</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Ship static and voyage related data" MessageID="5">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 5</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>Message repeat count</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="AIS Version">
+          <Description>0=&lt;&lt;ITU1371&gt;&gt;,</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="IMO Number">
+          <Description>Unsigned IMO ship ID number</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <StringField Name="Call Sign">
+          <Description>7 six-bit characters</Description>
+          <BitOffset>70</BitOffset>
+          <BitLength>42</BitLength>
+        </StringField>
+        <StringField Name="Vessel Name">
+          <Description>20 six-bit characters</Description>
+          <BitOffset>112</BitOffset>
+          <BitLength>120</BitLength>
+        </StringField>
+        <EnumField Name="Ship Type">
+          <Description>See table below</Description>
+          <BitOffset>232</BitOffset>
+          <BitLength>8</BitLength>
+          <EnumValues>
+            <EnumPair Value="0" Name="Not available (default)" />
+            <EnumPair Value="20" Name="Wing in ground (WIG), all ships of this type" />
+            <EnumPair Value="21" Name="Wing in ground (WIG), Hazardous category A" />
+            <EnumPair Value="22" Name="Wing in ground (WIG), Hazardous category B" />
+            <EnumPair Value="23" Name="Wing in ground (WIG), Hazardous category C" />
+            <EnumPair Value="24" Name="Wing in ground (WIG), Hazardous category D" />
+            <EnumPair Value="25" Name="Wing in ground (WIG), Reserved for future use" />
+            <EnumPair Value="26" Name="Wing in ground (WIG), Reserved for future use" />
+            <EnumPair Value="27" Name="Wing in ground (WIG), Reserved for future use" />
+            <EnumPair Value="28" Name="Wing in ground (WIG), Reserved for future use" />
+            <EnumPair Value="29" Name="Wing in ground (WIG), Reserved for future use" />
+            <EnumPair Value="30" Name="Fishing" />
+            <EnumPair Value="31" Name="Towing" />
+            <EnumPair Value="32" Name="Towing: length exceeds 200m or breadth exceeds 25m" />
+            <EnumPair Value="33" Name="Dredging or underwater ops" />
+            <EnumPair Value="34" Name="Diving ops" />
+            <EnumPair Value="35" Name="Military ops" />
+            <EnumPair Value="36" Name="Sailing" />
+            <EnumPair Value="37" Name="Pleasure Craft" />
+            <EnumPair Value="38" Name="Reserved" />
+            <EnumPair Value="39" Name="Reserved" />
+            <EnumPair Value="40" Name="High speed craft (HSC), all ships of this type" />
+            <EnumPair Value="41" Name="High speed craft (HSC), Hazardous category A" />
+            <EnumPair Value="42" Name="High speed craft (HSC), Hazardous category B" />
+            <EnumPair Value="43" Name="High speed craft (HSC), Hazardous category C" />
+            <EnumPair Value="44" Name="High speed craft (HSC), Hazardous category D" />
+            <EnumPair Value="45" Name="High speed craft (HSC), Reserved for future use" />
+            <EnumPair Value="46" Name="High speed craft (HSC), Reserved for future use" />
+            <EnumPair Value="47" Name="High speed craft (HSC), Reserved for future use" />
+            <EnumPair Value="48" Name="High speed craft (HSC), Reserved for future use" />
+            <EnumPair Value="49" Name="High speed craft (HSC), No additional information" />
+            <EnumPair Value="50" Name="Pilot Vessel" />
+            <EnumPair Value="51" Name="Search and Rescue vessel" />
+            <EnumPair Value="52" Name="Tug" />
+            <EnumPair Value="53" Name="Port Tender" />
+            <EnumPair Value="54" Name="Anti-pollution equipment" />
+            <EnumPair Value="55" Name="Law Enforcement" />
+            <EnumPair Value="56" Name="Spare - Local Vessel" />
+            <EnumPair Value="57" Name="Spare - Local Vessel" />
+            <EnumPair Value="58" Name="Medical Transport" />
+            <EnumPair Value="59" Name="Ship according to RR Resolution No. 18" />
+            <EnumPair Value="60" Name="Passenger, all ships of this type" />
+            <EnumPair Value="61" Name="Passenger, Hazardous category A" />
+            <EnumPair Value="62" Name="Passenger, Hazardous category B" />
+            <EnumPair Value="63" Name="Passenger, Hazardous category C" />
+            <EnumPair Value="64" Name="Passenger, Hazardous category D" />
+            <EnumPair Value="65" Name="Passenger, Reserved for future use" />
+            <EnumPair Value="66" Name="Passenger, Reserved for future use" />
+            <EnumPair Value="67" Name="Passenger, Reserved for future use" />
+            <EnumPair Value="68" Name="Passenger, Reserved for future use" />
+            <EnumPair Value="69" Name="Passenger, No additional information" />
+            <EnumPair Value="70" Name="Cargo, all ships of this type" />
+            <EnumPair Value="71" Name="Cargo, Hazardous category A" />
+            <EnumPair Value="72" Name="Cargo, Hazardous category B" />
+            <EnumPair Value="73" Name="Cargo, Hazardous category C" />
+            <EnumPair Value="74" Name="Cargo, Hazardous category D" />
+            <EnumPair Value="75" Name="Cargo, Reserved for future use" />
+            <EnumPair Value="76" Name="Cargo, Reserved for future use" />
+            <EnumPair Value="77" Name="Cargo, Reserved for future use" />
+            <EnumPair Value="78" Name="Cargo, Reserved for future use" />
+            <EnumPair Value="79" Name="Cargo, No additional information" />
+            <EnumPair Value="80" Name="Tanker, all ships of this type" />
+            <EnumPair Value="81" Name="Tanker, Hazardous category A" />
+            <EnumPair Value="82" Name="Tanker, Hazardous category B" />
+            <EnumPair Value="83" Name="Tanker, Hazardous category C" />
+            <EnumPair Value="84" Name="Tanker, Hazardous category D" />
+            <EnumPair Value="85" Name="Tanker, Reserved for future use" />
+            <EnumPair Value="86" Name="Tanker, Reserved for future use" />
+            <EnumPair Value="87" Name="Tanker, Reserved for future use" />
+            <EnumPair Value="88" Name="Tanker, Reserved for future use" />
+            <EnumPair Value="89" Name="Tanker, No additional information" />
+            <EnumPair Value="90" Name="Other Type, all ships of this type" />
+            <EnumPair Value="91" Name="Other Type, Hazardous category A" />
+            <EnumPair Value="92" Name="Other Type, Hazardous category B" />
+            <EnumPair Value="93" Name="Other Type, Hazardous category C" />
+            <EnumPair Value="94" Name="Other Type, Hazardous category D" />
+            <EnumPair Value="95" Name="Other Type, Reserved for future use" />
+            <EnumPair Value="96" Name="Other Type, Reserved for future use" />
+            <EnumPair Value="97" Name="Other Type, Reserved for future use" />
+            <EnumPair Value="98" Name="Other Type, Reserved for future use" />
+            <EnumPair Value="99" Name="Other Type, no additional information" />
+          </EnumValues>
+        </EnumField>
+        <UnsignedField Name="Dimension to Bow">
+          <Description>Unsigned integer: Meters</Description>
+          <BitOffset>240</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Stern">
+          <Description>Unsigned integer: Meters</Description>
+          <BitOffset>249</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Port">
+          <Description>Unsigned integer: Meters</Description>
+          <BitOffset>258</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Starboard">
+          <Description>Unsigned integer: Meters</Description>
+          <BitOffset>264</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Position Fix Type">
+          <Description>As in Type 4 EPSD codes</Description>
+          <BitOffset>270</BitOffset>
+          <BitLength>4</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="ETA month">
+          <Description>1-12, 0=N/A (default)</Description>
+          <BitOffset>274</BitOffset>
+          <BitLength>4</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="ETA day">
+          <Description>1-31, 0=N/A (default)</Description>
+          <BitOffset>278</BitOffset>
+          <BitLength>5</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="ETA hour">
+          <Description>0-23, 24=N/A (default)</Description>
+          <BitOffset>283</BitOffset>
+          <BitLength>5</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="ETA minute">
+          <Description>0-59, 60=N/A (default)</Description>
+          <BitOffset>288</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Draught">
+          <Description>Unsigned integer: Meters/10</Description>
+          <BitOffset>294</BitOffset>
+          <BitLength>8</BitLength>
+        </UnsignedField>
+        <StringField Name="Destination">
+          <Description>20 6-bit characters</Description>
+          <BitOffset>302</BitOffset>
+          <BitLength>120</BitLength>
+        </StringField>
+        <UnsignedField Name="DTE">
+          <Description>0=Data terminal ready,</Description>
+          <BitOffset>422</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>423</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Addressed Binary Message" MessageID="6">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 6</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Source MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Sequence Number">
+          <Description>Unsigned integer 0-3</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Destination MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Retransmit flag">
+          <Description>0 = no retransmission (default)</Description>
+          <BitOffset>70</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>71</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Application ID">
+          <Description>Unsigned integer</Description>
+          <BitOffset>72</BitOffset>
+          <BitLength>16</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Data">
+          <Description>Binary data</Description>
+          <BitOffset>88</BitOffset>
+          <BitLength>920</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Binary Acknowledge" MessageID="7">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 7</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Source MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI number 1">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>70</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI number 2">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>62</BitOffset>
+          <BitLength>40</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>102</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI number 3">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>104</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>134</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI number 4">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>136</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>166</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Binary Broadcast Message" MessageID="8">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 8</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Source MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Application ID">
+          <Description>Unsigned integer</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>16</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Data">
+          <Description>Binary data</Description>
+          <BitOffset>56</BitOffset>
+          <BitLength>952</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Standard SAR Aircraft Position Report" MessageID="9">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 9</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Altitude">
+          <Description>Unsigned integer: See below</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="SOG">
+          <Description>Unsigned integer: See below</Description>
+          <BitOffset>50</BitOffset>
+          <BitLength>10</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Position Accuracy">
+          <Description>See below</Description>
+          <BitOffset>60</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <SignedDoubleField Name="Longitude">
+          <Description>Minutes/10000 (as in CNB)</Description>
+          <BitOffset>61</BitOffset>
+          <BitLength>28</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Latitude">
+          <Description>Minutes/10000 (as in CNB)</Description>
+          <BitOffset>89</BitOffset>
+          <BitLength>27</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Course Over Ground">
+          <Description>Relative to true north to 0.1 degree</Description>
+          <BitOffset>116</BitOffset>
+          <BitLength>12</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <UnsignedField Name="Time Stamp">
+          <Description>Unsigned integer: UTC second.</Description>
+          <BitOffset>128</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Regional reserved">
+          <Description>reserved</Description>
+          <BitOffset>134</BitOffset>
+          <BitLength>8</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="DTE">
+          <Description>0=Data terminal ready,</Description>
+          <BitOffset>142</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>143</BitOffset>
+          <BitLength>3</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Assigned">
+          <Description>Assigned-mode flag</Description>
+          <BitOffset>146</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="RAIM flag">
+          <Description>As for common navigation block</Description>
+          <BitOffset>147</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Radio status">
+          <Description>See &lt;&lt;IALA&gt;&gt; for details.</Description>
+          <BitOffset>148</BitOffset>
+          <BitLength>20</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="UTC/Date Inquiry" MessageID="10">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 9</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Source MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Destination MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>70</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="UTC/Date Response" MessageID="11">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 4</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>Unknown</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Year">
+          <Description>UTC, 1-999, 0 = N/A (default)</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>14</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Month">
+          <Description>1-12; 0 = N/A (default)</Description>
+          <BitOffset>52</BitOffset>
+          <BitLength>4</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Day">
+          <Description>1-31; 0 = N/A (default)</Description>
+          <BitOffset>56</BitOffset>
+          <BitLength>5</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Hour">
+          <Description>0-23; 24 = N/A (default)</Description>
+          <BitOffset>61</BitOffset>
+          <BitLength>5</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Minute">
+          <Description>0-59; 60 = N/A (default)</Description>
+          <BitOffset>66</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Second">
+          <Description>0-59; 60 = N/A (default)</Description>
+          <BitOffset>72</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Fix quality">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>78</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <SignedDoubleField Name="Longitude">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>79</BitOffset>
+          <BitLength>28</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Latitude">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>107</BitOffset>
+          <BitLength>27</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <UnsignedField Name="Type of EPFD">
+          <Description>See below</Description>
+          <BitOffset>134</BitOffset>
+          <BitLength>4</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>138</BitOffset>
+          <BitLength>10</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="RAIM flag">
+          <Description>As for common navigation block</Description>
+          <BitOffset>148</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="SOTDMA state">
+          <Description>As in same bits for Type 1</Description>
+          <BitOffset>149</BitOffset>
+          <BitLength>19</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Safety-Related Message" MessageID="12">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 12</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Source MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Sequence Number">
+          <Description>Unsigned integer 0-3</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Destination MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Retransmit flag">
+          <Description>0 = no retransmission (default)</Description>
+          <BitOffset>70</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>71</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <StringField Name="Text">
+          <Description>1-156 chars of six-bit text.</Description>
+          <BitOffset>72</BitOffset>
+          <BitLength>936</BitLength>
+        </StringField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Safety-Related Acknowledge" MessageID="13">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 7</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Source MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI number 1">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>70</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI number 2">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>62</BitOffset>
+          <BitLength>40</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>102</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI number 3">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>104</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>134</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI number 4">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>136</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>166</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Safety-Related Broadcast Message" MessageID="14">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 14</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Source MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <StringField Name="Text">
+          <Description>1-161 chars of six-bit text.</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>968</BitLength>
+        </StringField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Interrogation" MessageID="15">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 15</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Source MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Interrogated MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="First message type">
+          <Description>Unsigned integer</Description>
+          <BitOffset>70</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="First slot offset">
+          <Description>Unsigned integer</Description>
+          <BitOffset>76</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>88</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Second message type">
+          <Description>Unsigned integer</Description>
+          <BitOffset>90</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Second slot offset">
+          <Description>Unsigned integer</Description>
+          <BitOffset>96</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>108</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Interrogated MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>110</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="First message type">
+          <Description>Unsigned integer</Description>
+          <BitOffset>140</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="First slot offset">
+          <Description>Unsigned integer</Description>
+          <BitOffset>146</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>158</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Assigned Mode Command" MessageID="16">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 16</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Source MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Destination A MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Offset A">
+          <Description>See &lt;&lt;IALA&gt;&gt;</Description>
+          <BitOffset>70</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Increment A">
+          <Description>See &lt;&lt;IALA&gt;&gt;</Description>
+          <BitOffset>82</BitOffset>
+          <BitLength>10</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Destination B MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>92</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Offset B">
+          <Description>See &lt;&lt;IALA&gt;&gt;</Description>
+          <BitOffset>122</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Increment B">
+          <Description>See &lt;&lt;IALA&gt;&gt;</Description>
+          <BitOffset>134</BitOffset>
+          <BitLength>10</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="GNSS Broadcast Binary Message" MessageID="17">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 16</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Source MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <SignedDoubleField Name="Longitude">
+          <Description>Minutes/10</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>18</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Latitude">
+          <Description>Minutes/10</Description>
+          <BitOffset>58</BitOffset>
+          <BitLength>17</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <UnsignedField Name="Spare">
+          <Description>Not used - reserved</Description>
+          <BitOffset>75</BitOffset>
+          <BitLength>5</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Payload">
+          <Description>DGNSS correction data</Description>
+          <BitOffset>80</BitOffset>
+          <BitLength>736</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Standard Class B CS Position Report" MessageID="18">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 18</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Regional Reserved">
+          <Description>reserved</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>8</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Speed Over Ground">
+          <Description>As in common navigation block</Description>
+          <BitOffset>46</BitOffset>
+          <BitLength>10</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Position Accuracy">
+          <Description>See below</Description>
+          <BitOffset>56</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <SignedDoubleField Name="Longitude">
+          <Description>Minutes/10000 (as in CNB)</Description>
+          <BitOffset>57</BitOffset>
+          <BitLength>28</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Latitude">
+          <Description>Minutes/10000 (as in CNB)</Description>
+          <BitOffset>85</BitOffset>
+          <BitLength>27</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Course Over Ground">
+          <Description>Relative to true north to 0.1 degree</Description>
+          <BitOffset>112</BitOffset>
+          <BitLength>12</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <UnsignedField Name="True Heading">
+          <Description>0 to 359 degrees, 511 = N/A</Description>
+          <BitOffset>124</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Time Stamp">
+          <Description>Second of UTC timestamp.</Description>
+          <BitOffset>133</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Regional reserved">
+          <Description>reserved</Description>
+          <BitOffset>139</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="CS Unit">
+          <Description>0=Class B SOTDMA unit</Description>
+          <BitOffset>141</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Display flag">
+          <Description>0=No visual display, 1=Has display</Description>
+          <BitOffset>142</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="DSC Flag">
+          <Description>If 1, unit is attached to a VHF</Description>
+          <BitOffset>143</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Band flag">
+          <Description>Base stations can command units</Description>
+          <BitOffset>144</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Message 22 flag">
+          <Description>If 1, unit can accept a channel</Description>
+          <BitOffset>145</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Assigned">
+          <Description>Assigned-mode flag</Description>
+          <BitOffset>146</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="RAIM flag">
+          <Description>As for common navigation block</Description>
+          <BitOffset>147</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Radio status">
+          <Description>See &lt;&lt;IALA&gt;&gt; for details.</Description>
+          <BitOffset>148</BitOffset>
+          <BitLength>20</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Extended Class B CS Position Report" MessageID="19">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 19</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Regional Reserved">
+          <Description>reserved</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>8</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Speed Over Ground">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>46</BitOffset>
+          <BitLength>10</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Position Accuracy">
+          <Description>See below</Description>
+          <BitOffset>56</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <SignedDoubleField Name="Longitude">
+          <Description>Minutes/10000 (as in CNB)</Description>
+          <BitOffset>57</BitOffset>
+          <BitLength>28</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Latitude">
+          <Description>Minutes/10000 (as in CNB)</Description>
+          <BitOffset>85</BitOffset>
+          <BitLength>27</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Course Over Ground">
+          <Description>Relative to true north,</Description>
+          <BitOffset>112</BitOffset>
+          <BitLength>12</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <UnsignedField Name="True Heading">
+          <Description>0 to 359 degrees,</Description>
+          <BitOffset>124</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Time Stamp">
+          <Description>Second of UTC timestamp.</Description>
+          <BitOffset>133</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Regional reserved">
+          <Description>reserved</Description>
+          <BitOffset>139</BitOffset>
+          <BitLength>4</BitLength>
+        </UnsignedField>
+        <StringField Name="Name">
+          <Description>20 6-bit characters</Description>
+          <BitOffset>143</BitOffset>
+          <BitLength>120</BitLength>
+        </StringField>
+        <UnsignedField Name="Type of ship and cargo">
+          <Description>As in Message 5</Description>
+          <BitOffset>263</BitOffset>
+          <BitLength>8</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Bow">
+          <Description>Unsigned integer: Meters</Description>
+          <BitOffset>271</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Stern">
+          <Description>Unsigned integer: Meters</Description>
+          <BitOffset>280</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Port">
+          <Description>Unsigned integer: Meters</Description>
+          <BitOffset>289</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Starboard">
+          <Description>Unsigned integer: Meters</Description>
+          <BitOffset>295</BitOffset>
+          <BitLength>3</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Position Fix Type">
+          <Description>As in Type 4 EPFD codes</Description>
+          <BitOffset>299</BitOffset>
+          <BitLength>3</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="RAIM flag">
+          <Description>As for Common Navigation Block</Description>
+          <BitOffset>302</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="DTE">
+          <Description>0=Data terminal ready,</Description>
+          <BitOffset>304</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Assigned mode flag">
+          <Description>See &lt;&lt;IALA&gt;&gt; for details</Description>
+          <BitOffset>306</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Unused, should be zero</Description>
+          <BitOffset>307</BitOffset>
+          <BitLength>5</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Data Link Management Message" MessageID="20">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 20</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Offset number 1">
+          <Description>Reserved offset number</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Reserved slots">
+          <Description>Consecutive slots</Description>
+          <BitOffset>52</BitOffset>
+          <BitLength>4</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Time-out">
+          <Description>Allocation timeout in minutes</Description>
+          <BitOffset>56</BitOffset>
+          <BitLength>3</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Increment">
+          <Description>Repeat increment</Description>
+          <BitOffset>59</BitOffset>
+          <BitLength>11</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Offset number 2">
+          <Description>Reserved offset number</Description>
+          <BitOffset>70</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Reserved slots">
+          <Description>Consecutive slots</Description>
+          <BitOffset>82</BitOffset>
+          <BitLength>4</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Time-out">
+          <Description>Allocation timeout in minutes</Description>
+          <BitOffset>86</BitOffset>
+          <BitLength>3</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Increment">
+          <Description>Repeat increment</Description>
+          <BitOffset>89</BitOffset>
+          <BitLength>11</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Offset number 3">
+          <Description>Reserved offset number</Description>
+          <BitOffset>100</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Reserved slots">
+          <Description>Consecutive slots</Description>
+          <BitOffset>112</BitOffset>
+          <BitLength>4</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Time-out">
+          <Description>Allocation timeout in minutes</Description>
+          <BitOffset>116</BitOffset>
+          <BitLength>3</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Increment">
+          <Description>Repeat increment</Description>
+          <BitOffset>119</BitOffset>
+          <BitLength>11</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Offset number 4">
+          <Description>Reserved offset number</Description>
+          <BitOffset>130</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Reserved slots">
+          <Description>Consecutive slots</Description>
+          <BitOffset>142</BitOffset>
+          <BitLength>4</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Time-out">
+          <Description>Allocation timeout in minutes</Description>
+          <BitOffset>146</BitOffset>
+          <BitLength>3</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Increment">
+          <Description>Repeat increment</Description>
+          <BitOffset>149</BitOffset>
+          <BitLength>11</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Aid-to-Navigation Report" MessageID="21">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 21</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <EnumField Name="Aid type">
+          <Description>See Below</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>5</BitLength>
+          <EnumValues>
+            <EnumPair Value="0" Name="Default, Type of Aid to Navigation not specified" />
+            <EnumPair Value="1" Name="Reference point" />
+            <EnumPair Value="2" Name="RACON (radar transponder marking a navigation hazard)" />
+            <EnumPair Value="3" Name="Fixed structure off shore, such as oil platforms, wind farms, rigs" />
+            <EnumPair Value="4" Name="Spare, Reserved for future use." />
+            <EnumPair Value="5" Name="Light, without sectors" />
+            <EnumPair Value="6" Name="Light, with sectors" />
+            <EnumPair Value="7" Name="Leading Light Front" />
+            <EnumPair Value="8" Name="Leading Light Rear" />
+            <EnumPair Value="9" Name="Beacon, Cardinal N" />
+            <EnumPair Value="10" Name="Beacon, Cardinal E" />
+            <EnumPair Value="11" Name="Beacon, Cardinal S" />
+            <EnumPair Value="12" Name="Beacon, Cardinal W" />
+            <EnumPair Value="13" Name="Beacon, Port hand" />
+            <EnumPair Value="14" Name="Beacon, Starboard hand" />
+            <EnumPair Value="15" Name="Beacon, Preferred Channel port hand" />
+            <EnumPair Value="16" Name="Beacon, Preferred Channel starboard hand" />
+            <EnumPair Value="17" Name="Beacon, Isolated danger" />
+            <EnumPair Value="18" Name="Beacon, Safe water" />
+            <EnumPair Value="19" Name="Beacon, Special mark" />
+            <EnumPair Value="20" Name="Cardinal Mark N" />
+            <EnumPair Value="21" Name="Cardinal Mark E" />
+            <EnumPair Value="22" Name="Cardinal Mark S" />
+            <EnumPair Value="23" Name="Cardinal Mark W" />
+            <EnumPair Value="24" Name="Port hand Mark" />
+            <EnumPair Value="25" Name="Starboard hand Mark" />
+            <EnumPair Value="26" Name="Preferred Channel Port hand" />
+            <EnumPair Value="27" Name="Preferred Channel Starboard hand" />
+            <EnumPair Value="28" Name="Isolated danger" />
+            <EnumPair Value="29" Name="Safe Water" />
+            <EnumPair Value="30" Name="Special Mark" />
+            <EnumPair Value="31" Name="Light Vessel / LANBY / Rigs" />
+          </EnumValues>
+        </EnumField>
+        <UnsignedField Name="Name">
+          <Description>Name of the aid to navigation</Description>
+          <BitOffset>43</BitOffset>
+          <BitLength>120</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Position Accuracy">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>163</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <SignedDoubleField Name="Longitude">
+          <Description>Minutes/10000 (as in CNB)</Description>
+          <BitOffset>164</BitOffset>
+          <BitLength>28</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="Latitude">
+          <Description>Minutes/10000 (as in CNB)</Description>
+          <BitOffset>192</BitOffset>
+          <BitLength>27</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <UnsignedField Name="Dimension to Bow">
+          <Description>Unsigned integer: Meters</Description>
+          <BitOffset>219</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Stern">
+          <Description>Unsigned integer: Meters</Description>
+          <BitOffset>228</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Port">
+          <Description>Unsigned integer: Meters</Description>
+          <BitOffset>237</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Starboard">
+          <Description>Unsigned integer: Meters</Description>
+          <BitOffset>243</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <EnumField Name="Type of EPFD">
+          <Description>See below</Description>
+          <BitOffset>249</BitOffset>
+          <BitLength>4</BitLength>
+          <EnumValues>
+            <EnumPair Value="0" Name="Undefined (default)" />
+            <EnumPair Value="1" Name="GPS" />
+            <EnumPair Value="2" Name="GLONASS" />
+            <EnumPair Value="3" Name="Combined GPS/GLONASS" />
+            <EnumPair Value="4" Name="Loran-C" />
+            <EnumPair Value="5" Name="Chayka" />
+            <EnumPair Value="6" Name="Integrated navigation system" />
+            <EnumPair Value="7" Name="Surveyed" />
+            <EnumPair Value="8" Name="Galileo" />
+          </EnumValues>
+        </EnumField>
+        <UnsignedField Name="UTC Second">
+          <Description>As in Message Type 5</Description>
+          <BitOffset>253</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Off-Position Indicator">
+          <Description>See Below</Description>
+          <BitOffset>259</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Regional reserved">
+          <Description />
+          <BitOffset>260</BitOffset>
+          <BitLength>8</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="RAIM flag">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>268</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Virtual-aid flag">
+          <Description>See Below</Description>
+          <BitOffset>269</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Assigned-mode flag">
+          <Description>See &lt;&lt;IALA&gt;&gt; for details</Description>
+          <BitOffset>270</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>271</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Name Extension">
+          <Description>See Below</Description>
+          <BitOffset>272</BitOffset>
+          <BitLength>89</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Channel Management" MessageID="22">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 22</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Channel A">
+          <Description>Channel number</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Channel B">
+          <Description>Channel number</Description>
+          <BitOffset>52</BitOffset>
+          <BitLength>12</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Tx/Rx mode">
+          <Description>Transmit/receive mode</Description>
+          <BitOffset>64</BitOffset>
+          <BitLength>4</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Power">
+          <Description>Low=0, high=1</Description>
+          <BitOffset>68</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <SignedDoubleField Name="NE Longitude">
+          <Description>NE corner longitude to 0.1 minutes</Description>
+          <BitOffset>69</BitOffset>
+          <BitLength>18</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="NE Latitude">
+          <Description>NE corner latitude to 0.1 minutes</Description>
+          <BitOffset>87</BitOffset>
+          <BitLength>17</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="SW Longitude">
+          <Description>SW corner longitude to 0.1 minutes</Description>
+          <BitOffset>104</BitOffset>
+          <BitLength>18</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="SW Latitude">
+          <Description>SW corner latitude to 0.1 minutes</Description>
+          <BitOffset>122</BitOffset>
+          <BitLength>17</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <UnsignedField Name="Addressed">
+          <Description>0=Broadcast, 1=Addressed</Description>
+          <BitOffset>139</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Channel A Band">
+          <Description>0=Default, 1=12.5kHz</Description>
+          <BitOffset>140</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Channel B Band">
+          <Description>0=Default, 1=12.5kHz</Description>
+          <BitOffset>141</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Zone size">
+          <Description>Size of transitional zone</Description>
+          <BitOffset>142</BitOffset>
+          <BitLength>3</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Reserved for future use</Description>
+          <BitOffset>145</BitOffset>
+          <BitLength>23</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Group Assignment Command" MessageID="23">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned Integer: 23</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in Common Navigation Block</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned Integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <SignedDoubleField Name="NE Longitude">
+          <Description>Same as type 22</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>18</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="NE Latitude">
+          <Description>Same as type 22</Description>
+          <BitOffset>58</BitOffset>
+          <BitLength>17</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="SW Longitude">
+          <Description>Same as type 22</Description>
+          <BitOffset>75</BitOffset>
+          <BitLength>18</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <SignedDoubleField Name="SW Latitude">
+          <Description>Same as type 22</Description>
+          <BitOffset>93</BitOffset>
+          <BitLength>17</BitLength>
+          <Scale>1.6666666666666667E-06</Scale>
+          <Offset>0</Offset>
+        </SignedDoubleField>
+        <EnumField Name="Station Type">
+          <Description>Unsigned Integer, see below</Description>
+          <BitOffset>110</BitOffset>
+          <BitLength>4</BitLength>
+          <EnumValues>
+            <EnumPair Value="0" Name="All types of mobiles (default)" />
+            <EnumPair Value="1" Name="Reserved for future use" />
+            <EnumPair Value="2" Name="All types of Class B mobile stations" />
+            <EnumPair Value="3" Name="SAR airborne mobile station" />
+            <EnumPair Value="4" Name="Aid to Navigation station" />
+            <EnumPair Value="5" Name="Class B shipborne mobile station (IEC62287 only)" />
+            <EnumPair Value="6" Name="Regional use and inland waterways" />
+            <EnumPair Value="7" Name="Regional use and inland waterways" />
+            <EnumPair Value="8" Name="Regional use and inland waterways" />
+            <EnumPair Value="9" Name="Regional use and inland waterways" />
+            <EnumPair Value="10" Name="Reserved for future use" />
+            <EnumPair Value="11" Name="Reserved for future use" />
+            <EnumPair Value="12" Name="Reserved for future use" />
+            <EnumPair Value="13" Name="Reserved for future use" />
+            <EnumPair Value="14" Name="Reserved for future use" />
+            <EnumPair Value="15" Name="Reserved for future use" />
+          </EnumValues>
+        </EnumField>
+        <EnumField Name="Ship Type">
+          <Description>As for Message type 5</Description>
+          <BitOffset>114</BitOffset>
+          <BitLength>8</BitLength>
+          <EnumValues>
+            <EnumPair Value="0" Name="Not available (default)" />
+            <EnumPair Value="20" Name="Wing in ground (WIG), all ships of this type" />
+            <EnumPair Value="21" Name="Wing in ground (WIG), Hazardous category A" />
+            <EnumPair Value="22" Name="Wing in ground (WIG), Hazardous category B" />
+            <EnumPair Value="23" Name="Wing in ground (WIG), Hazardous category C" />
+            <EnumPair Value="24" Name="Wing in ground (WIG), Hazardous category D" />
+            <EnumPair Value="25" Name="Wing in ground (WIG), Reserved for future use" />
+            <EnumPair Value="26" Name="Wing in ground (WIG), Reserved for future use" />
+            <EnumPair Value="27" Name="Wing in ground (WIG), Reserved for future use" />
+            <EnumPair Value="28" Name="Wing in ground (WIG), Reserved for future use" />
+            <EnumPair Value="29" Name="Wing in ground (WIG), Reserved for future use" />
+            <EnumPair Value="30" Name="Fishing" />
+            <EnumPair Value="31" Name="Towing" />
+            <EnumPair Value="32" Name="Towing: length exceeds 200m or breadth exceeds 25m" />
+            <EnumPair Value="33" Name="Dredging or underwater ops" />
+            <EnumPair Value="34" Name="Diving ops" />
+            <EnumPair Value="35" Name="Military ops" />
+            <EnumPair Value="36" Name="Sailing" />
+            <EnumPair Value="37" Name="Pleasure Craft" />
+            <EnumPair Value="38" Name="Reserved" />
+            <EnumPair Value="39" Name="Reserved" />
+            <EnumPair Value="40" Name="High speed craft (HSC), all ships of this type" />
+            <EnumPair Value="41" Name="High speed craft (HSC), Hazardous category A" />
+            <EnumPair Value="42" Name="High speed craft (HSC), Hazardous category B" />
+            <EnumPair Value="43" Name="High speed craft (HSC), Hazardous category C" />
+            <EnumPair Value="44" Name="High speed craft (HSC), Hazardous category D" />
+            <EnumPair Value="45" Name="High speed craft (HSC), Reserved for future use" />
+            <EnumPair Value="46" Name="High speed craft (HSC), Reserved for future use" />
+            <EnumPair Value="47" Name="High speed craft (HSC), Reserved for future use" />
+            <EnumPair Value="48" Name="High speed craft (HSC), Reserved for future use" />
+            <EnumPair Value="49" Name="High speed craft (HSC), No additional information" />
+            <EnumPair Value="50" Name="Pilot Vessel" />
+            <EnumPair Value="51" Name="Search and Rescue vessel" />
+            <EnumPair Value="52" Name="Tug" />
+            <EnumPair Value="53" Name="Port Tender" />
+            <EnumPair Value="54" Name="Anti-pollution equipment" />
+            <EnumPair Value="55" Name="Law Enforcement" />
+            <EnumPair Value="56" Name="Spare - Local Vessel" />
+            <EnumPair Value="57" Name="Spare - Local Vessel" />
+            <EnumPair Value="58" Name="Medical Transport" />
+            <EnumPair Value="59" Name="Ship according to RR Resolution No. 18" />
+            <EnumPair Value="60" Name="Passenger, all ships of this type" />
+            <EnumPair Value="61" Name="Passenger, Hazardous category A" />
+            <EnumPair Value="62" Name="Passenger, Hazardous category B" />
+            <EnumPair Value="63" Name="Passenger, Hazardous category C" />
+            <EnumPair Value="64" Name="Passenger, Hazardous category D" />
+            <EnumPair Value="65" Name="Passenger, Reserved for future use" />
+            <EnumPair Value="66" Name="Passenger, Reserved for future use" />
+            <EnumPair Value="67" Name="Passenger, Reserved for future use" />
+            <EnumPair Value="68" Name="Passenger, Reserved for future use" />
+            <EnumPair Value="69" Name="Passenger, No additional information" />
+            <EnumPair Value="70" Name="Cargo, all ships of this type" />
+            <EnumPair Value="71" Name="Cargo, Hazardous category A" />
+            <EnumPair Value="72" Name="Cargo, Hazardous category B" />
+            <EnumPair Value="73" Name="Cargo, Hazardous category C" />
+            <EnumPair Value="74" Name="Cargo, Hazardous category D" />
+            <EnumPair Value="75" Name="Cargo, Reserved for future use" />
+            <EnumPair Value="76" Name="Cargo, Reserved for future use" />
+            <EnumPair Value="77" Name="Cargo, Reserved for future use" />
+            <EnumPair Value="78" Name="Cargo, Reserved for future use" />
+            <EnumPair Value="79" Name="Cargo, No additional information" />
+            <EnumPair Value="80" Name="Tanker, all ships of this type" />
+            <EnumPair Value="81" Name="Tanker, Hazardous category A" />
+            <EnumPair Value="82" Name="Tanker, Hazardous category B" />
+            <EnumPair Value="83" Name="Tanker, Hazardous category C" />
+            <EnumPair Value="84" Name="Tanker, Hazardous category D" />
+            <EnumPair Value="85" Name="Tanker, Reserved for future use" />
+            <EnumPair Value="86" Name="Tanker, Reserved for future use" />
+            <EnumPair Value="87" Name="Tanker, Reserved for future use" />
+            <EnumPair Value="88" Name="Tanker, Reserved for future use" />
+            <EnumPair Value="89" Name="Tanker, No additional information" />
+            <EnumPair Value="90" Name="Other Type, all ships of this type" />
+            <EnumPair Value="91" Name="Other Type, Hazardous category A" />
+            <EnumPair Value="92" Name="Other Type, Hazardous category B" />
+            <EnumPair Value="93" Name="Other Type, Hazardous category C" />
+            <EnumPair Value="94" Name="Other Type, Hazardous category D" />
+            <EnumPair Value="95" Name="Other Type, Reserved for future use" />
+            <EnumPair Value="96" Name="Other Type, Reserved for future use" />
+            <EnumPair Value="97" Name="Other Type, Reserved for future use" />
+            <EnumPair Value="98" Name="Other Type, Reserved for future use" />
+            <EnumPair Value="99" Name="Other Type, no additional information" />
+          </EnumValues>
+        </EnumField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>122</BitOffset>
+          <BitLength>22</BitLength>
+        </UnsignedField>
+        <EnumField Name="Tx/Rx Mode">
+          <Description>Transmit/receive mode; see below,</Description>
+          <BitOffset>144</BitOffset>
+          <BitLength>2</BitLength>
+          <EnumValues>
+            <EnumPair Value="0" Name="TxA/TxB, RxA/RxB (default)" />
+            <EnumPair Value="1" Name="TxA, RxA/RxB" />
+            <EnumPair Value="2" Name="TxB, RxA/RxB" />
+            <EnumPair Value="3" Name="Reserved for Future Use" />
+          </EnumValues>
+        </EnumField>
+        <EnumField Name="Report Interval">
+          <Description>Station report interval; see below</Description>
+          <BitOffset>146</BitOffset>
+          <BitLength>4</BitLength>
+          <EnumValues>
+            <EnumPair Value="0" Name="As given by the autonomous mode" />
+            <EnumPair Value="1" Name="10 Minutes" />
+            <EnumPair Value="2" Name="6 Minutes" />
+            <EnumPair Value="3" Name="3 Minutes" />
+            <EnumPair Value="4" Name="1 Minute" />
+            <EnumPair Value="5" Name="30 Seconds" />
+            <EnumPair Value="6" Name="15 Seconds" />
+            <EnumPair Value="7" Name="10 Seconds" />
+            <EnumPair Value="8" Name="5 Seconds" />
+            <EnumPair Value="9" Name="Next Shorter Reporting Interval" />
+            <EnumPair Value="10" Name="Next Longer Reporting Interval" />
+            <EnumPair Value="11" Name="Reserved for future use" />
+            <EnumPair Value="12" Name="Reserved for future use" />
+            <EnumPair Value="13" Name="Reserved for future use" />
+            <EnumPair Value="14" Name="Reserved for future use" />
+            <EnumPair Value="15" Name="Reserved for future use" />
+          </EnumValues>
+        </EnumField>
+        <UnsignedField Name="Quiet Time">
+          <Description>0 = none, 1-15 quiet time in minutes</Description>
+          <BitOffset>150</BitOffset>
+          <BitLength>4</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>Not used</Description>
+          <BitOffset>154</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Class B CS Static Data Report " MessageID="24">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 19</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in CNB</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Part Number">
+          <Description>Unsigned integer: 0-1</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <StringField Name="Vessel Name">
+          <Description>(Part A) 20 six-bit chars</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>120</BitLength>
+        </StringField>
+        <UnsignedField Name="Spare">
+          <Description>(Part A) Not used</Description>
+          <BitOffset>160</BitOffset>
+          <BitLength>8</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Ship Type">
+          <Description>(Part B) As in Message Type 5</Description>
+          <BitOffset>40</BitOffset>
+          <BitLength>8</BitLength>
+        </UnsignedField>
+        <StringField Name="Vendor ID">
+          <Description>(Part B) 7 six-bit chars</Description>
+          <BitOffset>48</BitOffset>
+          <BitLength>42</BitLength>
+        </StringField>
+        <UnsignedField Name="Call Sign">
+          <Description>(Part B) As in Message Type 5</Description>
+          <BitOffset>90</BitOffset>
+          <BitLength>42</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Bow">
+          <Description>(Part B) Unsigned int: Meters</Description>
+          <BitOffset>132</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Stern">
+          <Description>(Part B) Unsigned int: Meters</Description>
+          <BitOffset>141</BitOffset>
+          <BitLength>9</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Port">
+          <Description>(Part B) Unsigned int: Meters</Description>
+          <BitOffset>150</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Dimension to Starboard">
+          <Description>(Part B) Unsigned int: Meters</Description>
+          <BitOffset>156</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Mothership MMSI">
+          <Description>(Part B) See below</Description>
+          <BitOffset>132</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Spare">
+          <Description>(Part B) Not used</Description>
+          <BitOffset>162</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Binary Message, Single Slot " MessageID="25">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 25</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in CNB</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Destination indicator">
+          <Description>0=broadcast,1=addressed</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Binary data flag">
+          <Description>See below</Description>
+          <BitOffset>39</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+    <AISDefn Description="Binary Message, Multiple Slot " MessageID="26">
+      <Fields>
+        <UnsignedField Name="Message Type">
+          <Description>Unsigned integer: 25</Description>
+          <BitOffset>0</BitOffset>
+          <BitLength>6</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Repeat Indicator">
+          <Description>As in CNB</Description>
+          <BitOffset>6</BitOffset>
+          <BitLength>2</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="MMSI">
+          <Description>Unsigned integer: 9 digits</Description>
+          <BitOffset>8</BitOffset>
+          <BitLength>30</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Destination indicator">
+          <Description>0=broadcast,1=addressed</Description>
+          <BitOffset>38</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+        <UnsignedField Name="Binary data flag">
+          <Description>See below</Description>
+          <BitOffset>39</BitOffset>
+          <BitLength>1</BitLength>
+        </UnsignedField>
+      </Fields>
+    </AISDefn>
+  </AisDefns>
+</AISDefnCollection>

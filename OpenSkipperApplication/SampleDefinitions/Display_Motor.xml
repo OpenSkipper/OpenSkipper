@@ -1,0 +1,69 @@
+<Object type="System.Windows.Forms.Form" name="Motor" children="Controls">
+  <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelRPM">
+    <Property name="Location">0,0</Property>
+    <Property name="Size">230,260</Property>
+    <Object type="AGaugeApp.AGauge" name="GaugeRPM">
+      <Property name="Location">10, 10</Property>
+      <Property name="Size">230, 201</Property>
+      <Property name="BaseArcColor">Gray</Property>
+      <Property name="BaseArcRadius">80</Property>
+      <Property name="BaseArcStart">135</Property>
+      <Property name="BaseArcSweep">270</Property>
+      <Property name="BaseArcWidth">2</Property>
+      <Property name="CapColors" assembly="System.Drawing" itemType="Color">Black</Property>
+      <Property name="CapsCentered" itemType="System.Boolean">true</Property>
+      <Property name="CapsPosition" assembly="System.Drawing" itemType="Point">115,150;10,10</Property>
+      <Property name="CapsText" itemType="System.String">RPM</Property>
+      <Property name="Center">115, 115</Property>
+      <Property name="Location">6, 6</Property>
+      <Property name="MaxValue">3000</Property>
+      <Property name="MinValue">0</Property>
+      <Property name="NeedleColor1">Gray</Property>
+      <Property name="NeedleColor2">DimGray</Property>
+      <Property name="NeedleRadius">80</Property>
+      <Property name="NeedleType">0</Property>
+      <Property name="NeedleWidth">2</Property>
+      <Property name="RangesColor" assembly="System.Drawing" itemType="Color">Yellow;LightGreen;Red</Property>
+      <Property name="RangesEnabled" itemType="System.Boolean">true;true;true</Property>
+      <Property name="RangesEndValue" itemType="System.Single">600;2800;3000</Property>
+      <Property name="RangesInnerRadius" itemType="System.Int32">70</Property>
+      <Property name="RangesOuterRadius" itemType="System.Int32">80</Property>
+      <Property name="RangesStartValue" itemType="System.Single">0;600;2800</Property>
+      <Property name="ScaleLinesInterColor">Black</Property>
+      <Property name="ScaleLinesInterInnerRadius">73</Property>
+      <Property name="ScaleLinesInterOuterRadius">80</Property>
+      <Property name="ScaleLinesInterWidth">1</Property>
+      <Property name="ScaleLinesMajorColor">Black</Property>
+      <Property name="ScaleLinesMajorInnerRadius">70</Property>
+      <Property name="ScaleLinesMajorOuterRadius">80</Property>
+      <Property name="ScaleLinesMajorStepValue">200</Property>
+      <Property name="ScaleLinesMajorWidth">2</Property>
+      <Property name="ScaleLinesMinorColor">Gray</Property>
+      <Property name="ScaleLinesMinorInnerRadius">75</Property>
+      <Property name="ScaleLinesMinorNumOf">9</Property>
+      <Property name="ScaleLinesMinorOuterRadius">80</Property>
+      <Property name="ScaleLinesMinorWidth">1</Property>
+      <Property name="ScaleNumbersColor">Black</Property>
+      <Property name="ScaleNumbersFormat">G</Property>
+      <Property name="ScaleNumbersRadius">95</Property>
+      <Property name="ScaleNumbersRotation">0</Property>
+      <Property name="ScaleNumbersStartScaleLine">0</Property>
+      <Property name="ScaleNumbersStepScaleLines">1</Property>
+      <Property name="ParameterName">MotorRPM</Property>
+      <Property name="PropertyToSet">Value</Property>
+      <Property name="StreamsToMatch">Any</Property>
+    </Object>
+      <Object type="System.Windows.Forms.Label" name="LabelBattery1">
+        <Property name="Location">10,230</Property>
+        <Property name="Size">50,20</Property>
+        <Property name="Text">Battery</Property>
+      </Object>
+      <Object type="System.Windows.Forms.TextBox" name="ValueTank3">
+        <Property name="Location">60,228</Property>
+        <Property name="Size">40,20</Property>
+        <Property name="ParameterName">Battery1Voltage</Property>
+        <Property name="PropertyToSet">Text</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+  </Object>
+</Object>

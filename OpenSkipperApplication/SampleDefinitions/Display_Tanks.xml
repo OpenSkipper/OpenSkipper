@@ -1,0 +1,132 @@
+<Object type="System.Windows.Forms.Form" name="Tanks" children="Controls">
+  <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelAllTanks">
+    <Property name="Location">0,0</Property>
+    <Property name="Size">330,330</Property>
+    <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelTank1">
+      <Property name="Location">0,0</Property>
+      <Property name="Size">160,170</Property>
+      <Object type="KaveExtControls.ValueProgressBar" name="ValueProgressBar2">
+        <!-- You can define different colors, which will change, when value is withing range. -->
+        <!-- Default color for all ranges is green -->
+        <Property name="RangesColor" assembly="System.Drawing" itemType="Color">Red;DeepSkyBlue;LawnGreen</Property>
+        <!-- You can define different colors for rangle markers. See also DrawRangeEndMarkers -->
+        <!-- Note that last (=MaxValue) marker will not be drawn -->
+        <!-- Default color for all range markers is red -->
+        <Property name="RangesMarkerColor" assembly="System.Drawing" itemType="Color">Red;Red</Property>
+        <Property name="RangesEnd" itemType="System.Double">20;95;100</Property>
+        <Property name="RangesEnabled" itemType="System.Boolean">true;true;true</Property>
+        <Property name="RangeStart">0.0</Property>
+        <Property name="Location">10,35</Property>
+        <Property name="Size">140,90</Property>
+        <!-- Possible values: DownToUp,UpToDown,LeftToRight,RightToLeft -->
+        <Property name="Direction">DownToUp</Property>
+        <Property name="ParameterName">Tank1</Property>
+        <Property name="PropertyToSet">DValue</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+      <Object type="System.Windows.Forms.Label" name="LabelTank1">
+        <Property name="Location">10,10</Property>
+        <Property name="Size">160,20</Property>
+        <Property name="TextAlign" assembly="System.Windows.Forms" type="HorizontalAlignment">Center</Property>
+        <Property name="Text">Diesel left</Property>
+      </Object>
+      <Object type="System.Windows.Forms.TextBox" name="ValueTank1">
+        <Property name="Location">60,130</Property>
+        <Property name="Size">40,20</Property>
+        <Property name="ParameterName">Tank1_l</Property>
+        <Property name="PropertyToSet">Text</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+    </Object>
+  
+    <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelTank2">
+      <Property name="Location">160,0</Property>
+      <Property name="Size">160,170</Property>
+      <Object type="KaveExtControls.ValueProgressBar" name="ValueProgressBar2">
+        <Property name="RangesColor" assembly="System.Drawing" itemType="Color">Red;DeepSkyBlue;LawnGreen</Property>
+        <Property name="RangesEnd" itemType="System.Double">20;95;100</Property>
+        <Property name="RangesEnabled" itemType="System.Boolean">true;true;true</Property>
+        <Property name="RangeStart">0.0</Property>
+        <Property name="Location">10,35</Property>
+        <Property name="Size">140,90</Property>
+        <Property name="Direction">DownToUp</Property>
+        <Property name="ParameterName">Tank2</Property>
+        <Property name="PropertyToSet">DValue</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+      <Object type="System.Windows.Forms.Label" name="LabelTank2">
+        <Property name="Location">10,10</Property>
+        <Property name="Size">160,20</Property>
+        <Property name="TextAlign" assembly="System.Windows.Forms" type="HorizontalAlignment">Center</Property>
+        <Property name="Text">Diesel right</Property>
+      </Object>
+      <Object type="System.Windows.Forms.TextBox" name="ValueTank2">
+        <Property name="Location">60,130</Property>
+        <Property name="Size">40,20</Property>
+        <Property name="ParameterName">Tank2_l</Property>
+        <Property name="PropertyToSet">Text</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+    </Object>
+
+    <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelTank3">
+      <Property name="Location">0,160</Property>
+      <Property name="Size">160,170</Property>
+      <Object type="KaveExtControls.ValueProgressBar" name="ValueProgressBar3">
+        <Property name="RangesColor" assembly="System.Drawing" itemType="Color">Red;DeepSkyBlue;LawnGreen</Property>
+        <Property name="RangesEnd" itemType="System.Double">20;95;100</Property>
+        <Property name="RangesEnabled" itemType="System.Boolean">true;true;true</Property>
+        <Property name="RangeStart">0.0</Property>
+        <Property name="Location">10,35</Property>
+        <Property name="Size">140,90</Property>
+        <Property name="Direction">DownToUp</Property>
+        <Property name="ParameterName">Tank3</Property>
+        <Property name="PropertyToSet">DValue</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+      <Object type="System.Windows.Forms.Label" name="LabelTank3">
+        <Property name="Location">10,10</Property>
+        <Property name="Size">160,20</Property>
+        <Property name="TextAlign" assembly="System.Windows.Forms" type="HorizontalAlignment">Center</Property>
+        <Property name="Text">Water left</Property>
+      </Object>
+      <Object type="System.Windows.Forms.TextBox" name="ValueTank3">
+        <Property name="Location">60,130</Property>
+        <Property name="Size">40,20</Property>
+        <Property name="ParameterName">Tank3_l</Property>
+        <Property name="PropertyToSet">Text</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+    </Object>
+
+    <Object type="System.Windows.Forms.Panel" children="Controls" name="PanelTank4">
+      <Property name="Location">160,160</Property>
+      <Property name="Size">160,170</Property>
+      <Object type="KaveExtControls.ValueProgressBar" name="ValueProgressBar3">
+        <Property name="RangesColor" assembly="System.Drawing" itemType="Color">Red;DeepSkyBlue;LawnGreen</Property>
+        <Property name="RangesEnd" itemType="System.Double">20;95;100</Property>
+        <Property name="RangesEnabled" itemType="System.Boolean">true;true;true</Property>
+        <Property name="RangeStart">0.0</Property>
+        <Property name="Location">10,35</Property>
+        <Property name="Size">140,90</Property>
+        <Property name="Direction">DownToUp</Property>
+        <Property name="ParameterName">Tank4</Property>
+        <Property name="PropertyToSet">DValue</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+      <Object type="System.Windows.Forms.Label" name="LabelTank4">
+        <Property name="Location">10,10</Property>
+        <Property name="Size">160,20</Property>
+        <Property name="TextAlign" assembly="System.Windows.Forms" type="HorizontalAlignment">Center</Property>
+        <Property name="Text">Water right</Property>
+      </Object>
+      <Object type="System.Windows.Forms.TextBox" name="ValueTank4">
+        <Property name="Location">60,130</Property>
+        <Property name="Size">40,20</Property>
+        <Property name="ParameterName">Tank4_l</Property>
+        <Property name="PropertyToSet">Text</Property>
+        <Property name="StreamsToMatch">Any</Property>
+      </Object>
+    </Object>
+  </Object>
+</Object>
