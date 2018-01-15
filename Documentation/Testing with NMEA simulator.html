@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0114)https://phoenixnap.dl.sourceforge.net/project/openskipper/OpenSkipper/1.6/TestingOpenSkipperWithNMEASimulator.html -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" ""><HTML><HEAD><META 
+content="IE=11.0000" http-equiv="X-UA-Compatible">
+   <TITLE>Kave Oy - NMEA simulator</TITLE>   
+<META name="description" content="Kave Oy - NMEA simulator">   
+<META name="keywords" content="Kave Oy, NMEA 0183, NMEA 2000, NMEA simulator, com0com, OpenSkipper"> 
+  
+<META http-equiv="Content-type" content="text/html; charset=iso-8859-1">   
+<STYLE>
+  body {
+    width:  80%;
+    margin-left:50px;
+    background-color:lightblue;
+  }
+  p {
+  }
+  </STYLE>
+ 
+<META name="GENERATOR" content="MSHTML 11.00.10570.1001"></HEAD> 
+<BODY>
+<H1>Testing OpenSkipper with NMEA simulator</H1>
+<P>  You can test OpenSkipper with NMEA simulator. NMEA simulator can send 
+simulated data to COM port.  So you need linked COM port pair for testing. This 
+can be done with 2 real COM ports linked with null modem  cable or great null 
+modem emulator <A href="http://sourceforge.net/projects/com0com/">com0com</A>.  
+Here are instructions for installing all necessary applications without need for 
+any physical COM port for testing.     </P>
+<UL>
+  <LI>    Download latest com0com <A href="http://sourceforge.net/projects/com0com/files/latest/download">http://sourceforge.net/projects/com0com/files/latest/download</A> 
+        
+  <UL>
+    <LI>          Unzip package.         </LI>
+    <LI>          If you have Windows 8/8.1 do first extra procedures on 
+    "Disable driver signature enforcement for Windows8" at the end of the page.  
+           </LI>
+    <LI>          Run installalation setup.exe         </LI>
+    <LI>          On installation, untick COM#-COM# selection.         </LI>
+    <LI>          At end of installation choose "Launch Setup" or  Start "All 
+    Programs"-com0com-Setup.         </LI>
+    <LI>          Now you should see "Virtual Port Pair 0" CNCA0-CNCB0         
+    </LI>
+    <LI>          Check for both CNCA0 and CNCB0 "enable buffer overrun"         
+    </LI>
+    <LI>          Rename CNCA0 -&gt; COMN2KIN and CNCB0 -&gt; COM27 and press 
+    Apply.         </LI></UL></LI>
+  <LI>    Download latest NMEA simulator <A href="http://kave.fi/Apps/NMEA-Simulator/NMEA-Simulator.zip">http://kave.fi/Apps/NMEA-Simulator/NMEA-Simulator.zip</A> 
+        
+  <UL>
+    <LI>          Unzip package and start NMEA_Simulator.exe         </LI>
+    <LI>          Goto Tools-Options...         </LI>
+    <LI>          On "NMEA2000 Port" choose from list COMN2KIN and press OK      
+       </LI>
+    <LI>          Tick "Run"-checkbox on middle low.         </LI></UL></LI>
+  <LI>    Download latest OpenSkipper <A href="http://www.kave.fi/Apps/OpenSkipper/OpenSkipper.zip">http://www.kave.fi/Apps/OpenSkipper/OpenSkipper.zip</A> 
+     Note that official version will be on <A href="http://sourceforge.net/projects/openskipper/files/">http://sourceforge.net/projects/openskipper/files/</A>, 
+     update may be sometimes delayed.       
+  <UL>
+    <LI>          Unzip package and start OpenSkipper.exe         </LI>
+    <LI>          With default package settings you will get error about missing 
+    COM ports. Just pass them with OK.         </LI>
+    <LI>          Choose View-"Data Streams..."-"NMEA 2000 (Actisence 
+    NGT-1-USB)".         </LI>
+    <LI>          Choose port COM27 for Main NMEA2000 stream, if it is not 
+    already selected.         </LI>
+    <LI>          If stream stated is not "Connected", press Connect.         
+    </LI></UL></LI></UL>
+<P>  Now if everything went right, you should see data on OpenSkipper from NMEA 
+simulator. You can e.g. slide throddle up and turn rudder a bit,   then your 
+boat start to move and slowly turn. You can see values changing on OpenSkipper 
+displays.   </P>
+<P>  You can test OpenSkipper Web server by enabling it:        
+<UL>
+  <LI>          First change web server port to 2222 by going to OpenSkipper 
+  File-"Settings..." and fill 2222 to "WWW port:" and press OK.         </LI>
+  <LI>          Next goto View-"Web Server...".          </LI>
+  <LI>          If you want to try web pages from any computer within your 
+  network, uncheck "Local host only".         </LI>
+  <LI>          Check "Enable Web Server". Open skipper may complain about 
+  setting server rights.          </LI>
+  <LI>          Now on same computer open browser and set address to 
+  127.0.0.1:2222         </LI></UL>
+<P></P>
+<P>  Next you can start to define diplays for OpenSkipper for your own needs. 
+You can also create an other COM port pair on  com0com setup and rename them 
+e.g. COMIN-COMOUT (OpenSkipper can only see port names starting with COM) and 
+then use  that pair for NMEA0183 data on simulator and OpenSkipper. So in 
+principle you can simulate your own yacht data by  configuring related data to 
+simulator and OpenSkipper.   </P>
+<P>  Have fun, but when you go out to the sea, remember to turn OpenSkipper to 
+use real data instead of simulated data!   </P>
+<P>  You can use NMEA simulator for personal use for free. For commercial use, 
+please contact author  (see Help-About on NMEA simulator) to support 
+development.   </P>
+<P>  There is no warranty, so use all applications with your own risk.   </P>
+<P>  Timo Lappalainen/10.12.2016    </P>
+<H2>Disable driver signature enforcement for Windows8</H2>
+<P>  Before you can install unsigned drivers like com0com, you have to disable 
+driver signature enforcement.   There is video how to do it on   <BR><A href="http://www.youtube.com/watch?v=dlYGfJM2BJ0">http://www.youtube.com/watch?v=dlYGfJM2BJ0</A> 
+  <BR>and textual solution on    <BR><A href="http://answers.microsoft.com/en-us/windows/forum/windows_8-hardware/how-to-install-a-driver-that-does-not-contain/7c3f299b-3483-4c96-8c44-87c7451af222">http://answers.microsoft.com/en-us/windows/forum/windows_8-hardware/how-to-install-a-driver-that-does-not-contain/7c3f299b-3483-4c96-8c44-87c7451af222</A> 
+  <BR>Below are simple textual instructions.   </P>
+<UL>
+  <LI>    Goto System settings (Hover mouse upper right corner and choose 
+  settings)     </LI>
+  <LI>    Click Power     </LI>
+  <LI>    Hold the shift key while clicking on Restart     
+  <LI>    Select Troubleshoot &gt; Advanced Options &gt; Startup Settings &gt; 
+  Restart     </LI>
+  <LI>    After Restart select option 7.     </LI>
+  <LI>    Now you can run your driver setup program.       
+</LI></UL></BODY></HTML>
