@@ -83,7 +83,7 @@
             <EnumPair Value="0" Name="Reserved for 2000 Use" />
             <EnumPair Value="10" Name="System tools" />
             <EnumPair Value="20" Name="Safety systems" />
-            <EnumPair Value="25" Name="Electrical Distribution" />
+            <EnumPair Value="25" Name="Inter/Intranetwork Device" />
             <EnumPair Value="30" Name="Electrical Distribution" />
             <EnumPair Value="35" Name="Electrical Generation" />
             <EnumPair Value="40" Name="Steering and Control Surfaces" />
@@ -136,12 +136,12 @@
         <InstanceField Name="Device Instance Lower">
           <Description>ISO ECU Instance</Description>
           <BitOffset>32</BitOffset>
-          <BitLength>4</BitLength>
+          <BitLength>3</BitLength>
         </InstanceField>
         <InstanceField Name="Device Instance Upper">
           <Description>ISO Function Instance</Description>
-          <BitOffset>36</BitOffset>
-          <BitLength>4</BitLength>
+          <BitOffset>35</BitOffset>
+          <BitLength>5</BitLength>
         </InstanceField>
         <UIntField Name="Device Function">
           <Description>ISO Function</Description>
@@ -159,15 +159,20 @@
             <EnumPair Value="0" Name="Reserved for 2000 Use" />
             <EnumPair Value="10" Name="System tools" />
             <EnumPair Value="20" Name="Safety systems" />
-            <EnumPair Value="25" Name="Internetwork device" />
-            <EnumPair Value="30" Name="Power management and lighting systems" />
-            <EnumPair Value="40" Name="Steering systems" />
+            <EnumPair Value="25" Name="Inter/Intranetwork Device" />
+            <EnumPair Value="30" Name="Electrical Distribution" />
+            <EnumPair Value="35" Name="Electrical Generation" />
+            <EnumPair Value="40" Name="Steering and Control Surfaces" />
             <EnumPair Value="50" Name="Propulsion systems" />
             <EnumPair Value="60" Name="Navigation systems" />
             <EnumPair Value="70" Name="Communication systems" />
+            <EnumPair Value="75" Name="Sensor Communication Interface" />
             <EnumPair Value="80" Name="Instrumentation/general systems" />
-            <EnumPair Value="90" Name="Environmental (HVAC) systems" />
-            <EnumPair Value="100" Name="Deck" />
+            <EnumPair Value="85" Name="External Environment" />
+            <EnumPair Value="90" Name="Internal Environmental (HVAC) systems" />
+            <EnumPair Value="100" Name="Deck, Cargo and Fishing Equipment" />
+            <EnumPair Value="120" Name="Display" />
+            <EnumPair Value="125" Name="Entertainment" />
           </EnumValues>
         </EnumField>
         <InstanceField Name="System Instance">
@@ -175,24 +180,20 @@
           <BitOffset>56</BitOffset>
           <BitLength>4</BitLength>
         </InstanceField>
-        <UIntField Name="Reserved">
-          <BitOffset>60</BitOffset>
-          <BitLength>2</BitLength>
-        </UIntField>
         <EnumField Name="Industry Code">
-          <BitOffset>62</BitOffset>
+          <BitOffset>60</BitOffset>
           <BitLength>3</BitLength>
           <EnumValues>
             <EnumPair Value="4" Name="Marine" />
           </EnumValues>
         </EnumField>
-        <UIntField Name="Reserved">
+        <UIntField Name="ISO Self Configurable">
           <Description>ISO Self Configurable</Description>
-          <BitOffset>65</BitOffset>
-          <BitLength>3</BitLength>
+          <BitOffset>63</BitOffset>
+          <BitLength>1</BitLength>
         </UIntField>
         <UIntField Name="New Source Address">
-          <BitOffset>68</BitOffset>
+          <BitOffset>64</BitOffset>
           <BitLength>8</BitLength>
         </UIntField>
       </Fields>
@@ -1101,6 +1102,31 @@
           <FormatAs>Time</FormatAs>
           <Scale>0.0001</Scale>
         </UDblField>
+      </Fields>
+    </PGNDefn>
+    <PGNDefn PGN="126993">
+      <Name>Heartbeat</Name>
+      <ByteLength>8</ByteLength>
+      <Fields>
+        <UDblField Name="Interval">
+          <BitOffset>0</BitOffset>
+          <BitLength>16</BitLength>
+          <Scale>10</Scale>
+        </UDblField>
+        <UIntField Name="Status">
+          <BitOffset>16</BitOffset>
+          <BitLength>8</BitLength>
+        </UIntField>
+        <Field Name="Reserved">
+          <Description>Reserved</Description>
+          <BitOffset>24</BitOffset>
+          <BitLength>8</BitLength>
+        </Field>
+        <Field Name="Reserved">
+          <Description>Reserved</Description>
+          <BitOffset>32</BitOffset>
+          <BitLength>32</BitLength>
+        </Field>
       </Fields>
     </PGNDefn>
     <PGNDefn PGN="126996">
@@ -2116,7 +2142,7 @@
     </PGNDefn>
     <PGNDefn PGN="127513">
       <Name>Battery Configuration Status</Name>
-      <ByteLength>14</ByteLength>
+      <ByteLength>8</ByteLength>
       <Fields>
         <InstanceField Name="Battery Instance">
           <BitOffset>0</BitOffset>
@@ -2184,7 +2210,7 @@
           <Scale>0.002</Scale>
         </UIntField>
         <UIntField Name="Charge Efficiency Factor">
-          <BitOffset>64</BitOffset>
+          <BitOffset>56</BitOffset>
           <BitLength>8</BitLength>
         </UIntField>
       </Fields>
@@ -2251,7 +2277,7 @@
         </EnumField>
         <UIntField Name="Reserved">
           <BitOffset>48</BitOffset>
-          <BitLength>8</BitLength>
+          <BitLength>16</BitLength>
         </UIntField>
       </Fields>
     </PGNDefn>
@@ -2277,10 +2303,12 @@
           <BitLength>16</BitLength>
           <Scale>0.001</Scale>
         </DblField>
-        <UIntField Name="Reserved">
+        <DblField Name="Offset">
+          <Description>Measurement range</Description>
           <BitOffset>56</BitOffset>
           <BitLength>8</BitLength>
-        </UIntField>
+          <Scale>10</Scale>
+        </DblField>
       </Fields>
     </PGNDefn>
     <PGNDefn PGN="128275">
@@ -5842,10 +5870,10 @@
           <BitOffset>45</BitOffset>
           <BitLength>3</BitLength>
         </Field>
-        <ASCIIField Name="Safety Related Text">
-          <BitOffset>48</BitOffset>
-          <BitLength>288</BitLength>
-        </ASCIIField>
+        <StringField Name="Safety Related Text">
+          <BitOffset>0</BitOffset>
+          <BitLength>-1</BitLength>
+        </StringField>
       </Fields>
     </PGNDefn>
     <PGNDefn PGN="129803">
@@ -6986,6 +7014,11 @@
             <EnumPair Value="3" Name="True (boat referenced)" />
           </EnumValues>
         </EnumField>
+        <UIntField Name="Reserved">
+          <Description>Reserved</Description>
+          <BitOffset>43</BitOffset>
+          <BitLength>19</BitLength>
+        </UIntField>
       </Fields>
     </PGNDefn>
     <PGNDefn PGN="130310">
@@ -7098,6 +7131,7 @@
             <EnumPair Value="11" Name="Wind Chill Temperature, Theoretical" />
             <EnumPair Value="12" Name="Heat Index Temperature" />
             <EnumPair Value="13" Name="Freezer Temperature" />
+            <EnumPair Value="14" Name="Exhaust Gas Temperature" />
           </EnumValues>
         </EnumField>
         <UDblField Name="Actual Temperature">
@@ -7153,7 +7187,7 @@
     </PGNDefn>
     <PGNDefn PGN="130314">
       <Name>Actual Pressure</Name>
-      <ByteLength>4</ByteLength>
+      <ByteLength>8</ByteLength>
       <Fields>
         <UIntField Name="SID">
           <BitOffset>0</BitOffset>
@@ -7162,11 +7196,11 @@
         </UIntField>
         <InstanceField Name="Pressure Instance">
           <BitOffset>8</BitOffset>
-          <BitLength>4</BitLength>
+          <BitLength>8</BitLength>
         </InstanceField>
         <EnumField Name="Pressure Source">
-          <BitOffset>12</BitOffset>
-          <BitLength>4</BitLength>
+          <BitOffset>16</BitOffset>
+          <BitLength>8</BitLength>
           <EnumValues>
             <EnumPair Value="0" Name="Atmospheric" />
             <EnumPair Value="1" Name="Water" />
@@ -7175,23 +7209,33 @@
             <EnumPair Value="4" Name="Hydraulic" />
           </EnumValues>
         </EnumField>
-        <UIntField Name="Pressure">
-          <BitOffset>16</BitOffset>
-          <BitLength>16</BitLength>
-        </UIntField>
+        <UDblField Name="Pressure">
+          <BitOffset>24</BitOffset>
+          <BitLength>32</BitLength>
+          <Scale>0.1</Scale>
+        </UDblField>
+        <Field Name="Reserved">
+          <BitOffset>56</BitOffset>
+          <BitLength>8</BitLength>
+        </Field>
       </Fields>
     </PGNDefn>
     <PGNDefn PGN="130315">
       <Name>Set Pressure</Name>
-      <ByteLength>3</ByteLength>
+      <ByteLength>8</ByteLength>
       <Fields>
-        <InstanceField Name="Pressure Instance">
+        <UIntField Name="SID">
           <BitOffset>0</BitOffset>
-          <BitLength>4</BitLength>
+          <BitLength>8</BitLength>
+          <FormatAs>SID</FormatAs>
+        </UIntField>
+        <InstanceField Name="Pressure Instance">
+          <BitOffset>8</BitOffset>
+          <BitLength>8</BitLength>
         </InstanceField>
         <EnumField Name="Pressure Source">
-          <BitOffset>4</BitOffset>
-          <BitLength>4</BitLength>
+          <BitOffset>16</BitOffset>
+          <BitLength>8</BitLength>
           <EnumValues>
             <EnumPair Value="0" Name="Atmospheric" />
             <EnumPair Value="1" Name="Water" />
@@ -7200,10 +7244,14 @@
             <EnumPair Value="4" Name="Hydraulic" />
           </EnumValues>
         </EnumField>
-        <UIntField Name="Pressure">
-          <BitOffset>8</BitOffset>
-          <BitLength>16</BitLength>
+        <UIntField Name="Set pressure">
+          <BitOffset>24</BitOffset>
+          <BitLength>32</BitLength>
         </UIntField>
+        <Field Name="Reserved">
+          <BitOffset>56</BitOffset>
+          <BitLength>8</BitLength>
+        </Field>
       </Fields>
     </PGNDefn>
     <PGNDefn PGN="130316">
