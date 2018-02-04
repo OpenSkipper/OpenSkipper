@@ -388,8 +388,12 @@ namespace OpenSkipperApplication
             lock (StreamManager.Streams)
             {
                 foreach (CANStreamer stream in StreamManager.Streams)
+                {
                     if (stream.ConnectionState == ConnectionStateEnum.Connected)
+                    {
                         stream.Disconnect();
+                    }
+                }
             }
         }
 

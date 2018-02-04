@@ -35,10 +35,15 @@ namespace CANStreams
     {
         public static CANStreamer_Logfile OpenNew()
         {
-            string[] filters = new string[] {CANStreamer_XMLLogfile.FileFilter,
-                                                CANStreamer_KeesLogfile.FileFilter,
-                                                CANStreamer_N0183Logfile.FileFilter,
-                                                CANStreamer_WeatherLogfile.FileFilter};
+            string[] filters
+                = new string[]
+                    {
+                        CANStreamer_XMLLogfile.FileFilter,
+                        CANStreamer_KeesLogfile.FileFilter,
+                        CANStreamer_N0183Logfile.FileFilter,
+                        CANStreamer_WeatherLogfile.FileFilter,
+                        CANStreamer_YDWG02_2000.FileFilter
+                    };
 
             OpenFileDialog oDialog = new OpenFileDialog();
             oDialog.Filter = string.Join("|", filters);
@@ -47,16 +52,45 @@ namespace CANStreams
                 switch (oDialog.FilterIndex)
                 {
                     case 1:
-                        return new CANStreamer_XMLLogfile() { FileName = oDialog.FileName, Name = Path.GetFileNameWithoutExtension(oDialog.FileName) };
+                        return 
+                            new CANStreamer_XMLLogfile()
+                            {
+                                FileName = oDialog.FileName,
+                                Name = Path.GetFileNameWithoutExtension(oDialog.FileName)
+                            };
 
                     case 2:
-                        return new CANStreamer_KeesLogfile() { FileName = oDialog.FileName, Name = Path.GetFileNameWithoutExtension(oDialog.FileName) };
+                        return 
+                            new CANStreamer_KeesLogfile()
+                            {
+                                FileName = oDialog.FileName,
+                                Name =
+                                Path.GetFileNameWithoutExtension(oDialog.FileName)
+                            };
 
                     case 3:
-                        return new CANStreamer_N0183Logfile() { FileName = oDialog.FileName, Name = Path.GetFileNameWithoutExtension(oDialog.FileName) };
+                        return 
+                            new CANStreamer_N0183Logfile()
+                            {
+                                FileName = oDialog.FileName,
+                                Name = Path.GetFileNameWithoutExtension(oDialog.FileName)
+                            };
 
                     case 4:
-                        return new CANStreamer_WeatherLogfile() { FileName = oDialog.FileName, Name = Path.GetFileNameWithoutExtension(oDialog.FileName) };
+                        return 
+                            new CANStreamer_WeatherLogfile()
+                            {
+                                FileName = oDialog.FileName,
+                                Name = Path.GetFileNameWithoutExtension(oDialog.FileName)
+                            };
+
+                    case 5:
+                        return 
+                            new CANStreamer_YDWG02_2000()
+                            {
+                                FileName = oDialog.FileName,
+                                Name = Path.GetFileNameWithoutExtension(oDialog.FileName)
+                            };
 
                     default:
                         throw new Exception("Invalid selection");
@@ -79,10 +113,12 @@ namespace CANStreams
                 NotifyPropertyChanged("FileName");
             }
         }
+
         public override string Type
         {
             get { return "Logfile"; }
         }
+
         [XmlIgnore]
         public float PlaySpeed
         {
@@ -93,6 +129,7 @@ namespace CANStreams
                 NotifyPropertyChanged("PlaySpeed");
             }
         }
+
         public DateTime LogTime
         {
             get
@@ -100,6 +137,7 @@ namespace CANStreams
                 return _logTime;
             }
         }
+
         [XmlIgnore]
         public bool Paused
         {
@@ -121,6 +159,7 @@ namespace CANStreams
                 NotifyPropertyChanged("Status");
             }
         }
+
         public string Status
         {
             get
@@ -216,18 +255,18 @@ namespace CANStreams
                 // Sanity check on time to wait
                 if (msToNext < 0)
                 {
-                    // TODO : Inform user that logfile timestamps suddenly go backwards, recommend breaking up logfile.
+                    // TODO : Inform user that log file timestamps suddenly go backwards, recommend breaking up log file.
                     return;
                 }
                 else if (msToNext > Int32.MaxValue)
                 {
-                    // TODO : Inform user that logfile timestamps suddenly just foward over 25 days, recommend breaking up logfile.
+                    // TODO : Inform user that log file timestamps suddenly just forward over 25 days, recommend breaking up log file.
                     // Note: Attempting to wait over int32.maxvalue milliseconds will throw an exception.
                     return;
                 }
 
                 // Wait for disconnect, until it is time to send next packet
-                // WaitOne returns true if it recieves signal before timeout.
+                // WaitOne returns true if it receives signal before timeout.
                 if (disconnectFlag.WaitOne((int)msToNext))
                     return;
             }
@@ -276,9 +315,10 @@ namespace CANStreams
 
                 try
                 {
-
                     if (nextPacket == null)
+                    {
                         nextPacket = getNextPacket();
+                    }
 
                     while (nextPacket != null)
                     {
@@ -322,7 +362,7 @@ namespace CANStreams
             // Connecting...
             Init();
 
-            // Only one logfile is allowed to be connected at a time
+            // Only one log file is allowed to be connected at a time
             StreamManager.DisconnectLogfiles();
 
             // Reinitialize

@@ -72,6 +72,7 @@ namespace CANStreams
     [XmlInclude(typeof(CANStreamer_WeatherLogfile))]
     [XmlInclude(typeof(CANStreamer_N0183Logfile))]
     [XmlInclude(typeof(CANStreamer_NGT1_2000))]
+    [XmlInclude(typeof(CANStreamer_YDWG02_2000))]
     [XmlInclude(typeof(CANStreamer_N0183))]
     [XmlInclude(typeof(CANStreamer_Network))]
     [XmlInclude(typeof(CANStreamer_Logger))]

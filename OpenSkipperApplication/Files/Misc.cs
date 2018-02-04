@@ -50,6 +50,7 @@ public class EventDictionary<K, E> where E : EventArgs
         if (_handlerDict.TryGetValue(key, out handler) && (handler != null))
             handler(sender, e);
     }
+
     public EventHandler<E> this[K key]
     {
         get
@@ -81,8 +82,10 @@ public class XmlFileSerializer<T>
     {
         try
         {
-            // If we serialized directly to a filestream, and the serializer threw an exception, we would be left with a blank/corrupted file
-            // So we attempt to serialize to a memory stream first, this is quick and avoids encoding issues with serializing to a string
+            // If we serialized directly to a filestream, and the serializer threw an exception, 
+            // we would be left with a blank/corrupted file.  So we attempt to serialize to a 
+            // memory stream first, this is quick and avoids encoding issues with serializing 
+            // to a string
             MemoryStream ms = new MemoryStream();
             _xmlSerializer.Serialize(ms, obj);
 
@@ -94,12 +97,13 @@ public class XmlFileSerializer<T>
         }
         catch (Exception ex)
         {
-            System.Windows.Forms.MessageBox.Show("Error saving to file '" + fileName + "': " + ex.Message, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Exclamation);
+            MessageBox.Show("Error saving to file '" + fileName + "': " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             return false;
         }
 
         return true;
     }
+
     public T Deserialize(string fileName)
     {
         try
@@ -116,10 +120,11 @@ public class XmlFileSerializer<T>
         }
         catch (Exception ex)
         {
-            System.Windows.Forms.MessageBox.Show("Error loading from file '" + fileName + ": " + ex.Message, "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Exclamation);
+            MessageBox.Show("Error loading from file '" + fileName + ": " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             return default(T);
         }
     }
+
     public T Deserialize(Stream stream)
     {
         try

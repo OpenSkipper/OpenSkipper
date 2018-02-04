@@ -444,8 +444,8 @@
         </EnumField>
       </Fields>
     </PGNDefn>
-    <PGNDefn PGN="65311" Description="See document J1939-21 for PGN details.">
-      <Name>Manufacturer Defined Usage</Name>
+    <PGNDefn PGN="65311" Description="Manufacturer Defined Usage">
+      <Name>Raymarine Unknown</Name>
       <ByteLength>8</ByteLength>
     </PGNDefn>
     <PGNDefn PGN="65325">
@@ -492,8 +492,8 @@
         </EnumField>
       </Fields>
     </PGNDefn>
-    <PGNDefn PGN="65362" Description="See document J1939-21 for PGN details.">
-      <Name>Manufacturer Defined Usage</Name>
+    <PGNDefn PGN="65362" Description="Manufacturer Defined Usage">
+      <Name>Raymarine Unknown</Name>
       <ByteLength>8</ByteLength>
     </PGNDefn>
     <PGNDefn PGN="65374">
@@ -8650,9 +8650,13 @@
         </UIntField>
       </Fields>
     </PGNDefn>
-    <PGNDefn PGN="130846" Description="Manufacturer Defined Usage. See document J1939-21 for PGN details.">
-      <Name>Simnet: Set Alarm state</Name>
-      <ByteLength>8</ByteLength>
+    <PGNDefn PGN="130846" Description="Manufacturer Defined Usage (PropB_PDU2)">
+      <Name>Raymarine Unknown</Name>
+      <ByteLength>12</ByteLength>
+    </PGNDefn>
+    <PGNDefn PGN="130848" Description="Manufacturer Defined Usage. See document J1939-21 for PGN details.">
+      <Name>Raymarine Unknown</Name>
+      <ByteLength>32</ByteLength>
     </PGNDefn>
     <PGNDefn PGN="130850">
       <Name>Simnet: Event Command: AP command</Name>
@@ -9017,6 +9021,10 @@
           <Scale>0.01</Scale>
         </UDblField>
       </Fields>
+    </PGNDefn>
+    <PGNDefn PGN="130918" Description="Manufacturer Defined Usage (PropB_PDU2)">
+      <Name>Raymarine Unknown</Name>
+      <ByteLength>102</ByteLength>
     </PGNDefn>
     <PGNDefn PGN="130944">
       <Name>Airmar: POST</Name>

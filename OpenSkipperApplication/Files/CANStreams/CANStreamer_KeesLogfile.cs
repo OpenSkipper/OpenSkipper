@@ -82,7 +82,7 @@ namespace CANStreams
                     errorCount++;
                     if (errorCount > 10)
                     {
-                        MessageBox.Show("A large number of errors occured while reading log file " + Name + ". Reading has been stopped.");
+                        MessageBox.Show("A large number of errors occurred while reading log file " + Name + ". Reading has been stopped.");
                         return null;
                     }
                 }

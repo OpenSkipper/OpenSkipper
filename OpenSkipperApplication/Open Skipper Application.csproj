@@ -133,6 +133,7 @@
     <Compile Include="Files\CANStreams\CANStreamer_NGT1_2000.cs" />
     <Compile Include="Files\CANStreams\CANStreamer_WeatherLogfile.cs" />
     <Compile Include="Files\CANStreams\CANStreamer_XMLLogfile.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer_YDWG02_2000.cs" />
     <Compile Include="Files\CANStreams\Connector.cs" />
     <Compile Include="Files\CANStreams\StreamManager.cs" />
     <Compile Include="Files\CANStreams\TCP_Client.cs" />
