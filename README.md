@@ -8,6 +8,8 @@ If you are interested in the NMEA 2000 standard, then OpenSkipper provides both 
 
 NMEA 2000 messages can be received using the [Actisense](http://www.actisense.com) NGT-1-USB NMEA-to-USB converter (a product that we recommend). We have not signed any non disclosure agreements with Actisense, but instead written our own low level COM-port driver. Our accessing of an NGT-1 in this way is not officially supported by Actisense. It works for us, but we take no responsibility in any way for any consequences.
 
+NMEA 2000 messages can also be received using the [Yacht Devices](http://www.yachtd.com/products/wifi_gateway.html) NMEA 2000 Wi-Fi Gateway (YDWG-02) converter. The YDWG-02 sends and receives NMEA 2000 messages in a RAW format different than the Actisense NGT-1/NGW-1 converts.  The YDWG-02 is accessible via the Internet tab and setting up a TCP or UDP connection and selecting N2kRaw.  We have not signed a non disclosure agreement with Yacht Devices.  We are processing the data as outline in thier documentation.
+
 OpenSkipper contains XML definition files used to describe how an NMEA 2000, AIS and NMEA 0183 message should be decoded. These definition files are a beta release, have not been tested and contain errors, so please do not rely on any output from open skipper for your navigation. These definitions are unofficial, and are not supported by [National Marine Electronics Association (NMEA)](http://www.nmea.org) or any other body in any way. We welcome community feedback on improvements to these.
 
 OpenSkipper is beta software designed to serve only as an aid for navigators. It in no way replaces the need to follow good nautical practices.
