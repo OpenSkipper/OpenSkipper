@@ -21,22 +21,13 @@
 using Parameters;
 using System.Collections;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Threading;
 using System.Windows.Forms;
-using System.ComponentModel;
 using CANHandler;
-using KeesFileHandler;
-using System.Xml.Serialization;
-using System.Xml;
 using CANStreams;
 using CANDevices;
-using OpenSkipperApplication;
 using OpenSkipperApplication.Forms;
 using OpenSkipperApplication.Properties;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Reflection;
 using System.IO.Ports;
 using CANDefinitions;
@@ -45,7 +36,6 @@ using AJMLoaderCode;
 using System.Drawing.Drawing2D;
 using System.Drawing;
 using DisplayDefinitions;
-//using System.Configuration;
 
 namespace OpenSkipperApplication
 {
@@ -84,8 +74,11 @@ namespace OpenSkipperApplication
                 Settings.Default.Upgrade();
                 Settings.Default.UpgradeRequired = false;
                 Settings.Default.Save();
-            } 
-            
+            }
+
+            // Add version number to title bar
+            this.Text += " (v" + Application.ProductVersion + ")";
+
             bool changeWindowRegion = false;
             if (changeWindowRegion) {
                 // http://ekotc96.blogspot.com/2006/05/create-rounded-corner-form-in-cnet.html

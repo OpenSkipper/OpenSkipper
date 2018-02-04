@@ -317,7 +317,7 @@ namespace OpenSkipperApplication {
         }
 
         /// <summary>
-        /// Refreshes filtered and displayed messsages from scratch, based on current filters/sorters.
+        /// Refreshes filtered and displayed messages from scratch, based on current filters/sorters.
         /// </summary>
         private void ResetFiltered()
         {
@@ -355,7 +355,9 @@ namespace OpenSkipperApplication {
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (!ignoreSelectionChanges)
+            {
                 UpdateDetailedTextViews();
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -522,6 +524,43 @@ namespace OpenSkipperApplication {
 
                 logger.Disconnect();
             }
+
+            MessageBox.Show("Done", "XML Log file written.", MessageBoxButtons.OK);
+        }
+
+        private void toolStripMenuItem2_Click_1(object sender, EventArgs e)
+        {
+            SaveFileDialog oDialog = new SaveFileDialog();
+            oDialog.Filter = "CSV Log File (*.csv)|*.csv";
+            if (oDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (var sw = new StreamWriter(new FileStream(oDialog.FileName, FileMode.Create, FileAccess.ReadWrite), Encoding.UTF8))
+                {
+                    string line = "";
+
+                    // Output headers
+                    for (int i = 0; i <= this.dataGridView1.ColumnCount - 1; i++)
+                    {
+                        line += dataGridView1.Columns[i].HeaderText + ",";
+                    }
+                    sw.WriteLine(line.TrimEnd(','));
+
+                    // Output rows
+                    for (int i = 0; i < dataGridView1.RowCount; ++i)
+                    {
+                        line = "";
+                        for (int col = 0; col < dataGridView1.ColumnCount; col++)
+                        {
+                            line += dataGridView1.Rows[i].Cells[col].Value + ",";
+                        }
+                        sw.WriteLine(line.TrimEnd(','));
+                    }
+
+                    sw.Close();
+                }
+            }
+
+            MessageBox.Show("Done", "CSV Log file written.", MessageBoxButtons.OK);
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)

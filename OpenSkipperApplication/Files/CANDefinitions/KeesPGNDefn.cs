@@ -18,57 +18,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using CANDefinitions;
+using CANHandler;
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Xml;
 using System.Xml.Serialization;
-using CANHandler;
-using CANDefinitions;
-using System.Globalization;
 
-namespace KeesFileHandler
+namespace CANDefinitions
 {
-    /// <summary>
-    /// Represents a field of a Kees format definition
-    /// </summary>
-    [XmlRoot("Field")]
-    public class KeesField
-    {
-        public int Order { get; set; }
-        public string Name { get; set; }
-        public int BitOffset { get; set; } // counting left to right, eg ---XXXX- has a bit offset of 3
-        public int BitLength { get; set; }  // 0 means "all the data"
-        public int BitStart { get; set; }
-        public string Type { get; set; }
-        public string Description { get; set; }
-        public string Resolution { get; set; }
-        public string Units { get; set; }
-        public bool Signed { get; set; }
-
-        // Array accessors are used to enable easy XML serialization
-        [XmlArray("EnumValues")]
-        // [XmlArrayItem("EnumPair", typeof(EnumPair))]
-        public EnumPair[] EnumPairArray { get; set; }
-
-
-        // The following attributes do not show in the PropertyGrid
-        [BrowsableAttribute(false)]
-        public int ByteOffset { get { return BitOffset >> 3; } }
-        [BrowsableAttribute(false)]
-        public int ByteLength { get { return BitLength >> 3; } }
-
-        [BrowsableAttribute(false)]
-        public int BitOffsetWithinByte { get { return BitOffset - ByteOffset * 8; } }
-
-        // Default method for displaying any field; in this case as hex
-        public virtual string ToString(byte[] d) {
-            int Length = BitLength > 0 ? ByteLength : d.Length - ByteOffset;
-            return BitConverter.ToString(d, ByteOffset, Length);
-        }
-    }
-
     /// <summary>
     /// Represents a definition for a PGN in Kees format
     /// </summary>
@@ -86,12 +46,15 @@ namespace KeesFileHandler
         public KeesField[] Fields { get; set; }
 
         // Creators
-        public KeesPGNDefn() {
+        public KeesPGNDefn()
+        {
         }
 
-        public string ToString(byte[] d) {
+        public string ToString(byte[] d)
+        {
             string msg = PGN.ToString();
-            foreach (KeesField f in Fields) {
+            foreach (KeesField f in Fields)
+            {
                 msg = msg + '\n' + f.Name + '\n' + f.ToString(d);
             }
             return msg;
@@ -126,11 +89,13 @@ namespace KeesFileHandler
         public KeesPGNDefn[] KeesPGNDefns { get; set; }
 
         // Constructor
-        public KeesPGNDefnCollection() {
+        public KeesPGNDefnCollection()
+        {
             KeesPGNDefns = null;
         }
 
-        public static KeesPGNDefnCollection XmlDeserialize(StreamReader stream) {
+        public static KeesPGNDefnCollection XmlDeserialize(StreamReader stream)
+        {
             return (KeesPGNDefnCollection)XmlSerializer.Deserialize(stream);
         }
 
@@ -138,8 +103,8 @@ namespace KeesFileHandler
         public static System.Xml.Serialization.XmlSerializer XmlSerializer = new XmlSerializer(typeof(KeesPGNDefnCollection));
 
         public PGNDefn[] GetPGNInfos()
-            // Get an array of PGNDefn records, effectively converting from KeesDefinitions 
-            // into our own PGNDefn array
+        // Get an array of PGNDefn records, effectively converting from KeesDefinitions 
+        // into our own PGNDefn array
         {
             PGNDefn[] result = new PGNDefn[KeesPGNDefns.Count()];
             int j = 0;
@@ -150,7 +115,7 @@ namespace KeesFileHandler
                 if (kPGN.Fields != null)
                 {
                     int i = 0;
-                    foreach (KeesField kField in kPGN.Fields) 
+                    foreach (KeesField kField in kPGN.Fields)
                     {
                         double scale;
                         if (!double.TryParse(kField.Resolution, NumberStyles.Number, CultureInfo.InvariantCulture, out scale))
@@ -183,32 +148,45 @@ namespace KeesFileHandler
                         }
                         */
 
-                        if ((kPGN.PGN == 130842) && (kField.Order == 17) && (kField.Name == "Spare")) {
+                        if ((kPGN.PGN == 130842) && (kField.Order == 17) && (kField.Name == "Spare"))
+                        {
                             // AJM: I think this is probably an unsigned integer based on Description="0=unavailable"
                             f[i++] = new N2kUIntField { Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description };
                         }
-                        else if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(kField.Name, "Instance", CompareOptions.IgnoreCase)>=0)
+                        else if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(kField.Name, "Instance", CompareOptions.IgnoreCase) >= 0)
                         {
                             f[i++] = new N2kInstanceField { Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description };
                         }
                         else if ((kField.Name == "SID"))
                         {
                             f[i++] = new N2kUIntField { FormatAs = FormatEnum.SID, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description };
-                        } else if ((kField.Name == "PGN")) {
+                        }
+                        else if ((kField.Name == "PGN"))
+                        {
                             // We force all PGNBs to be UInt; Kees has one defined as an Integer in 59904, but no such 'Integer' defn in 59392
                             f[i++] = new N2kUIntField { Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description };
-                        } else if ((kField.Name == "Speed") || (kField.Name == "SOG")) {
+                        }
+                        else if ((kField.Name == "Speed") || (kField.Name == "SOG"))
+                        {
                             //f[i++] = new SpeedField { DisplayName = kField.DisplayName, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description, Scale = scale };
                             f[i++] = new N2kUDblField { FormatAs = FormatEnum.Speed, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description, Scale = scale };
-                        } else if ((kField.Name == "Depth") || (kField.Name == "SOG")) {
+                        }
+                        else if ((kField.Name == "Depth") || (kField.Name == "SOG"))
+                        {
                             // This is probably unsigned based on FFFFFFFF appearing to mean 'unavailable'
                             f[i++] = new N2kUDblField { FormatAs = FormatEnum.Length, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description, Scale = scale };
-                        } else {
-                            switch (kField.Type) {
+                        }
+                        else
+                        {
+                            switch (kField.Type)
+                            {
                                 case null:
-                                    if ((kField.Resolution == null) || (kField.Resolution == "")) {
+                                    if ((kField.Resolution == null) || (kField.Resolution == ""))
+                                    {
                                         f[i++] = new N2kUIntField { Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description };
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         f[i++] = new N2kDblField { Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description, Scale = scale };
                                     }
                                     break;
@@ -228,45 +206,58 @@ namespace KeesFileHandler
                                     break;
                                 case "Degrees":  // Degrees changed to angle on Kees?
                                 case "Angle":
-                                    if (((kField.Resolution == "0.0001 rad") || (kField.Resolution == "0.0001")) ) {
+                                    if (((kField.Resolution == "0.0001 rad") || (kField.Resolution == "0.0001")))
+                                    {
                                         // We convert the units from Radians to Degrees
                                         if (kField.Signed)
                                         {
                                             f[i++] = new N2kDblField { FormatAs = FormatEnum.Heading, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description, Scale = 0.0001 * 180 / Math.PI };
-                                        } 
+                                        }
                                         else
                                         {
                                             f[i++] = new N2kUDblField { FormatAs = FormatEnum.Heading, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description, Scale = 0.0001 * 180 / Math.PI };
                                         }
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         Console.WriteLine("Unknown Kees Degrees field data");
                                     }
                                     break;
                                 case "IEEE Float":
-                                        f[i++] = new N2kDblField { FormatAs = FormatEnum.Number, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = 32, Description = kField.Description, Scale=scale };
+                                    f[i++] = new N2kDblField { FormatAs = FormatEnum.Number, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = 32, Description = kField.Description, Scale = scale };
                                     break;
                                 case "Integer":
                                     f[i++] = new N2kIntField { Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description };
                                     break;
                                 case "Latitude":
-                                    if (kField.BitLength == 32) {
+                                    if (kField.BitLength == 32)
+                                    {
                                         // LatField
                                         f[i++] = new N2kDblField { FormatAs = FormatEnum.Latitude, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = 32, Description = kField.Description, Scale = 1e-7 };
-                                    } else if (kField.BitLength == 64) {
+                                    }
+                                    else if (kField.BitLength == 64)
+                                    {
                                         // LatField
                                         f[i++] = new N2kDblField { FormatAs = FormatEnum.Latitude, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = 64, Description = kField.Description, Scale = 1e-16 };
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         Console.WriteLine("Unknown Kees Latitude field data");
                                     }
                                     break;
                                 case "Longitude":
-                                    if (kField.BitLength == 32) {
+                                    if (kField.BitLength == 32)
+                                    {
                                         // LonField
                                         f[i++] = new N2kDblField { FormatAs = FormatEnum.Longitude, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = 32, Description = kField.Description, Scale = 1e-7 };
-                                    } else if (kField.BitLength == 64) {
+                                    }
+                                    else if (kField.BitLength == 64)
+                                    {
                                         // LonField
                                         f[i++] = new N2kDblField { FormatAs = FormatEnum.Longitude, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = 64, Description = kField.Description, Scale = 1e-16 };
-                                    } else {
+                                    }
+                                    else
+                                    {
                                         Console.WriteLine("Unknown Kees Longitude field data");
                                     }
                                     break;
@@ -274,11 +265,14 @@ namespace KeesFileHandler
                                     f[i++] = new N2kEnumField { Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description, EnumPairArray = kField.EnumPairArray };
                                     break;
                                 case "Temperature":
-                                    if ((kField.Units == null) || (kField.Units == "K")) {
+                                    if ((kField.Units == null) || (kField.Units == "K"))
+                                    {
                                         // We convert this to Celcius
                                         // f[i++] = new TemperatureField { DisplayName = kField.DisplayName, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description };
-                                        f[i++] = new N2kUDblField { FormatAs = FormatEnum.Temperature, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description, Scale = 0.01, Offset = -273.15};
-                                    } else {
+                                        f[i++] = new N2kUDblField { FormatAs = FormatEnum.Temperature, Name = kField.Name, BitOffset = kField.BitOffset, BitLength = kField.BitLength, Description = kField.Description, Scale = 0.01, Offset = -273.15 };
+                                    }
+                                    else
+                                    {
                                         Console.WriteLine("Unknown Kees Temperature field data");
                                     }
                                     break;
@@ -297,10 +291,12 @@ namespace KeesFileHandler
                     }
                 }
                 uint ByteLength = 0;
-                foreach (N2kField field in f) {
+                foreach (N2kField field in f)
+                {
                     ByteLength = (uint)Math.Max(ByteLength, (int)(((uint)((uint)field.BitOffset + (uint)field.BitLength + 7)) >> 3));
                 }
-                if (kPGN.PGN == 129029) {
+                if (kPGN.PGN == 129029)
+                {
                     ByteLength = 43;   // Add 3 extra bytes missing in Kees data
                 }
                 result[j++] = new PGNDefn { PGN = kPGN.PGN, Name = kPGN.Description, Description = "", ByteLength = ByteLength, Fields = f };
@@ -309,147 +305,187 @@ namespace KeesFileHandler
         }
     }
 
-    /*public class KeesPGNDefnTester
+    /// <summary>
+    /// Represents a field of a Kees format definition
+    /// </summary>
+    [XmlRoot("Field")]
+    public class KeesField
     {
-        static public void TestPGNInfo()
+        public int Order { get; set; }
+        public string Name { get; set; }
+        public int BitOffset { get; set; } // counting left to right, eg ---XXXX- has a bit offset of 3
+        public int BitLength { get; set; }  // 0 means "all the data"
+        public int BitStart { get; set; }
+        public string Type { get; set; }
+        public string Description { get; set; }
+        public string Resolution { get; set; }
+        public string Units { get; set; }
+        public bool Signed { get; set; }
+
+        // Array accessors are used to enable easy XML serialization
+        [XmlArray("EnumValues")]
+        // [XmlArrayItem("EnumPair", typeof(EnumPair))]
+        public EnumPair[] EnumPairArray { get; set; }
+
+
+        // The following attributes do not show in the PropertyGrid
+        [BrowsableAttribute(false)]
+        public int ByteOffset { get { return BitOffset >> 3; } }
+        [BrowsableAttribute(false)]
+        public int ByteLength { get { return BitLength >> 3; } }
+
+        [BrowsableAttribute(false)]
+        public int BitOffsetWithinByte { get { return BitOffset - ByteOffset * 8; } }
+
+        // Default method for displaying any field; in this case as hex
+        public virtual string ToString(byte[] d)
         {
-
-            //Field f = new Field { DisplayName = "Test", BitLength = 8, BitOffset = 0 };
-            //Console.Out.WriteLine(f);
-
-            //// Create an instance of the XmlSerializer class.
-            //XmlSerializer mySerializer1 = new XmlSerializer(typeof(Field));
-            //TextWriter writer1 = new StreamWriter(@"C:\temp\N2k\field.xml");
-            //mySerializer1.Serialize(writer1, f);
-            //writer1.Close();
-
-
-            //Field[] fields = {
-            //                new Field{DisplayName = "Test", BitLength=8, BitOffset=0 },
-            //                new Field{DisplayName = "Test2", BitLength=8, BitOffset=0 },
-            //                new Field{DisplayName = "Test3", BitLength=8, BitOffset=0 }
-            //                        };
-            //// PGNDefn info = new PGNDefn { PGN = 1, Fields = fields };
-            //var PGNinfo1 = new PGNDefn(124575, "NMEA PGN", 8, fields);
-
-            //EnumField fEnum = new EnumField { DisplayName = "Enum", BitLength = 8 };
-            //fEnum.EnumLabels = new Dictionary<uint,string>();
-            //fEnum.EnumLabels[0] = "Value0";
-            //fEnum.EnumLabels[1] = "Value1";
-            //fEnum.EnumLabels[2] = "Value2";
-
-            //var PGNinfo2 = new PGNDefn(157477, "NMEA", 16, new Field[] {
-            //                fEnum,
-            //                new Field{DisplayName = "Field", BitLength=8, BitOffset=0 },
-            //                new NumericField{DisplayName = "Numeric", BitLength=16, BitOffset=0 },
-            //                new IntField{DisplayName = "Int", BitLength=32, BitOffset=0 },
-            //                new DblField{DisplayName = "Dbl", BitLength=32, BitOffset=8, Offset=100, Scale = 0.01 },
-            //                new UnknownField(),
-            //                new Field{DisplayName = "Field", BitLength=8, BitOffset=0 }
-            //                        });
-            //byte[] TestData = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
-            //Console.Out.WriteLine(f.ToString(TestData));
-            //Console.Out.WriteLine("PGN={0}", PGNinfo2.PGN);
-            //Console.Out.WriteLine("{0}={1}", PGNinfo2.Fields[0].DisplayName, PGNinfo2.Fields[0].ToString(TestData));
-            //Console.Out.WriteLine("{0}={1}", PGNinfo2.Fields[1].DisplayName, PGNinfo2.Fields[1].ToString(TestData));
-            //Console.Out.WriteLine("{0}={1}", PGNinfo2.Fields[2].DisplayName, PGNinfo2.Fields[2].ToString(TestData));
-            //Console.Out.WriteLine("{0}={1}", PGNinfo2.Fields[3].DisplayName, PGNinfo2.Fields[3].ToString(TestData));
-            //Console.Out.WriteLine("{0}={1}", PGNinfo2.Fields[4].DisplayName, PGNinfo2.Fields[4].ToString(TestData));
-            //Console.Out.WriteLine("{0}={1}", PGNinfo2.Fields[5].DisplayName, PGNinfo2.Fields[5].ToString(TestData));
-            //Console.Out.WriteLine("Space");
-
-            //PGNDefnCollection Collect = new PGNDefnCollection();
-            //Collect.PGNDefns = new PGNDefn[] {PGNinfo1,PGNinfo2 };
-
-            // Create an instance of the XmlSerializer class.
-            XmlSerializer mySerializer2 = new XmlSerializer(typeof(KeesPGNDefnCollection));
-
-            //// Writing the file requires a TextWriter.
-            //TextWriter writer2 = new StreamWriter(@"C:\temp\N2k\PGNDefn.xml");
-
-            //// Serialize the class, and close the TextWriter.
-            //mySerializer2.Serialize(writer2, Collect);
-            //writer2.Close();
-
-
-            // Deserialising from XML file for creating PGNDefnCollection Class
-            KeesPGNDefnCollection KeesDefinitions;
-            TextReader r = new StreamReader(@"D:\Documents\Projects\NMEA 2000 Interfacing\Kees Software\packetlogger_20090806_explain.xml");
-            KeesDefinitions = (KeesPGNDefnCollection)mySerializer2.Deserialize(r);
-            r.Close();
-            // Console.Out.WriteLine(Collect2.PGNDefns[1].ToString(TestData) + '\n');
-
-            var PGNDefnCol = new PGNDefnCollection
-            {
-                Version = KeesDefinitions.Version,
-                Date = KeesDefinitions.Date,
-                Comment = KeesDefinitions.Comment,
-                CreatorCode = KeesDefinitions.CreatorCode,
-                PGNDefns = KeesDefinitions.GetPGNInfos()
-            };
-
-            // Create an instance of the XmlSerializer class.
-            XmlSerializer mySerializer3 = new XmlSerializer(typeof(PGNDefnCollection));
-
-            // Writing the file requires a TextWriter.
-            TextWriter writer3 = new StreamWriter(@"C:\temp\N2k\KeesPGNInfo.xml");
-
-            // Serialize the class, and close the TextWriter.
-            mySerializer3.Serialize(writer3, PGNDefnCol);
-            writer3.Close();
-
-            // My Testing Section
-            // Testing Data
-            /*byte[] myTestData = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
-            // Testing Field Class
-            Field fTest1 = new Field { DisplayName = "Tested Field", BitLength = 21, BitOffset = 10};
-            Console.Out.WriteLine( "Field DisplayName" + fTest1.DisplayName + '\n'
-                                   + "BitOffset: " + fTest1.BitOffset + '\n'
-                                   + "BitLength: " + fTest1.BitLength + '\n'
-                                   + "ByteOffset: " + fTest1.ByteOffset + '\n'
-                                   + "ByteLength: " + fTest1.ByteLength + '\n'
-                                   + "BitOffsetWithinByte: " + fTest1.BitOffsetWithinByte + '\n'
-                                   + "ToString: " + fTest1.ToString(myTestData));
-            
-            // Testing String Field Class
-            byte[] myTestData2 = new byte[] { 65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80 };
-            StringField stringTest1 = new StringField {DisplayName = "String Field", BitOffset = 16, BitLength = 64};
-            Console.Out.WriteLine("Field DisplayName" + stringTest1.DisplayName + '\n'
-                                   + "BitOffset: " + stringTest1.BitOffset + '\n'
-                                   + "BitLength: " + stringTest1.BitLength + '\n'
-                                   + "ByteOffset: " + stringTest1.ByteOffset + '\n'
-                                   + "ByteLength: " + stringTest1.ByteLength + '\n'
-                                   + "BitOffsetWithinByte: " + stringTest1.BitOffsetWithinByte + '\n'
-                                   + "ToString: " + stringTest1.ToString(myTestData2) + '\n'
-                                   + "StringValue: " + stringTest1.StringValue(myTestData2));
-
-            // Testing NumericField
-            NumericField nTest1 = new NumericField {DisplayName = "Numeric Field", BitOffset = 8, BitLength = 32 };
-            Console.Out.WriteLine("Field DisplayName" + nTest1.DisplayName + '\n'
-                                   + "BitOffset: " + nTest1.BitOffset + '\n'
-                                   + "BitLength: " + nTest1.BitLength + '\n'
-                                   + "ByteOffset: " + nTest1.ByteOffset + '\n'
-                                   + "ByteLength: " + nTest1.ByteLength + '\n'
-                                   + "BitOffsetWithinByte: " + nTest1.BitOffsetWithinByte + '\n'
-                                   + "ToString: " + nTest1.ToString(myTestData) + '\n'
-                                   + "StringValue: " + nTest1.RawValue(myTestData));
-            
-
-            //            var PGNs = new PGNFieldCollection();
-            //            PGNs.PGNInfoArray = new PGNDefn[2] { PGNinfo1, PGNinfo2 };
-
-            // Create an instance of the XmlSerializer class.
-            //            XmlSerializer mySerializer3 = new XmlSerializer(typeof(PGNFieldCollection));
-
-            // Writing the file requires a TextWriter.
-            //            TextWriter writer3 = new StreamWriter(@"c:\PGNFieldCollection.xml");
-
-            // Serialize the class, and close the TextWriter.
-            //            mySerializer3.Serialize(writer3, PGNs);
-            //            writer3.Close();
+            int Length = BitLength > 0 ? ByteLength : d.Length - ByteOffset;
+            return BitConverter.ToString(d, ByteOffset, Length);
         }
     }
-    */
+
+    /*public class KeesPGNDefnTester
+{
+    static public void TestPGNInfo()
+    {
+
+        //Field f = new Field { DisplayName = "Test", BitLength = 8, BitOffset = 0 };
+        //Console.Out.WriteLine(f);
+
+        //// Create an instance of the XmlSerializer class.
+        //XmlSerializer mySerializer1 = new XmlSerializer(typeof(Field));
+        //TextWriter writer1 = new StreamWriter(@"C:\temp\N2k\field.xml");
+        //mySerializer1.Serialize(writer1, f);
+        //writer1.Close();
+
+
+        //Field[] fields = {
+        //                new Field{DisplayName = "Test", BitLength=8, BitOffset=0 },
+        //                new Field{DisplayName = "Test2", BitLength=8, BitOffset=0 },
+        //                new Field{DisplayName = "Test3", BitLength=8, BitOffset=0 }
+        //                        };
+        //// PGNDefn info = new PGNDefn { PGN = 1, Fields = fields };
+        //var PGNinfo1 = new PGNDefn(124575, "NMEA PGN", 8, fields);
+
+        //EnumField fEnum = new EnumField { DisplayName = "Enum", BitLength = 8 };
+        //fEnum.EnumLabels = new Dictionary<uint,string>();
+        //fEnum.EnumLabels[0] = "Value0";
+        //fEnum.EnumLabels[1] = "Value1";
+        //fEnum.EnumLabels[2] = "Value2";
+
+        //var PGNinfo2 = new PGNDefn(157477, "NMEA", 16, new Field[] {
+        //                fEnum,
+        //                new Field{DisplayName = "Field", BitLength=8, BitOffset=0 },
+        //                new NumericField{DisplayName = "Numeric", BitLength=16, BitOffset=0 },
+        //                new IntField{DisplayName = "Int", BitLength=32, BitOffset=0 },
+        //                new DblField{DisplayName = "Dbl", BitLength=32, BitOffset=8, Offset=100, Scale = 0.01 },
+        //                new UnknownField(),
+        //                new Field{DisplayName = "Field", BitLength=8, BitOffset=0 }
+        //                        });
+        //byte[] TestData = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+        //Console.Out.WriteLine(f.ToString(TestData));
+        //Console.Out.WriteLine("PGN={0}", PGNinfo2.PGN);
+        //Console.Out.WriteLine("{0}={1}", PGNinfo2.Fields[0].DisplayName, PGNinfo2.Fields[0].ToString(TestData));
+        //Console.Out.WriteLine("{0}={1}", PGNinfo2.Fields[1].DisplayName, PGNinfo2.Fields[1].ToString(TestData));
+        //Console.Out.WriteLine("{0}={1}", PGNinfo2.Fields[2].DisplayName, PGNinfo2.Fields[2].ToString(TestData));
+        //Console.Out.WriteLine("{0}={1}", PGNinfo2.Fields[3].DisplayName, PGNinfo2.Fields[3].ToString(TestData));
+        //Console.Out.WriteLine("{0}={1}", PGNinfo2.Fields[4].DisplayName, PGNinfo2.Fields[4].ToString(TestData));
+        //Console.Out.WriteLine("{0}={1}", PGNinfo2.Fields[5].DisplayName, PGNinfo2.Fields[5].ToString(TestData));
+        //Console.Out.WriteLine("Space");
+
+        //PGNDefnCollection Collect = new PGNDefnCollection();
+        //Collect.PGNDefns = new PGNDefn[] {PGNinfo1,PGNinfo2 };
+
+        // Create an instance of the XmlSerializer class.
+        XmlSerializer mySerializer2 = new XmlSerializer(typeof(KeesPGNDefnCollection));
+
+        //// Writing the file requires a TextWriter.
+        //TextWriter writer2 = new StreamWriter(@"C:\temp\N2k\PGNDefn.xml");
+
+        //// Serialize the class, and close the TextWriter.
+        //mySerializer2.Serialize(writer2, Collect);
+        //writer2.Close();
+
+
+        // Deserialising from XML file for creating PGNDefnCollection Class
+        KeesPGNDefnCollection KeesDefinitions;
+        TextReader r = new StreamReader(@"D:\Documents\Projects\NMEA 2000 Interfacing\Kees Software\packetlogger_20090806_explain.xml");
+        KeesDefinitions = (KeesPGNDefnCollection)mySerializer2.Deserialize(r);
+        r.Close();
+        // Console.Out.WriteLine(Collect2.PGNDefns[1].ToString(TestData) + '\n');
+
+        var PGNDefnCol = new PGNDefnCollection
+        {
+            Version = KeesDefinitions.Version,
+            Date = KeesDefinitions.Date,
+            Comment = KeesDefinitions.Comment,
+            CreatorCode = KeesDefinitions.CreatorCode,
+            PGNDefns = KeesDefinitions.GetPGNInfos()
+        };
+
+        // Create an instance of the XmlSerializer class.
+        XmlSerializer mySerializer3 = new XmlSerializer(typeof(PGNDefnCollection));
+
+        // Writing the file requires a TextWriter.
+        TextWriter writer3 = new StreamWriter(@"C:\temp\N2k\KeesPGNInfo.xml");
+
+        // Serialize the class, and close the TextWriter.
+        mySerializer3.Serialize(writer3, PGNDefnCol);
+        writer3.Close();
+
+        // My Testing Section
+        // Testing Data
+        /*byte[] myTestData = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+        // Testing Field Class
+        Field fTest1 = new Field { DisplayName = "Tested Field", BitLength = 21, BitOffset = 10};
+        Console.Out.WriteLine( "Field DisplayName" + fTest1.DisplayName + '\n'
+                               + "BitOffset: " + fTest1.BitOffset + '\n'
+                               + "BitLength: " + fTest1.BitLength + '\n'
+                               + "ByteOffset: " + fTest1.ByteOffset + '\n'
+                               + "ByteLength: " + fTest1.ByteLength + '\n'
+                               + "BitOffsetWithinByte: " + fTest1.BitOffsetWithinByte + '\n'
+                               + "ToString: " + fTest1.ToString(myTestData));
+
+        // Testing String Field Class
+        byte[] myTestData2 = new byte[] { 65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80 };
+        StringField stringTest1 = new StringField {DisplayName = "String Field", BitOffset = 16, BitLength = 64};
+        Console.Out.WriteLine("Field DisplayName" + stringTest1.DisplayName + '\n'
+                               + "BitOffset: " + stringTest1.BitOffset + '\n'
+                               + "BitLength: " + stringTest1.BitLength + '\n'
+                               + "ByteOffset: " + stringTest1.ByteOffset + '\n'
+                               + "ByteLength: " + stringTest1.ByteLength + '\n'
+                               + "BitOffsetWithinByte: " + stringTest1.BitOffsetWithinByte + '\n'
+                               + "ToString: " + stringTest1.ToString(myTestData2) + '\n'
+                               + "StringValue: " + stringTest1.StringValue(myTestData2));
+
+        // Testing NumericField
+        NumericField nTest1 = new NumericField {DisplayName = "Numeric Field", BitOffset = 8, BitLength = 32 };
+        Console.Out.WriteLine("Field DisplayName" + nTest1.DisplayName + '\n'
+                               + "BitOffset: " + nTest1.BitOffset + '\n'
+                               + "BitLength: " + nTest1.BitLength + '\n'
+                               + "ByteOffset: " + nTest1.ByteOffset + '\n'
+                               + "ByteLength: " + nTest1.ByteLength + '\n'
+                               + "BitOffsetWithinByte: " + nTest1.BitOffsetWithinByte + '\n'
+                               + "ToString: " + nTest1.ToString(myTestData) + '\n'
+                               + "StringValue: " + nTest1.RawValue(myTestData));
+
+
+        //            var PGNs = new PGNFieldCollection();
+        //            PGNs.PGNInfoArray = new PGNDefn[2] { PGNinfo1, PGNinfo2 };
+
+        // Create an instance of the XmlSerializer class.
+        //            XmlSerializer mySerializer3 = new XmlSerializer(typeof(PGNFieldCollection));
+
+        // Writing the file requires a TextWriter.
+        //            TextWriter writer3 = new StreamWriter(@"c:\PGNFieldCollection.xml");
+
+        // Serialize the class, and close the TextWriter.
+        //            mySerializer3.Serialize(writer3, PGNs);
+        //            writer3.Close();
+    }
+}
+*/
 
     /*public class KeesLogReader
     {
@@ -519,6 +555,5 @@ namespace KeesFileHandler
         }
     }
     */
-}
 
-
+} // namespace

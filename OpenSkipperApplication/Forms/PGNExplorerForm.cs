@@ -21,21 +21,9 @@
 using System.Reflection;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using CANHandler;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Xml.Schema;
-using System.IO;
-using System.Threading;
-using System.Globalization;
-using KeesFileHandler;
-using Parameters;
 using CANDefinitions;
 
 namespace OpenSkipperApplication

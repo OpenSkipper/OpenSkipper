@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Open Skipper Application", "Open Skipper Application.csproj", "{637F2A74-DC61-47C9-9C25-4987B1221B5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenSkipperUnitTests", "..\OpenSkipperUnitTests\OpenSkipperUnitTests.csproj", "{9084257D-75D6-42DC-8ADC-953DDCD44925}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{637F2A74-DC61-47C9-9C25-4987B1221B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{637F2A74-DC61-47C9-9C25-4987B1221B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{637F2A74-DC61-47C9-9C25-4987B1221B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9084257D-75D6-42DC-8ADC-953DDCD44925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9084257D-75D6-42DC-8ADC-953DDCD44925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9084257D-75D6-42DC-8ADC-953DDCD44925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9084257D-75D6-42DC-8ADC-953DDCD44925}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09A7C35F-17FE-4945-8BA2-A491A6B13A7B}
 	EndGlobalSection
 EndGlobal

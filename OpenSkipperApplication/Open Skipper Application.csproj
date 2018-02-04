@@ -73,6 +73,7 @@
     <AssemblyOriginatorKeyFile>Open Skipper Application.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -94,13 +95,105 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Files\AJMLoader.cs">
+    <Compile Include="Conversion\Bits.cs" />
+    <Compile Include="Conversion\Conversion.cs" />
+    <Compile Include="Conversion\Extensions.cs" />
+    <Compile Include="Conversion\FieldConverter.cs" />
+    <Compile Include="Conversion\Hex.cs" />
+    <Compile Include="Conversion\UnitConverter.cs" />
+    <Compile Include="Files\CANDefinitions\KeesPGNDefn.cs" />
+    <Compile Include="Files\CANDevices\DeviceClass.cs" />
+    <Compile Include="Files\CANDevices\Manufacturers.cs" />
+    <Compile Include="Files\CANMessages\N2kMessage.cs" />
+    <Compile Include="Files\CANMessages\N2kMessages.cs" />
+    <Compile Include="Files\CANReaders\ActisenseReader.cs" />
+    <Compile Include="Files\CANReaders\ActisenseMessage.cs" />
+    <Compile Include="Files\CANReaders\FrameReader.cs" />
+    <Compile Include="Files\CANReaders\MultiReader.cs" />
+    <Compile Include="Files\CANReaders\N0183Reader.cs" />
+    <Compile Include="Files\CANReaders\N2kDatagramReader.cs" />
+    <Compile Include="Files\CANReaders\N2kRawMessage.cs" />
+    <Compile Include="Files\CANReaders\N2kRawReader.cs" />
+    <Compile Include="Files\CANReaders\XmlFrameReader.cs" />
+    <Compile Include="Files\CANSenders\ActisenseSender.cs" />
+    <Compile Include="Files\CANSenders\FrameSender.cs" />
+    <Compile Include="Files\CANSenders\N0183Sender.cs" />
+    <Compile Include="Files\CANSenders\N2KDatagramSender.cs" />
+    <Compile Include="Files\CANSenders\N2kRawSender.cs" />
+    <Compile Include="Files\CANSenders\XmlFrameSender.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer_COMPort.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer_Generator.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer_KeesLogfile.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer_Logfile.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer_Logger.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer_N0183.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer_N0183Logfile.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer_Network.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer_NGT1_2000.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer_WeatherLogfile.cs" />
+    <Compile Include="Files\CANStreams\CANStreamer_XMLLogfile.cs" />
+    <Compile Include="Files\CANStreams\Connector.cs" />
+    <Compile Include="Files\CANStreams\StreamManager.cs" />
+    <Compile Include="Files\CANStreams\TCP_Client.cs" />
+    <Compile Include="Files\CANStreams\UDP_Client.cs" />
+    <Compile Include="Files\Parameters\IToDouble.cs" />
+    <Compile Include="Files\Parameters\MsgHook.cs" />
+    <Compile Include="Files\Parameters\Parameter.cs" />
+    <Compile Include="Forms\AJMLoader.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Files\CANDevices.cs">
+    <Compile Include="Files\CANDefinitions\AISDefn.cs" />
+    <Compile Include="Files\CANDefinitions\Definitions.cs" />
+    <Compile Include="Files\CANDefinitions\Defn.cs" />
+    <Compile Include="Files\CANDefinitions\N0183Defn.cs" />
+    <Compile Include="Files\CANDefinitions\PGNDefn.cs" />
+    <Compile Include="Files\CANDevices\CANDevices.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Files\CANReaders.cs" />
+    <Compile Include="Files\CANHandlers\AISFields\AISEncoding.cs" />
+    <Compile Include="Files\CANHandlers\AISFields\AISEnum.cs" />
+    <Compile Include="Files\CANHandlers\AISFields\AISField.cs" />
+    <Compile Include="Files\CANHandlers\AISFields\AISRoT.cs" />
+    <Compile Include="Files\CANHandlers\AISFields\AISSigned.cs" />
+    <Compile Include="Files\CANHandlers\AISFields\AISSignedDouble.cs" />
+    <Compile Include="Files\CANHandlers\AISFields\AISString.cs" />
+    <Compile Include="Files\CANHandlers\AISFields\AISUnsigned.cs" />
+    <Compile Include="Files\CANHandlers\AISFields\AISUnsignedDouble.cs" />
+    <Compile Include="Files\CANHandlers\Formatters.cs" />
+    <Compile Include="Files\CANHandlers\FrameConversion.cs" />
+    <Compile Include="Files\CANHandlers\Frames\AISData.cs" />
+    <Compile Include="Files\CANHandlers\Frames\AISFrame.cs" />
+    <Compile Include="Files\CANHandlers\Frames\AISHeader.cs" />
+    <Compile Include="Files\CANHandlers\Frames\FastPacketMessage.cs" />
+    <Compile Include="Files\CANHandlers\Frames\Frame.cs" />
+    <Compile Include="Files\CANHandlers\Frames\FrameHeader.cs" />
+    <Compile Include="Files\CANHandlers\Frames\IncomingMessageHandler.cs" />
+    <Compile Include="Files\CANHandlers\Frames\N0183Frame.cs" />
+    <Compile Include="Files\CANHandlers\Frames\N0183Header.cs" />
+    <Compile Include="Files\CANHandlers\Frames\N2kFrame.cs" />
+    <Compile Include="Files\CANHandlers\Frames\N2kHeader.cs" />
+    <Compile Include="Files\CANHandlers\msgField.cs" />
+    <Compile Include="Files\CANHandlers\N0183Fields\N0183EnumField.cs" />
+    <Compile Include="Files\CANHandlers\N0183Fields\N0183Field.cs" />
+    <Compile Include="Files\CANHandlers\N0183Fields\N0183LatitudeField.cs" />
+    <Compile Include="Files\CANHandlers\N0183Fields\N0183LeftRightField.cs" />
+    <Compile Include="Files\CANHandlers\N0183Fields\N0183LongitudeField.cs" />
+    <Compile Include="Files\CANHandlers\N0183Fields\N0183NumericField.cs" />
+    <Compile Include="Files\CANHandlers\N0183Fields\N0183Sexagesimal.cs" />
+    <Compile Include="Files\CANHandlers\N0183Fields\N0183TextField.cs" />
+    <Compile Include="Files\CANHandlers\N0183Fields\N0183TimeField.cs" />
+    <Compile Include="Files\CANHandlers\N2kFields\N2kASCIIField.cs" />
+    <Compile Include="Files\CANHandlers\N2kFields\N2kBinaryField.cs" />
+    <Compile Include="Files\CANHandlers\N2kFields\N2kDblField.cs" />
+    <Compile Include="Files\CANHandlers\N2kFields\N2kEnumField.cs" />
+    <Compile Include="Files\CANHandlers\N2kFields\N2kField.cs" />
+    <Compile Include="Files\CANHandlers\N2kFields\N2kInstanceField.cs" />
+    <Compile Include="Files\CANHandlers\N2kFields\N2kIntField.cs" />
+    <Compile Include="Files\CANHandlers\N2kFields\N2kNumericField.cs" />
+    <Compile Include="Files\CANHandlers\N2kFields\N2kStringField.cs" />
+    <Compile Include="Files\CANHandlers\N2kFields\N2kUDblField.cs" />
+    <Compile Include="Files\CANHandlers\N2kFields\N2kUIntField.cs" />
     <Compile Include="Files\DisplayDefinitions.cs" />
     <Compile Include="Forms\CANDevicesForm.cs">
       <SubType>Form</SubType>
@@ -108,14 +201,13 @@
     <Compile Include="Forms\CANDevicesForm.Designer.cs">
       <DependentUpon>CANDevicesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Constants.cs" />
     <Compile Include="Forms\HttpFormUserHtml.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\HttpFormUserHtml.Designer.cs">
       <DependentUpon>HttpFormUserHtml.cs</DependentUpon>
     </Compile>
-    <Compile Include="Files\CANDefinitions.cs" />
-    <Compile Include="Files\CANSenders.cs" />
     <Compile Include="Files\ParameterExtender.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -129,7 +221,6 @@
     <Compile Include="Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Files\CANStreams.cs" />
     <Compile Include="Forms\AddNetForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,9 +275,8 @@
     <Compile Include="Forms\DecodedLogForm.Designer.cs">
       <DependentUpon>DecodedLogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Files\KeesFileHandler.cs" />
-    <Compile Include="Files\CANHandler.cs" />
-    <Compile Include="Files\Parameters.cs" />
+    <Compile Include="Files\CANHandlers\CANHandler.cs" />
+    <Compile Include="Files\Parameters\Parameters.cs" />
     <Compile Include="Forms\NGT1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -308,6 +398,7 @@
     <EmbeddedResource Include="ThirdParty\ValueBox.resx">
       <DependentUpon>ValueBox.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="LICENSE" />
     <None Include="Open Skipper Application.snk" />
     <None Include="Properties\DataSources\CANHandler.Field.datasource" />
     <None Include="Properties\DataSources\CANHandler.PGNDefn.datasource" />
@@ -330,6 +421,11 @@
     <Compile Include="ThirdParty\SlidingScale.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <None Include="README.md" />
+    <None Include="SampleDefinitions\www\ParamData\Heading.conf" />
+    <None Include="SampleDefinitions\www\ParamData\Map.conf" />
+    <None Include="SampleDefinitions\www\ParamData\RPM.conf" />
+    <None Include="SampleDefinitions\www\ParamData\SpeedDepth.conf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -431,6 +527,33 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.ico" />
+    <Content Include="SampleDefinitions\Displays.xml" />
+    <Content Include="SampleDefinitions\Display_Battery.xml" />
+    <Content Include="SampleDefinitions\Display_Dials.xml" />
+    <Content Include="SampleDefinitions\Display_Motor.xml" />
+    <Content Include="SampleDefinitions\Display_Steer.xml" />
+    <Content Include="SampleDefinitions\Display_Tanks.xml" />
+    <Content Include="SampleDefinitions\www\Battery.html" />
+    <Content Include="SampleDefinitions\www\clickerMenu.css" />
+    <Content Include="SampleDefinitions\www\Compass.html" />
+    <Content Include="SampleDefinitions\www\Icons\ExitIcon.png" />
+    <Content Include="SampleDefinitions\www\Icons\HelpIcon.png" />
+    <Content Include="SampleDefinitions\www\Icons\HomeIcon.png" />
+    <Content Include="SampleDefinitions\www\Icons\LockIcon.png" />
+    <Content Include="SampleDefinitions\www\Icons\SettingsIcon.png" />
+    <Content Include="SampleDefinitions\www\Icons\UserIcon.png" />
+    <Content Include="SampleDefinitions\www\Images\background.jpg" />
+    <Content Include="SampleDefinitions\www\Map.html" />
+    <Content Include="SampleDefinitions\www\Motor.html" />
+    <Content Include="SampleDefinitions\www\OpenSkipper.html" />
+    <Content Include="SampleDefinitions\www\OpenSkipper.js" />
+    <Content Include="SampleDefinitions\www\Scripts\Compass.js" />
+    <Content Include="SampleDefinitions\www\Scripts\Gauge.js" />
+    <Content Include="SampleDefinitions\www\Scripts\jquery.min.js" />
+    <Content Include="SampleDefinitions\www\Scripts\Map.js" />
+    <Content Include="SampleDefinitions\www\Steer.html" />
+    <Content Include="SampleDefinitions\www\style.css" />
+    <Content Include="SampleDefinitions\www\Tanks.html" />
     <EmbeddedResource Include="Resources\Manufacturers.N2kDfn.xml" />
     <EmbeddedResource Include="Resources\ClassAndFunction.N2kDfn.xml" />
     <Content Include="Resources\Pause.ico" />

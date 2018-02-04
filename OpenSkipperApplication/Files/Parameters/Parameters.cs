@@ -22,486 +22,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
-using System.Windows.Forms;
-using System.Xml;
 using System.Xml.Serialization;
 using CANHandler;
 using CANStreams;
-using KeesFileHandler;
-using OpenSkipperApplication;
-using System.Reflection;
-using System.Collections.Concurrent;
-using CANDevices;
 
 namespace Parameters
 {
-    public enum MsgTypeEnum
-    {
-        NMEA2000,
-        NMEA0183,
-        AIS
-    }
-
-
-    /// <summary>
-    /// .
-    /// </summary>
-    /// Hook filter should contain real field value. In this way
-    /// checking would not need conversion every time.
-    [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class MsgHookFilter
-    {
-        public string FieldName { get; set; }
-
-        public string Value { get; set; }
-
-        public MsgHookFilter Clone()
-        {
-            return (MsgHookFilter)this.MemberwiseClone();
-        }
-    }
-
-    /// <summary>
-    /// Supports hooking onto a stream and extracting messages which meet specified criteria.
-    /// </summary>
-    [TypeConverter(typeof(ExpandableObjectConverter))]
-    public class MsgHook
-    {
-        public const int AnyDestination = -1;  // Used to indicate an N2k message that was sent to any destination device
-        public const int AnySource = -1;       // Used to indicate an N2k message received from any device
-        public const int RuleValue = -2;       // Used to indicate an N2k message received by rule device
-        
-        private int AisID;
-
-        private int PGN;
-        private string PGNSourceRule;
-        private string PGNDestinationRule;
-        private int PGNSource;
-        private int PGNDestination;
-        private msgField _msgField;
-        
-        private string TypeCode;    // The typically 3 letter NMEA 0183 message type
-        private string TalkerID;    // The typically 2 letter NMEA 0183 sending device type ID
-        
-        private string _FieldName = "";
-        private double _Multiplier;
-
-        // all browsable - Set methods change internals
-//        [DefaultValue(1)]
-        [Description("Set multiplier for numerical message")]
-        public double Multiplier
-        {
-            get { return _Multiplier; }
-            set { _Multiplier = value; }
-        }
-        public MsgHookFilter Filter { get; set; }
-
-        private bool ShouldSerializeMultiplier()
-        {
-            //RETURN:
-            //      = true if the property value should be displayed in bold, or "treated as different from a default one"
-            return !(_Multiplier == 1);
-        }
-        private void ResetMultiplier()
-        {
-            //This method is called after a call to 'PropertyGrid.ResetSelectedProperty()' method on this property
-            _Multiplier = 1;
-        }
-
-
-        //[DefaultValue("")]
-        [Description("Choose the type of message that is used to set the value for your parameter.")]
-        public MsgTypeEnum Protocol { get; set; }
-
-        //[DefaultValue("")]
-        [Description("Enter the NMEA2000 PGN, NMEA 0183 message type (typically 3-letter), or the AIS message ID of the message used to update this parameter.")]
-        public string Identifier
-        {
-            get
-            {
-                switch (Protocol)
-                {
-                    case MsgTypeEnum.NMEA2000:
-                        return PGN.ToString();
-
-                    case MsgTypeEnum.NMEA0183:
-                        return TypeCode;
-
-                    case MsgTypeEnum.AIS:
-                        return AisID.ToString();
-
-                    default:
-                        throw new Exception("Invalid parameter Protocol: '" + Protocol.GetType().Name + "'");
-                }
-            }
-            set
-            {
-                int v;
-                if (int.TryParse(value, out v))
-                {
-                    switch (Protocol)
-                    {
-                        case MsgTypeEnum.NMEA2000:
-                            PGN = v;
-                            break;
-
-                        case MsgTypeEnum.AIS:
-                            AisID = v;
-                            break;
-
-                        case MsgTypeEnum.NMEA0183:
-                            TypeCode = v.ToString();
-                            break;
-                    }
-                }
-                else
-                {
-                    Protocol = MsgTypeEnum.NMEA0183;
-                    TypeCode = value;
-                }
-            }
-        }
-        //[DefaultValue("Any")]
-        [Description("Enter the device bus address (0..254) or ID:<device unique ID> that the NMEA 2000 message must have been sent from. For NMEA 0183 device enter device (typically 2-letter) type. 'Any' accepts messsages sent by any device.")]
-        public string Source
-        {
-            get
-            {
-                switch (Protocol)
-                {
-                    case MsgTypeEnum.NMEA2000:
-                        return (PGNSourceRule == null ? (PGNSource == AnySource ? "Any" : PGNSource.ToString()) : PGNSourceRule);
-
-                    case MsgTypeEnum.NMEA0183:
-                        return TalkerID;
-
-                    case MsgTypeEnum.AIS:
-                        return "N/A";
-
-                    default:
-                        throw new Exception("Invalid parameter Protocol: '" + Protocol.GetType().Name + "'");
-                }
-            }
-            set
-            {
-                int v;
-                bool ValueIsNumber = (int.TryParse(value, out v));
-                switch (Protocol)
-                {
-                    case MsgTypeEnum.NMEA2000:
-                        if (value.Equals("Any",StringComparison.OrdinalIgnoreCase)) {
-                            PGNSource = AnySource;
-                        } else if (ValueIsNumber) {
-                            PGNSource = v;
-                        }
-                        else
-                        {
-                            PGNSource = RuleValue;
-                            PGNSourceRule = value;
-                        }
-                        break;
-
-                    case MsgTypeEnum.NMEA0183:
-                        if (value.Equals("Any", StringComparison.OrdinalIgnoreCase)) {
-                            TalkerID = "Any";   // Force a consistent case
-                        } else {
-                            TalkerID = value;
-                        }
-                        break;
-
-                    default:
-                        // Don't do anything
-                        break;
-                }
-            }
-        }
-        //[DefaultValue("Any")]
-        [Description("Enter the device bus address (0..254) or ID:<device unique ID> that the NMEA 2000 message must have been sent to. Entering 'Any' accepts messages sent to any (or all) devices.")]
-        public string Destination
-        {
-            get
-            {
-                switch (Protocol)
-                {
-                    case MsgTypeEnum.NMEA2000:
-                        return (PGNDestinationRule == null ? (PGNDestination == AnyDestination ? "Any" : PGNDestination.ToString()) : PGNDestinationRule);
-
-                    case MsgTypeEnum.NMEA0183:
-                        return "N/A";
-
-                    case MsgTypeEnum.AIS:
-                        return "N/A";
-                }
-                return "N/A";
-            }
-            set
-            {
-                switch (Protocol) {
-                    case MsgTypeEnum.NMEA2000:
-                        if (value.Equals("Any", StringComparison.OrdinalIgnoreCase)) {
-                            PGNDestination = AnyDestination;
-                        } else {
-                            int v;
-                            if (int.TryParse(value, out v)) {
-                                PGNDestination = v;
-                            }
-                            else
-                            {
-                                PGNDestination = RuleValue;
-                                PGNDestinationRule = value;
-                            }
-                        }
-                        break;
-                        
-                    default:
-                        // Don't do anything
-                        break;
-                }
-            }
-        }
-
-        //[DefaultValue("")]
-        [Description("Enter the name of the field in the incoming message that contains the parameter value.")]
-        public string FieldName { get { return _FieldName; } set { _FieldName = value; } }
-
-        [BrowsableAttribute(false)]
-        public msgField MsgField { get { return _msgField; } set { _msgField = value; } }
-
-        public event EventHandler<FrameReceivedEventArgs> FrameReceived;
-
-        public void N2kSourceChanged()
-        {
-            CANDevice dev = null;
-            if (PGNSourceRule != null)
-            {
-                PGNSource = RuleValue;
-                dev = CANDeviceList.FindDeviceByRule(PGNSourceRule);
-                if (dev != null) PGNSource = dev.Source;
-            }
-            if (PGNDestinationRule != null)
-            {
-                PGNDestination = RuleValue;
-                dev = CANDeviceList.FindDeviceByRule(PGNDestinationRule);
-                if (dev != null) PGNDestination = dev.Source;
-            }
-        }
-
-        public void MessageCallback(object sender, FrameReceivedEventArgs e)
-        {
-            switch (Protocol)
-            {
-                case MsgTypeEnum.NMEA2000:
-//                    PGNSource = 101;
-                    N2kFrame n2kMsg = (N2kFrame)e.ReceivedFrame;
-                    if ( ((PGNSource==AnySource) || (n2kMsg.Header.PGNSource == PGNSource)) &&
-                         ((PGNDestination == AnyDestination) || (n2kMsg.Header.PGNDestination == PGNDestination)) )
-                        FrameReceived(this, e);
-                    break;
-
-                case MsgTypeEnum.NMEA0183:
-                    N0183Frame n0183Msg = (N0183Frame)e.ReceivedFrame;
-                    if ( (TalkerID=="Any") || (n0183Msg.Header.TalkerID == TalkerID))
-                        FrameReceived(this, e);
-                    break;
-
-                case MsgTypeEnum.AIS:
-                    AISFrame aisMsg = (AISFrame)e.ReceivedFrame;
-                    // if (aisMsg.Header.MessageID == AisID) TODO Confirm we don't need this
-                    FrameReceived(this, e);
-                    break;
-            }
-        }
-
-        // Hooks onto/off stream
-        public void HookOnto(CANStreamer stream)
-        {
-            switch (Protocol)
-            {
-                case MsgTypeEnum.NMEA2000:
-                    stream.PGNReceived[PGN] += MessageCallback;
-                    if (PGNDestinationRule != null || PGNSourceRule != null) CANDeviceList.SourceChange += N2kSourceChanged;
-                    break;
-
-                case MsgTypeEnum.NMEA0183:
-                    stream.TypeCodeReceived[TypeCode] += MessageCallback;
-                    break;
-
-                case MsgTypeEnum.AIS:
-                    stream.AISReceived[AisID] += MessageCallback;
-                    break;
-            }
-        }
-
-        public void UnhookFrom(CANStreamer stream)
-        {
-            if (Protocol == MsgTypeEnum.NMEA2000)
-            {
-                stream.PGNReceived[PGN] -= MessageCallback;
-                if (PGNDestinationRule != null || PGNSourceRule != null) CANDeviceList.SourceChange -= N2kSourceChanged;
-            }
-            else
-            {
-                stream.TypeCodeReceived[TypeCode] -= MessageCallback;
-            }
-        }
-
-        public MsgHook Clone()
-        {
-            MsgHook clone = (MsgHook)this.MemberwiseClone();
-            if (this.Filter!=null) clone.Filter = this.Filter.Clone();
-            return (MsgHook)clone;
-        }
-
-        // See about resetting default values http://www.codeproject.com/Articles/66073/DefaultValue-Attribute-Based-Approach-to-Property
-        public MsgHook()
-        {
-            ResetMultiplier();
-            _msgField = null;
-        }
-
-        public Boolean CheckFilter(FrameReceivedEventArgs e)
-        {
-            if (Filter == null) return true;
-            Frame msg = e.ReceivedFrame;
-
-            return (msg.IsSameValue(this.Filter.FieldName,Filter.Value));
-        }
-    }
-
-//    public interface IToString
-//    {
-//        string ToString();
-//    }
-    public interface IToDouble
-    {
-        double ToDouble();
-    }
-
-    /// <summary>
-    /// A named value that is derived from messages. e.g. Speed
-    /// </summary>
-    public abstract class Parameter
-    {
-        // Static
-        public static Type[] AllParameterTypes()
-        {
-            var TypeList = new List<Type>();
-            foreach (Type t in typeof(Parameter).Assembly.GetTypes())
-            {
-                if (!t.IsAbstract && (t.IsSubclassOf(typeof(Parameter)) || t == typeof(Parameter)))
-                {
-                    // string theClass = t.FullName.Substring(t.FullName.LastIndexOf(".")+1);
-                    // TypeNameList.Add(t.DisplayName);
-                    TypeList.Add(t);
-                }
-            }
-            return TypeList.ToArray();
-        } // List of this field and all derived fields
-
-        public enum ParameterStateEnum
-        {
-            NoDataReceived,
-            IsNotAvailable,
-            IsError,
-            ValidValueReceived,
-            Lost
-        }
-        
-        // Properties
-        public string DisplayName { get; set; }  // The name we display to the user
-        public string InternalName { get; set; } // The name we use internally
-
-        [DefaultValue(true)]
-        [Description("Lock onto the first of possbly many streams providing messages that update this parameter? Otherwise, accept possibly contradictory messages over all streams.")]
-        public bool LockFirstStream { get; set; }
-
-        [DefaultValue(true)]
-        [Description("Lock onto the first protocol (NMEA 2000 or 0183 or AIS) providing messages that update this parameter? Otherwise, accept possibly contradictory messages over multiple protocols.")]
-        public bool LockFirstProtocol { get; set; }
-
-        // Private
-        protected readonly object parameterLocker = new object();
-        protected ParameterStateEnum _unsafeState;
-        protected DateTime _unsafeTimeStamp;
-        protected DateTime _LastTimeStamp;
-        protected bool _lockedOntoStream;
-        protected bool _lockedOntoFormat;
-        protected CANStreamer _lockedStream;
-        protected MsgTypeEnum _lockedFormat;
-        protected readonly object hookLocker = new object();
-
-        // Methods for connecting
-        public abstract void Connect(CANStreamer stream);
-        public abstract void Disconnect(CANStreamer stream);
-
-        // Hook filtering callback
-        protected void HookFilter(object sender, FrameReceivedEventArgs e)
-        {
-            MsgHook hook = (MsgHook)sender;
-
-            lock (hookLocker)
-            {
-                // Check stream lock
-                if (LockFirstStream)
-                {
-                    if (_lockedOntoStream)
-                    {
-                        if (e.Stream != _lockedStream)
-                            return;
-                    }
-                    else
-                    {
-                        _lockedStream = e.Stream;
-                        _lockedOntoStream = true;
-                    }
-                }
-
-                // Check format lock
-                if (LockFirstProtocol)
-                {
-                    if (_lockedOntoFormat)
-                    {
-                        if (hook.Protocol != _lockedFormat)
-                            return;
-                    }
-                    else
-                    {
-                        _lockedFormat = hook.Protocol;
-                        _lockedOntoFormat = true;
-                    }
-                }
-
-                if (!hook.CheckFilter(e)) return;
-                // Hook passed filtering, fire callback
-                HookCallback(sender, e);
-            }
-        }
-
-        // Hook accepted callback
-        protected virtual void HookCallback(object sender, FrameReceivedEventArgs e)
-        {
-        }
-
-        public abstract Parameter Clone();
-
-        public virtual ParameterStateEnum State()
-        {
-            if (_unsafeState!=ParameterStateEnum.NoDataReceived)
-            {
-                TimeSpan sinceLast = DateTime.Now-_LastTimeStamp;
-                if (sinceLast.Seconds > 4) _unsafeState = ParameterStateEnum.Lost;
-            }
-            return _unsafeState; 
-        }
-
-        public DateTime LastTimeStamp() { return _LastTimeStamp;  }
-    }
-
     public class DummyParameter : Parameter//, IToString
     {
         public DummyParameter()
@@ -543,7 +70,7 @@ namespace Parameters
         private int _fragmentsRecieved;
 
         private List<SatelliteInfo> _satellites = new List<SatelliteInfo> { };
-        
+
         public override Parameter Clone()
         {
             // TODO : Confirm this copies correctly
@@ -704,8 +231,8 @@ namespace Parameters
 
         // Delegates / events
         public delegate void ValueReceivedHandler(object sender, EventArgs e, ParameterStateEnum parameterState, string value, DateTime timeStamp);
-            // Consumers of the messages need to implement this handler. Note that the values are passed to ensure the receiver
-            // gets a clean copy of the values even in a multi-threaded environment.
+        // Consumers of the messages need to implement this handler. Note that the values are passed to ensure the receiver
+        // gets a clean copy of the values even in a multi-threaded environment.
 
         public event ValueReceivedHandler ValueReceived;    // A value has arrived
         public event ValueReceivedHandler ValueChanged;     // A new value has arrived that differs from the old value
@@ -740,7 +267,7 @@ namespace Parameters
             }
 
             _valueChanged = (newParameterState != _unsafeState) || (newValue != _unsafeValue);
-            
+
             _unsafeState = newParameterState;
             _unsafeValue = newValue;
             _unsafeTimeStamp = newTimeStamp;
@@ -852,8 +379,8 @@ namespace Parameters
     {
         private DateTime[] _timeStamps;
         private double[] _values;
-        private int _countHistory=0;
-        private int _nextHistory=0;
+        private int _countHistory = 0;
+        private int _nextHistory = 0;
 
         // Constructor
         public NumericParameter()
@@ -865,16 +392,17 @@ namespace Parameters
             lock (parameterLocker)
             {
                 return _unsafeValue;
-            }       
+            }
         }
         // Public
         public string Unit { get; set; } // The name we use internally
-        public int KeepHistory {
+        public int KeepHistory
+        {
             get
             {
                 return HistorySize();
             }
-            set 
+            set
             {
                 _timeStamps = new DateTime[value];
                 _values = new double[value];
@@ -978,7 +506,7 @@ namespace Parameters
                 // The max speed for incoming values is about 20Hz.
                 for (; counter < endHistory; counter++)
                 {
-                    i = ( counter+HistorySize() ) % HistorySize();
+                    i = (counter + HistorySize()) % HistorySize();
                     if (!FirstPair) history += ",";
                     history += new DateTime(_timeStamps[i].Ticks, DateTimeKind.Local).ToString("o") + ',' + _values[i].ToString(CultureInfo.InvariantCulture);
                     FirstPair = false;
@@ -1008,12 +536,12 @@ namespace Parameters
             return _values.Length;
         }
 
-        protected void AddHistory(DateTime timeStamp, double value) 
+        protected void AddHistory(DateTime timeStamp, double value)
         {
             lock (parameterLocker)
             {
-                _timeStamps[_nextHistory]=timeStamp;
-                _values[_nextHistory]=value;
+                _timeStamps[_nextHistory] = timeStamp;
+                _values[_nextHistory] = value;
                 _nextHistory++;
                 if (_nextHistory == _values.Length) _nextHistory = 0;
                 if (_countHistory < _values.Length) _countHistory++;
@@ -1074,7 +602,7 @@ namespace Parameters
             Frame msg = e.ReceivedFrame;
 
             FieldValueState newState;
-            if (hook.MsgField == null) { hook.MsgField = msg.GetField(hook.FieldName);  }
+            if (hook.MsgField == null) { hook.MsgField = msg.GetField(hook.FieldName); }
             double newValue = msg.GetDouble(hook.MsgField, out newState) * hook.Multiplier;
 
             ParameterStateEnum newPState;
@@ -1119,7 +647,7 @@ namespace Parameters
     /// <summary>
     /// Represents a parameter which has a value determined by the calculation in two hooks (i.e. sources)
     /// </summary>
-    public abstract class NumericCalc:NumericParameter
+    public abstract class NumericCalc : NumericParameter
     {
         public MsgHook Source1 { get; set; }
         public MsgHook Source2 { get; set; }
@@ -1194,7 +722,7 @@ namespace Parameters
             }
             else if (_State1 == ParameterStateEnum.ValidValueReceived && _State2 == ParameterStateEnum.ValidValueReceived)
             {
-                finalValue = Calc(_Value1,_Value2);
+                finalValue = Calc(_Value1, _Value2);
                 finalState = ParameterStateEnum.ValidValueReceived;
             }
             else
@@ -1245,7 +773,7 @@ namespace Parameters
             NumericCalc clone = (NumericCalc)this.MemberwiseClone();
             clone.Source1 = this.Source1.Clone();
             clone.Source2 = this.Source2.Clone();
-            
+
             return (Parameter)clone;
         }
 
@@ -1255,15 +783,15 @@ namespace Parameters
     /// <summary>
     /// Represents a parameter which has a value determined by the difference in two hooks (i.e. sources)
     /// </summary>
-    public class NumericDifference:NumericCalc
+    public class NumericDifference : NumericCalc
     {
-        public NumericDifference():base()
+        public NumericDifference() : base()
         {
         }
 
         public override double Calc(double val1, double val2)
         {
-            return val1-val2;
+            return val1 - val2;
         }
 
         public override Parameter Clone()
@@ -1289,7 +817,7 @@ namespace Parameters
 
         public override double Calc(double val1, double val2)
         {
-            return val1*val2;
+            return val1 * val2;
         }
 
         public override Parameter Clone()
@@ -1515,165 +1043,4 @@ namespace Parameters
     }
     */
 
-    /// <summary>
-    /// A collection of parameter objects. Which are cloned out to use.
-    /// </summary>
-    public class ParameterCollection
-    {
-        public const string DefDefnFile = "Parameters.N2kParams.xml";
-        public readonly object UpdateLocker = new object();
-
-        [XmlIgnore]
-        public BindingList<Parameter> ClonedParameters = new BindingList<Parameter> { };
-        [XmlIgnore]
-        public Dictionary<KeyValuePair<string, string>, Parameter> CopyDict = new Dictionary<KeyValuePair<string, string>, Parameter> { };
-
-        [XmlIgnore]
-        [ReadOnly(true)]
-        // The file we loaded the definitions from
-        public string FileName { get; set; }
-        [XmlIgnore]
-        [ReadOnly(true)]
-        // The file we loaded the definitions from
-        public DateTime FileDateTime { get; set; }
-
-        [XmlIgnore]
-        public FileTypeEnum FileType { get; set; }
-
-        private Parameter[] _Parameters;
-        [XmlArray]
-        [XmlArrayItem("StringParameter", typeof(StringParameter))]
-        [XmlArrayItem("MultiSourceNumeric", typeof(MultipleSourceNumeric))]
-        [XmlArrayItem("NumericDifference", typeof(NumericDifference))]
-        [XmlArrayItem("NumericMultiplication", typeof(NumericMultiplication))]
-        [XmlArrayItem("SatelliteInfo", typeof(SatelliteParameter))]
-        public Parameter[] Parameters
-        {
-            get
-            {
-                return _Parameters;
-            }
-            set
-            {
-                _Parameters = value ?? new Parameter[0];
-                BuildInternalStructures();
-            }
-        }
-
-        [XmlIgnore]
-        public Dictionary<string, Parameter> ParameterFromName;
-
-        // Constructor
-        public ParameterCollection()
-        {
-            ParameterFromName = new Dictionary<string, Parameter> { }; 
-            Parameters = new Parameter[] { };
-            FileName = "";
-            FileDateTime = new DateTime();
-        }
-
-        public bool IsChanged(string newFileName)
-        {
-            newFileName = CommonRoutines.ResolveFileNameIfEmpty(newFileName, DefDefnFile);
-            return ((newFileName != FileName) || (FileName == "") || (File.GetLastWriteTime(FileName) != FileDateTime));
-        }
-
-        /// <summary>
-        /// Factory method for retrieving copies of parameters
-        /// </summary>
-        /// <param name="parameterName">The internal name of the parameter</param>
-        /// <param name="streamsToMatch">Comma deliminated streams to match</param>
-        /// <returns>Working copy of parameter</returns>
-        public Parameter GetCopy(string parameterName, string streamsToMatch)
-        {
-            Parameter copy;
-            KeyValuePair<string, string> kvp = new KeyValuePair<string, string>(parameterName, streamsToMatch);
-            if (!CopyDict.TryGetValue(kvp, out copy))
-            {
-                Parameter orig;
-                if (!ParameterFromName.TryGetValue(parameterName, out orig))
-                    return null;
-
-                copy = orig.Clone();
-                // copy.InternalName += " (" + streamsToMatch + ")";
-                CopyDict.Add(kvp, copy);
-                ClonedParameters.Add(copy);
-            }
-
-            return copy;
-        }
-        public void AddParameter(Parameter p)
-        {
-            Array.Resize(ref _Parameters, _Parameters.Length + 1);
-            _Parameters[_Parameters.Length - 1] = p;
-        }
-        public void DeleteParameter(int idx)
-        {
-            for (int i = idx; i < _Parameters.Length - 1; i++)
-                _Parameters[i] = _Parameters[i + 1];
-
-            Array.Resize(ref _Parameters, _Parameters.Length - 1);
-        }
-
-        // Serialization
-        private static XmlFileSerializer<ParameterCollection> XmlFileSerializer = new XmlFileSerializer<ParameterCollection>();
-
-        // File IO
-        public static ParameterCollection LoadFromFile(string fileName)
-        {
-            fileName = CommonRoutines.ResolveFileNameIfEmpty(fileName, DefDefnFile);
-            if (fileName == "") return LoadInternal();
-
-            ParameterCollection paramCol = XmlFileSerializer.Deserialize(fileName);
-            if (paramCol != null)
-            {
-                paramCol.FileName = fileName;
-                paramCol.FileType = FileTypeEnum.NativeXMLFile;
-                return paramCol;
-            }
-
-            return LoadInternal();
-        }
-        public static ParameterCollection LoadInternal()
-        {
-            Assembly asm = Assembly.GetExecutingAssembly();
-            Stream stream = asm.GetManifestResourceStream("OpenSkipperApplication.Resources.Parameters.N2kParams.xml");
-
-            ParameterCollection newDefns = XmlFileSerializer.Deserialize(stream);
-            newDefns.FileType = FileTypeEnum.Internal; // No filename set, instead we set type to internal
-            return newDefns;
-        }
-        public bool SaveToFile(string fileName)
-        {
-            using (new WaitCursor())
-            {
-                if (XmlFileSerializer.Serialize(fileName, this))
-                {
-                    FileName = fileName;
-                    FileType = FileTypeEnum.NativeXMLFile;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
-        // Internal structs
-        private void BuildInternalStructures()
-        {
-            ParameterFromName.Clear();
-            foreach (Parameter p in Parameters)
-            {
-                if (ParameterFromName.ContainsKey(p.InternalName))
-                {
-                    // Duplicate internal names, give warning (Duplicate is overwritten)
-                    MessageBox.Show("Duplicate parameter internal name '" + p.InternalName + "', internal names must be unique", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
-                ParameterFromName[p.InternalName] = p;
-            }
-        }
-    }
-}
+} // namespace

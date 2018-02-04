@@ -13,14 +13,14 @@ namespace OpenSkipperApplication.Forms
 {
     public partial class CANDevicesForm : Form
     {
-        private List<CANDevice> DisplayedDevices; // Holds devics currently displayed
+        //private List<CANDevice> DisplayedDevices; // Holds devices currently displayed
         private bool firstShow = true;
         private bool needUpdate = false;
 
         public CANDevicesForm()
         {
             InitializeComponent();
-            DisplayedDevices = new List<CANDevice> { };
+            //DisplayedDevices = new List<CANDevice> { };
         }
 
         private void DeviceListChange()

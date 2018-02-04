@@ -1,0 +1,171 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PGNDefnCollection" type="PGNDefnCollectionType"/>
+  <xs:complexType name="EnumPairType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:short" name="Value" use="optional"/>
+        <xs:attribute type="xs:string" name="Name" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="EnumValuesType" mixed="true">
+    <xs:sequence>
+      <xs:element type="EnumPairType" name="EnumPair" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EnumFieldType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="xs:string" name="Description" minOccurs="0"/>
+      <xs:element type="xs:short" name="BitOffset" minOccurs="0"/>
+      <xs:element type="xs:short" name="BitLength" minOccurs="0"/>
+      <xs:element type="EnumValuesType" name="EnumValues"/>
+      <xs:element type="xs:string" name="FormatAs"/>
+      <xs:element type="xs:float" name="Resolution"/>
+      <xs:element type="xs:float" name="Offset"/>
+      <xs:element type="xs:float" name="Scale"/>
+      <xs:element type="xs:string" name="Units"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="Name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="UIntFieldType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="xs:string" name="Description" minOccurs="0"/>
+      <xs:element type="xs:short" name="BitOffset" minOccurs="0"/>
+      <xs:element type="xs:short" name="BitLength" minOccurs="0"/>
+      <xs:element type="EnumValuesType" name="EnumValues"/>
+      <xs:element type="xs:string" name="FormatAs"/>
+      <xs:element type="xs:float" name="Resolution"/>
+      <xs:element type="xs:float" name="Offset"/>
+      <xs:element type="xs:float" name="Scale"/>
+      <xs:element type="xs:string" name="Units"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="Name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="FieldsType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="EnumFieldType" name="EnumField"/>
+      <xs:element type="UIntFieldType" name="UIntField"/>
+      <xs:element type="FieldType" name="Field"/>
+      <xs:element type="InstanceFieldType" name="InstanceField"/>
+      <xs:element type="UDblFieldType" name="UDblField"/>
+      <xs:element type="IntFieldType" name="IntField"/>
+      <xs:element type="DblFieldType" name="DblField"/>
+      <xs:element type="ASCIIFieldType" name="ASCIIField"/>
+      <xs:element type="StringFieldType" name="StringField"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="PGNDefnType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Name"/>
+      <xs:element type="xs:short" name="ByteLength" minOccurs="0"/>
+      <xs:element type="FieldsType" name="Fields" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:int" name="PGN" use="optional"/>
+    <xs:attribute type="xs:string" name="Description" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="FieldType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="xs:string" name="Description"/>
+      <xs:element type="xs:short" name="BitOffset"/>
+      <xs:element type="xs:short" name="BitLength"/>
+      <xs:element type="EnumValuesType" name="EnumValues"/>
+      <xs:element type="xs:string" name="FormatAs"/>
+      <xs:element type="xs:float" name="Resolution"/>
+      <xs:element type="xs:float" name="Offset"/>
+      <xs:element type="xs:float" name="Scale"/>
+      <xs:element type="xs:string" name="Units"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="Name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="InstanceFieldType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="xs:string" name="Description" minOccurs="0"/>
+      <xs:element type="xs:short" name="BitOffset"/>
+      <xs:element type="xs:short" name="BitLength"/>
+      <xs:element type="EnumValuesType" name="EnumValues"/>
+      <xs:element type="xs:string" name="FormatAs"/>
+      <xs:element type="xs:float" name="Resolution"/>
+      <xs:element type="xs:float" name="Offset"/>
+      <xs:element type="xs:float" name="Scale"/>
+      <xs:element type="xs:string" name="Units"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="Name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="UDblFieldType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="xs:string" name="Description"/>
+      <xs:element type="xs:short" name="BitOffset"/>
+      <xs:element type="xs:short" name="BitLength"/>
+      <xs:element type="xs:string" name="FormatAs"/>
+      <xs:element type="xs:float" name="Offset"/>
+      <xs:element type="xs:float" name="Scale"/>
+      <xs:element type="EnumValuesType" name="EnumValues"/>
+      <xs:element type="xs:float" name="Resolution"/>
+      <xs:element type="xs:string" name="Units"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="Name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="IntFieldType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="xs:string" name="Description"/>
+      <xs:element type="xs:short" name="BitOffset"/>
+      <xs:element type="xs:short" name="BitLength"/>
+      <xs:element type="EnumValuesType" name="EnumValues"/>
+      <xs:element type="xs:string" name="FormatAs"/>
+      <xs:element type="xs:float" name="Resolution"/>
+      <xs:element type="xs:float" name="Offset"/>
+      <xs:element type="xs:float" name="Scale"/>
+      <xs:element type="xs:string" name="Units"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="Name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="DblFieldType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="xs:string" name="Description" minOccurs="0"/>
+      <xs:element type="xs:short" name="BitOffset"/>
+      <xs:element type="xs:short" name="BitLength"/>
+      <xs:element type="xs:float" name="Scale"/>
+      <xs:element type="EnumValuesType" name="EnumValues"/>
+      <xs:element type="xs:string" name="FormatAs"/>
+      <xs:element type="xs:float" name="Resolution"/>
+      <xs:element type="xs:float" name="Offset"/>
+      <xs:element type="xs:string" name="Units"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="Name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="ASCIIFieldType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="xs:short" name="BitOffset"/>
+      <xs:element type="xs:short" name="BitLength"/>
+      <xs:element type="xs:string" name="Description" minOccurs="0"/>
+      <xs:element type="EnumValuesType" name="EnumValues"/>
+      <xs:element type="xs:string" name="FormatAs"/>
+      <xs:element type="xs:float" name="Resolution"/>
+      <xs:element type="xs:float" name="Offset"/>
+      <xs:element type="xs:float" name="Scale"/>
+      <xs:element type="xs:string" name="Units"/>
+    </xs:choice>
+    <xs:attribute type="xs:string" name="Name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="StringFieldType">
+    <xs:sequence>
+      <xs:element type="xs:byte" name="BitOffset"/>
+      <xs:element type="xs:byte" name="BitLength"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="Name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="PGNDefnsType">
+    <xs:sequence>
+      <xs:element type="PGNDefnType" name="PGNDefn" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PGNDefnCollectionType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Date"/>
+      <xs:element type="xs:string" name="Comment"/>
+      <xs:element type="xs:string" name="CreatorCode"/>
+      <xs:element type="PGNDefnsType" name="PGNDefns"/>
+    </xs:sequence>
+    <xs:attribute type="xs:float" name="Version"/>
+  </xs:complexType>
+</xs:schema>
