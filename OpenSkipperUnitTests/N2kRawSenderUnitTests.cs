@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
+using System.Xml;
 using CANDefinitions;
 using CANHandler;
 using CANMessages;
@@ -260,6 +263,49 @@ namespace OpenSkipperUnitTests
             SendFrameTwice(frame);
         }
 
+        private N2kFrame.Builder builder;
+
+        [TestMethod]
+        public void N2kConvertKeensToRaw()
+        {
+            Definitions.LoadPGNDefns("");
+
+            var fileName = TestHelper.GetTestFilePath("KeesN2kLog.xml");
+            var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+            var xmlReader = XmlReader.Create(fileStream, new XmlReaderSettings() { ConformanceLevel = ConformanceLevel.Fragment });
+
+            builder = new N2kFrame.Builder();
+
+            var reader = new N2kDatagramReader();
+            reader.FrameCreated += Reader_FrameCreated;
+
+            while (xmlReader.Read())
+            {
+                // <N2kMsg TimeStamp="2009-06-18T09:46:01.129">0DF80502A4FFFFFFFF10FC0B</N2kMsg>
+                var timeStamp = xmlReader.GetAttribute("TimeStamp");
+                var data = xmlReader.ReadElementContentAsString();
+
+                Hex hex = new Hex(data);
+                Byte[] Bytes = hex.ToBytes();
+
+                reader.ProcessBytes(Bytes, 0, Bytes.Length);
+            }
+        }
+
+        private void Reader_FrameCreated(Frame frame)
+        {
+            if (frame is N2kFrame)
+            {
+                var outFrame = builder.AddFrame((N2kFrame)frame);
+
+                if (outFrame != null)
+                {
+                    N2kRawSender sender = new N2kRawSender();
+                    File.AppendAllText(TestHelper.GetTestFilePath("RawN2kLog.log"), sender.GetLines(outFrame));
+                }
+            }
+        }
+
         private void SendFrame(N2kFrame frame)
         {
             using (var client = new UDP_Client(HOST, PORT))
@@ -278,7 +324,12 @@ namespace OpenSkipperUnitTests
 
         private void WriteLog(string name, string value)
         {
-            System.Diagnostics.Debug.WriteLine("{0} = {1}", name, value);
+            Debug.WriteLine("{0} = {1}", name, value);
+        }
+
+        private void WriteLog(string value)
+        {
+            Debug.WriteLine(value);
         }
 
     } // class

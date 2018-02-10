@@ -26,7 +26,12 @@ namespace OpenSkipperUnitTests
             }
 
             return string.Empty;
-        } 
+        }
+
+        public static string GetTestFilePath(string fileName)
+        {
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, TEST_FILE_SUB_FOLDER, fileName);
+        }
 
     } // class
 

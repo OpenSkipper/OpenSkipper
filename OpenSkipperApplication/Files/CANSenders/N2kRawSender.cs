@@ -12,6 +12,11 @@ namespace CANSenders
     {
         public override byte[] GetBytes(Frame frame)
         {
+            return Encoding.ASCII.GetBytes(GetLines(frame));
+        }
+
+        public string GetLines(Frame frame)
+        {
             N2kFrame n2kFrame = frame as N2kFrame;
             if (frame == null)
             {
@@ -23,7 +28,7 @@ namespace CANSenders
             int lenght = (int)n2kFrame.Defn.ByteLength;
             int priority = Convert.ToInt32(n2kFrame.Header.Priority);
             int source = Convert.ToInt32(n2kFrame.Header.Source);
-            int destination = (n2kFrame.Header.Destination.ToLower() == "all")? 255 : Convert.ToInt32(n2kFrame.Header.Destination);
+            int destination = (n2kFrame.Header.Destination.ToLower() == "all") ? 255 : Convert.ToInt32(n2kFrame.Header.Destination);
             int canId = getCanIdFromISO11783Bits(priority, pgn, source, destination);
 
             #region Documentation
@@ -46,9 +51,7 @@ namespace CANSenders
             StringBuilder sb = new StringBuilder();
             buildOutput(sb, canId, lenght, n2kFrame.Data);
 
-            string dataOut = sb.ToString();
-
-            return Encoding.ASCII.GetBytes(dataOut);
+            return sb.ToString();
         }
 
         /// <summary>
