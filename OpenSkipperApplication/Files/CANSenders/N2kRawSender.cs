@@ -119,18 +119,27 @@ namespace CANSenders
                     sequence += 1;
                     sb.AppendFormat("{0} {1}", canId.ToString("X8"), sequence.ToString("X2"));
 
-                    // Add message data
-                    addBytesAndEndMessage(sb, line);
-                }
+                    // Check if the line does not have enough bytes
+                    // and add filler bytes if required.
+                    // The YDWG-02 does not require them, but Open Skipper does!
+                    var lineBytes = line;
+                    if (lineBytes.Length < 7)
+                    {
+                        var bitCount = (7 - lineBytes.Length) * 8;
+                        var filler = FieldConverter.SetNaBytes(bitCount);
+                        lineBytes = lineBytes.Concat(filler).ToArray();
+                    }
 
-                // TODO: Should we fill out the remaining X bytes?  The YDWG-02 does not require them, but our internal code does!
+                    // Add message data
+                    addBytesAndEndMessage(sb, lineBytes);
+                }
             }
             else
             {
                 // NMEA 2000 normal message
-                addTimeAndDirection(sb, false, fullTx);                  // Add Time and Direction
+                addTimeAndDirection(sb, false, fullTx);         // Add Time and Direction
                 sb.AppendFormat(" {0}", canId.ToString("X8"));  // Add CAN ID
-                addBytesAndEndMessage(sb, bytes);                 // Add message data
+                addBytesAndEndMessage(sb, bytes);               // Add message data
             }
         }
 
@@ -185,6 +194,29 @@ namespace CANSenders
             }
 
             return frames;
+        }
+
+        /// <summary>
+        /// Takes the provided byte length and rounds it up to the nearest 8 bytes.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private int GetFillerByteCount(int value)
+        {
+            // See: https://stackoverflow.com/questions/2705542/returning-the-nearest-multiple-value-of-a-number
+            // 16 * ((n + 8) / 16) is the formula you want if, in particular, 
+            // you want to convert 8 to 16(it's equally close to 0 as to 16, 
+            // so it's impossible to decide how to convert it based exclusively 
+            // on the "nearest multiple" concept, you have to decide!-), and 
+            // of course consistently 24 to 32, 40 to 48, and so forth. 
+            // Use + 7 in lieu of +8 if you'd rather convert 8 to 0 rather 
+            // than to 16 (and consistently 24 to 16, and so forth).
+            //
+            // To use a generic X in lieu of the hardcoded 16, then the 
+            // formula is X * ((n + X / 2) / X) (with the same proviso as in the above).
+
+            int factor = 8;
+            return factor * ((value + factor / 2) / factor);
         }
 
     } // class

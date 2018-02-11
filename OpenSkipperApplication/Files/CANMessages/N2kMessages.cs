@@ -1,11 +1,6 @@
-﻿using CANDefinitions;
-using CANHandler;
+﻿using CANHandler;
 using OpenSkipperApplication;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CANMessages
 {
@@ -25,57 +20,23 @@ namespace CANMessages
 
         public static N2kFrame CreatePGN127505(int type, double level, double capacity)
         {
-            return null;
-
-            //1 Fluid Instance
-            //2 Fluid Type
-            //3 Fluid Level
-            //4 Tank Capacity
-            //5 NMEA Reserved
-
-            //<Name>Fluid Level</Name>
-            //<ByteLength>8</ByteLength>
-            //<Fields>
-            //<InstanceField Name="Instance">
-            //    <BitOffset>0</BitOffset>
-            //    <BitLength>4</BitLength>
-            //</InstanceField>
-            //<EnumField Name="Type">
-            //    <BitOffset>4</BitOffset>
-            //    <BitLength>4</BitLength>
-            //    <EnumValues>
-            //    <EnumPair Value="0" Name="Fuel" />
-            //    <EnumPair Value="1" Name="Water" />
-            //    <EnumPair Value="2" Name="Gray water" />
-            //    <EnumPair Value="3" Name="Live well" />
-            //    <EnumPair Value="4" Name="Oil" />
-            //    <EnumPair Value="5" Name="Black water" />
-            //    </EnumValues>
-            //</EnumField>
-            //<DblField Name="Level">
-            //    <BitOffset>8</BitOffset>
-            //    <BitLength>16</BitLength>
-            //    <Scale>0.004</Scale>
-            //</DblField>
-            //<DblField Name="Capacity">
-            //    <BitOffset>24</BitOffset>
-            //    <BitLength>32</BitLength>
-            //    <Scale>0.1</Scale>
-            //</DblField>
-            //<UIntField Name="Reserved">
-            //    <BitOffset>56</BitOffset>
-            //    <BitLength>8</BitLength>
-            //</UIntField>
-            //</Fields>
-            //</PGNDefn>
-
+            throw new NotImplementedException();
         }
 
-        public static bool ParsePGN127505(N2kFrame frame, out int type, out double level, out double capacity)
+        public static bool ParsePGN127505(N2kFrame frame, out EnumPair type, out double level, out double capacity)
         {
-            type = 0;
+            type = null;
             level = 0;
             capacity = 0;
+
+            // Check if frame is the correct PGN
+            if (frame.Defn.PGN != 127505) return false;
+
+            // Parse the frame
+            N2kMessage msg = new N2kMessage(frame);
+            type = msg.GetEnumField("EnumField");
+            level = msg.GetUDblField("Level");
+            capacity = msg.GetUDblField("Capacity");
 
             return true;
         }

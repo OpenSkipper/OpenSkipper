@@ -102,6 +102,19 @@ namespace CANMessages
             return GetUDblField(fieldName, out state);
         }
 
+        public EnumPair GetEnumField(string fieldName, out FieldValueState state)
+        {
+            var field = _frame.Defn.GetFieldByName(fieldName) as N2kEnumField;
+            int value = (int)field.GetValue(_frame.Data, out state);
+
+            return field.EnumPairArray.FirstOrDefault(v => v.Value == value.ToString());
+        }
+        public EnumPair GetEnumField(string fieldName)
+        {
+            FieldValueState state;
+            return GetEnumField(fieldName, out state);
+        }
+
         #endregion
 
         #region Set Value

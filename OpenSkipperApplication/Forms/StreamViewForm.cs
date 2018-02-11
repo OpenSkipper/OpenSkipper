@@ -148,6 +148,8 @@ namespace OpenSkipperApplication.Forms
                 oDialog.Filter = CANStreamer_N0183Logfile.FileFilter;
             else if (selStream is CANStreamer_WeatherLogfile)
                 oDialog.Filter = CANStreamer_WeatherLogfile.FileFilter;
+            else if (selStream is CANStreamer_YDWG02_2000)
+                oDialog.Filter = CANStreamer_YDWG02_2000.FileFilter;
             else
                 throw new Exception("No file filter defined for type '" + selStream.GetType().Name + "'");
 
