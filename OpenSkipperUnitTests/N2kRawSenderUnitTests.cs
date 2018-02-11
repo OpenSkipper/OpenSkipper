@@ -301,7 +301,7 @@ namespace OpenSkipperUnitTests
                 if (outFrame != null)
                 {
                     N2kRawSender sender = new N2kRawSender();
-                    File.AppendAllText(TestHelper.GetTestFilePath("RawN2kLog.log"), sender.GetLines(outFrame));
+                    File.AppendAllText(TestHelper.GetTestFilePath("RawN2kLog.log"), sender.GetLines(outFrame, true).Replace(" T ", " R "));
                 }
             }
         }

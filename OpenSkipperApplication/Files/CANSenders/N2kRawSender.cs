@@ -1,4 +1,5 @@
 ﻿using CANHandler;
+using CANReaders;
 using OpenSkipperApplication;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace CANSenders
             return Encoding.ASCII.GetBytes(GetLines(frame));
         }
 
-        public string GetLines(Frame frame)
+        public string GetLines(Frame frame, bool fullTx = false)
         {
             N2kFrame n2kFrame = frame as N2kFrame;
             if (frame == null)
@@ -29,7 +30,7 @@ namespace CANSenders
             int priority = Convert.ToInt32(n2kFrame.Header.Priority);
             int source = Convert.ToInt32(n2kFrame.Header.Source);
             int destination = (n2kFrame.Header.Destination.ToLower() == "all") ? 255 : Convert.ToInt32(n2kFrame.Header.Destination);
-            int canId = getCanIdFromISO11783Bits(priority, pgn, source, destination);
+            int canId = N2kRawMessage.CreateCanID(priority, pgn, source, destination);
 
             #region Documentation
             // YDWG-02, when setup as a RAW port in Transmit or Both mode can receive
@@ -49,7 +50,7 @@ namespace CANSenders
             #endregion
 
             StringBuilder sb = new StringBuilder();
-            buildOutput(sb, canId, lenght, n2kFrame.Data);
+            buildOutput(sb, canId, lenght, n2kFrame.Data, fullTx);
 
             return sb.ToString();
         }
@@ -60,7 +61,7 @@ namespace CANSenders
         /// <param name="sb"></param>
         /// <param name="canId"></param>
         /// <param name="bytes"></param>
-        private void buildOutput(StringBuilder sb, int canId, int length, byte[] bytes)
+        private void buildOutput(StringBuilder sb, int canId, int length, byte[] bytes, bool fullTx = false)
         {
             #region Documentation
             /*
@@ -90,13 +91,17 @@ namespace CANSenders
                         Last line can be sent as 2 bytes or as 8 bytes length
             */
             #endregion
+
             if (length > 8)
             {
                 // NMEA 2000 fast message
-                
+
+                // Add Time and Direction
+                addTimeAndDirection(sb, true, fullTx);
+
                 // Add CanID, Sequence Number and Message Length
                 int sequence = 0;
-                sb.AppendFormat("{0} {1} {2}", canId.ToString("X4"), sequence.ToString("X2"), length.ToString("X2"));
+                sb.AppendFormat("{0} {1} {2}", canId.ToString("X8"), sequence.ToString("X2"), length.ToString("X2"));
 
                 // Add 5 Data bytes
                 var first5Bytes = bytes.Take(6).ToArray();
@@ -107,9 +112,12 @@ namespace CANSenders
 
                 foreach(var line in remainBytes)
                 {
+                    // Add Time and Direction
+                    addTimeAndDirection(sb, true, fullTx);
+
                     // Add CanID, Sequence Number
                     sequence += 1;
-                    sb.AppendFormat("{0} {1}", canId.ToString("X4"), sequence.ToString("X2"));
+                    sb.AppendFormat("{0} {1}", canId.ToString("X8"), sequence.ToString("X2"));
 
                     // Add message data
                     addBytesAndEndMessage(sb, line);
@@ -120,8 +128,22 @@ namespace CANSenders
             else
             {
                 // NMEA 2000 normal message
-                sb.AppendFormat(" {0}", canId.ToString("X4"));  // Add CAN ID
-                addBytesAndEndMessage(sb, bytes);               // Add message data
+                addTimeAndDirection(sb, false, fullTx);                  // Add Time and Direction
+                sb.AppendFormat(" {0}", canId.ToString("X8"));  // Add CAN ID
+                addBytesAndEndMessage(sb, bytes);                 // Add message data
+            }
+        }
+
+        private void addTimeAndDirection(StringBuilder sb, bool trailSpace, bool fullTx)
+        {
+            if (fullTx)
+            {
+                // Add Time and direction (T = Transmit)
+                sb.AppendFormat("{0:HH:mm:ss.fff} T", DateTime.Now);
+                if (trailSpace)
+                {
+                    sb.Append(" ");
+                }
             }
         }
 
@@ -130,7 +152,7 @@ namespace CANSenders
             for (int i = 0; i < bytes.Length; i++)
             {
                 // Add each Data byte
-                sb.AppendFormat(" {0}",  bytes[i].ToString("X2"));
+                sb.AppendFormat(" {0}", bytes[i].ToString("X2"));
             }
 
             // Add Carriage Return <CR> and Line Feed <LF>
@@ -163,34 +185,6 @@ namespace CANSenders
             }
 
             return frames;
-        }
-
-        /// <summary>
-        /// This does the opposite from getISO11783BitsFromCanId: given n2k fields produces the extended frame CAN id
-        /// </summary>
-        /// <param name="prio"></param>
-        /// <param name="pgn"></param>
-        /// <param name="src"></param>
-        /// <param name="dst"></param>
-        /// <returns></returns>
-        private int getCanIdFromISO11783Bits(int prio, int pgn, int src, int dst)
-        {
-            //int canId = Convert.ToInt32(src | 0x80000000U); // src bits are the lowest ones of the CAN ID. Also set the highest bit to 1 as n2k uses only extended frames (EFF bit).
-            int canId = Convert.ToInt32(src);
-
-            if ((byte)pgn == 0)
-            { // PDU 1 (assumed if 8 lowest bits of the PGN are 0)
-                canId += dst << 8;
-                canId += pgn << 8;
-                canId += prio << 26;
-            }
-            else
-            { // PDU 2
-                canId += pgn << 8;
-                canId += prio << 26;
-            }
-
-            return canId;
         }
 
     } // class

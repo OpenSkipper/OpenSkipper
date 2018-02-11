@@ -23,6 +23,7 @@ using OpenSkipperApplication;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Xml.Serialization;
 
 namespace CANHandler
@@ -65,11 +66,14 @@ namespace CANHandler
                             return null;
                         }
                     }
-                    catch
+                    catch(Exception ex)
                     {
                         // There has been an error. Stop processing the incoming frames
                         _fastPackets.Remove(n2kHeader.AsUInt);
-                        throw;
+
+                        Debug.WriteLine(ex.ToString());
+
+                        throw ex;
                     }
                 }
 
