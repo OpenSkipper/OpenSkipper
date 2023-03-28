@@ -873,7 +873,7 @@ namespace CANHandler
         }
 
         // Public
-        [XmlAttribute]
+        // [XmlAttribute]
         [Description("What index the field relates to")]
         public int SegmentIndex { get; set; }
         [BrowsableAttribute(true)]
