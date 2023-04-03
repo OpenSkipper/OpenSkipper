@@ -873,7 +873,7 @@ namespace CANHandler
         }
 
         // Public
-        // [XmlAttribute]
+        //[XmlAttribute] AJM: This was preventing the segment index loading; it was showing as 0 all the time, breaking NMEA0183
         [Description("What index the field relates to")]
         public int SegmentIndex { get; set; }
         [BrowsableAttribute(true)]

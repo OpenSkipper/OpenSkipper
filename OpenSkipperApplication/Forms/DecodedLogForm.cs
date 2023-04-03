@@ -265,7 +265,7 @@ namespace OpenSkipperApplication {
                     if (newIdx >= 0)
                     {
                         
-                        dataGridView1.Rows[oldIdx].Selected = false;
+                        if (oldIdx < dataGridView1.Rows.Count) dataGridView1.Rows[oldIdx].Selected = false;
                         dataGridView1.Rows[newIdx].Selected = true;
                         
                     }

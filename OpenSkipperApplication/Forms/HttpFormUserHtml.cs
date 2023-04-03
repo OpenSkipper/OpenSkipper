@@ -476,7 +476,7 @@ namespace OpenSkipperApplication.Forms
             public HtmlPages()
             {
                 RootPath = Settings.Default.WWWRoot;
-                if (!Path.IsPathRooted(RootPath)) Path.Combine(AppDomain.CurrentDomain.BaseDirectory, RootPath);
+                if (!Path.IsPathRooted(RootPath)) RootPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, RootPath);
                 m_Pages=new List<HtmlPage>();
             }
 
