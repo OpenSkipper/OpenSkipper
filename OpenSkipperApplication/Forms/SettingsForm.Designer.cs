@@ -61,12 +61,12 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.cbHideMenusOnStart = new System.Windows.Forms.CheckBox();
             this.panelWWW = new System.Windows.Forms.Panel();
+            this.valueWWWPort = new KaveExtControls.ValueBox();
+            this.labelWWWPort = new System.Windows.Forms.Label();
             this.labelWWWRoot = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.txtWWWRoot = new System.Windows.Forms.TextBox();
             this.groupBoxOther = new System.Windows.Forms.GroupBox();
-            this.labelWWWPort = new System.Windows.Forms.Label();
-            this.valueWWWPort = new KaveExtControls.ValueBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -94,7 +94,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(144, 21);
             this.label2.TabIndex = 1;
-            this.label2.Text = "NMEA 0183 Definitions";
+            this.label2.Text = "NMEA 0183 Definitions:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3
@@ -407,7 +407,7 @@
             // cbHideMenusOnStart
             // 
             this.cbHideMenusOnStart.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cbHideMenusOnStart.Location = new System.Drawing.Point(12, 95);
+            this.cbHideMenusOnStart.Location = new System.Drawing.Point(9, 78);
             this.cbHideMenusOnStart.Name = "cbHideMenusOnStart";
             this.cbHideMenusOnStart.Size = new System.Drawing.Size(164, 24);
             this.cbHideMenusOnStart.TabIndex = 0;
@@ -424,8 +424,30 @@
             this.panelWWW.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelWWW.Location = new System.Drawing.Point(3, 16);
             this.panelWWW.Name = "panelWWW";
-            this.panelWWW.Size = new System.Drawing.Size(589, 73);
+            this.panelWWW.Size = new System.Drawing.Size(589, 57);
             this.panelWWW.TabIndex = 13;
+            // 
+            // valueWWWPort
+            // 
+            this.valueWWWPort.Format = "G";
+            this.valueWWWPort.Location = new System.Drawing.Point(292, 32);
+            this.valueWWWPort.Max = 65535D;
+            this.valueWWWPort.Min = 80D;
+            this.valueWWWPort.Name = "valueWWWPort";
+            this.valueWWWPort.Size = new System.Drawing.Size(100, 20);
+            this.valueWWWPort.TabIndex = 18;
+            this.valueWWWPort.Text = "80";
+            this.valueWWWPort.Value = 80D;
+            // 
+            // labelWWWPort
+            // 
+            this.labelWWWPort.Location = new System.Drawing.Point(6, 31);
+            this.labelWWWPort.Margin = new System.Windows.Forms.Padding(3);
+            this.labelWWWPort.Name = "labelWWWPort";
+            this.labelWWWPort.Size = new System.Drawing.Size(144, 22);
+            this.labelWWWPort.TabIndex = 17;
+            this.labelWWWPort.Text = "Web Server Port:";
+            this.labelWWWPort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelWWWRoot
             // 
@@ -434,7 +456,7 @@
             this.labelWWWRoot.Name = "labelWWWRoot";
             this.labelWWWRoot.Size = new System.Drawing.Size(144, 22);
             this.labelWWWRoot.TabIndex = 14;
-            this.labelWWWRoot.Text = "WWW Root:";
+            this.labelWWWRoot.Text = "Web Server Files Directory:";
             this.labelWWWRoot.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button1
@@ -445,6 +467,7 @@
             this.button1.TabIndex = 16;
             this.button1.Text = "...";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnChangeWebServerDirectory_Click);
             // 
             // txtWWWRoot
             // 
@@ -461,32 +484,10 @@
             this.groupBoxOther.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBoxOther.Location = new System.Drawing.Point(10, 168);
             this.groupBoxOther.Name = "groupBoxOther";
-            this.groupBoxOther.Size = new System.Drawing.Size(595, 125);
+            this.groupBoxOther.Size = new System.Drawing.Size(595, 107);
             this.groupBoxOther.TabIndex = 14;
             this.groupBoxOther.TabStop = false;
             this.groupBoxOther.Text = "Other";
-            // 
-            // labelWWWPort
-            // 
-            this.labelWWWPort.Location = new System.Drawing.Point(6, 33);
-            this.labelWWWPort.Margin = new System.Windows.Forms.Padding(3);
-            this.labelWWWPort.Name = "labelWWWPort";
-            this.labelWWWPort.Size = new System.Drawing.Size(144, 22);
-            this.labelWWWPort.TabIndex = 17;
-            this.labelWWWPort.Text = "WWW port:";
-            this.labelWWWPort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // valueWWWPort
-            // 
-            this.valueWWWPort.Format = "G";
-            this.valueWWWPort.Location = new System.Drawing.Point(292, 34);
-            this.valueWWWPort.Max = 65535D;
-            this.valueWWWPort.Min = 80D;
-            this.valueWWWPort.Name = "valueWWWPort";
-            this.valueWWWPort.Size = new System.Drawing.Size(100, 20);
-            this.valueWWWPort.TabIndex = 18;
-            this.valueWWWPort.Text = "80";
-            this.valueWWWPort.Value = 80D;
             // 
             // SettingsForm
             // 
