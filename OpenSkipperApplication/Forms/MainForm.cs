@@ -695,27 +695,30 @@ namespace OpenSkipperApplication
         {
             ToolStripMenuItem mnuSender = (ToolStripMenuItem)sender;
             string portName = mnuSender.Text;
-            
+
             // Item is checked/unchecked before this function fires
-            if (mnuSender.Checked == false)
-            {
+            if (mnuSender.Checked == false) {
                 // Find stream to disconnect (So port is available again)
                 CANStreamer stream = StreamManager.Streams.FirstOrDefault(str => (str is CANStreamer_N0183 && ((CANStreamer_COMPort)str).PortName == portName && str.ConnectionState == ConnectionStateEnum.Connected));
                 if (stream != null)
                     stream.Disconnect();
             }
-            else
-            {
-                // Check for existing disconnected stream with same name, which we will reconnect
-                CANStreamer stream = StreamManager.Streams.FirstOrDefault(str => (str is CANStreamer_N0183 && ((CANStreamer_COMPort)str).PortName == portName && str.ConnectionState == ConnectionStateEnum.Disconnected));
-                if (stream == null)
-                {
-                    // Adding new stream
-                    stream = new CANStreamer_N0183() { PortName = portName, Name = portName };
-                    StreamManager.AddStream(stream);
+            else {
+                if (!CommonRoutines.TestIsPortFree(portName)) {
+                    MessageBox.Show("The selected COM port is already in use, and cannot be opened by OpenSkipper", "Com Port not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
-                
-                stream.ConnectStream();
+                else {
+                    // Check for existing disconnected stream with same name, which we will reconnect
+                    CANStreamer stream = StreamManager.Streams.FirstOrDefault(str => (str is CANStreamer_N0183 && ((CANStreamer_COMPort)str).PortName == portName && str.ConnectionState == ConnectionStateEnum.Disconnected));
+                    if (stream == null) {
+                        // Adding new stream
+                        stream = new CANStreamer_N0183() { PortName = portName, Name = portName };
+                        StreamManager.AddStream(stream);
+                    }
+
+                    stream.ConnectStream();
+                }
             }
         }
 
@@ -731,14 +734,20 @@ namespace OpenSkipperApplication
                 if (stream != null)
                     stream.Disconnect();
             } else {
-                // Check for existing disconnected stream with same name, which we will reconnect
-                CANStreamer stream = StreamManager.Streams.FirstOrDefault(str => (str is CANStreamer_NGT1_2000 && ((CANStreamer_COMPort)str).PortName == portName && str.ConnectionState == ConnectionStateEnum.Disconnected));
-                if (stream == null) {
-                    stream = new CANStreamer_NGT1_2000() { PortName = portName, Name = portName };
-                    StreamManager.AddStream(stream);
+                if (!CommonRoutines.TestIsPortFree(portName)) {
+                    MessageBox.Show("The selected COM port is already in use, and cannot be opened by OpenSkipper", "Com Port not Available", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
+                else {
+                    // Check for existing disconnected stream with same name, which we will reconnect
+                    CANStreamer stream = StreamManager.Streams.FirstOrDefault(str => (str is CANStreamer_NGT1_2000 && ((CANStreamer_COMPort)str).PortName == portName && str.ConnectionState == ConnectionStateEnum.Disconnected));
+                    if (stream == null) {
+                        stream = new CANStreamer_NGT1_2000() { PortName = portName, Name = portName };
+                        StreamManager.AddStream(stream);
+                    }
 
-                stream.ConnectStream();
+                    stream.ConnectStream();
+                }
             }
         }
 
@@ -844,7 +853,7 @@ namespace OpenSkipperApplication
             if (frmDecodedLogForm == null)
                 frmDecodedLogForm = new DecodedLogForm();
 
-            frmDecodedLogForm.Show(this);
+            if ( !frmDecodedLogForm.Visible ) frmDecodedLogForm.Show(this);
         }
 
         private void mnuAdvanced_Click(object sender, EventArgs e)
@@ -970,7 +979,8 @@ namespace OpenSkipperApplication
                 foreach (string portName in portNames)
                 {
                     // We show only ports, which are not in use.
-                    if (!CommonRoutines.TestIsPortFree(portName)) continue;
+                    // AJM This takes too long, and so we now check this when the menu item is selected
+                    //if (!CommonRoutines.TestIsPortFree(portName)) continue;
 
                     ToolStripMenuItem portItem1 = new ToolStripMenuItem() { Text = portName, CheckOnClick = true };
                     portItem1.Click += new EventHandler(portItem_NGT1_2000_Click);
