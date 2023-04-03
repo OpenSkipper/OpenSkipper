@@ -133,6 +133,22 @@ namespace OpenSkipperApplication
             }
         }
 
+        private void btnChangeWebServerDirectory_Click(object sender, EventArgs e)
+        {
+            // See https://stackoverflow.com/questions/11624298/how-do-i-use-openfiledialog-to-select-a-folder
+            OpenFileDialog folderBrowser = new OpenFileDialog();
+            // Set validate names and check file exists to false otherwise windows will
+            // not let you select "Folder Selection."
+            folderBrowser.ValidateNames = false;
+            folderBrowser.CheckFileExists = false;
+            folderBrowser.CheckPathExists = true;
+            // Always default to Folder Selection.
+            folderBrowser.FileName = "Folder Selection.";
+            if (folderBrowser.ShowDialog() == DialogResult.OK) {
+                txtWWWRoot.Text = System.IO.Path.GetDirectoryName(folderBrowser.FileName);
+            }
+        }
+
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (txtN2kPath.Text != Settings.Default.N2kPath) Definitions.LoadPGNDefns(txtN2kPath.Text);
@@ -212,5 +228,6 @@ namespace OpenSkipperApplication
             else
                 txtAISPath.Text = "";
         }
+
     }
 }
