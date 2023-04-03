@@ -65,7 +65,11 @@ namespace CANReaders
         /// </summary>
         public void Parse()
         {
-            ParseCanID(CanID, out int priority, out int pgn, out int source, out int destination);
+            int priority;
+            int pgn;
+            int source;
+            int destination;
+            ParseCanID(CanID, out priority, out pgn, out source, out destination);
 
             Priority = priority.ToByte();
             Pgn = pgn;
